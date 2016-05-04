@@ -97,7 +97,7 @@
 - (IBAction)rocketTapped:(id)sender
 {
     CATransition *transition = [CATransition animation];
-    transition.duration = 2;
+    transition.duration = 1.5;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionReveal;
     transition.subtype = kCATransitionFromTop;

@@ -37,6 +37,11 @@
 
 }
 
+-(BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
+
 -(void)viewWillAppear:(BOOL)animated
 {
     self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -84,11 +89,6 @@
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
     return self.APODImage;
-}
-
--(BOOL)prefersStatusBarHidden
-{
-    return YES;
 }
 
 #pragma - IBActions
