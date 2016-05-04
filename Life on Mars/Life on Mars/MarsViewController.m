@@ -92,16 +92,18 @@
     return YES;
 }
 
+
+
 - (IBAction)rocketTapped:(id)sender
 {
     CATransition *transition = [CATransition animation];
-    transition.duration = 2.5;
+    transition.duration = 2;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     transition.type = kCATransitionReveal;
     transition.subtype = kCATransitionFromTop;
     [self.view.window.layer addAnimation:transition forKey:nil];
-    
-    [self performSegueWithIdentifier:@"segueToSpace" sender:self];
+
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

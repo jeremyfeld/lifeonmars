@@ -1,12 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mMp-kA-hJQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z4P-eb-Ncf">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="ZQC-86-w6S">
+            <objects>
+                <viewController id="Z4P-eb-Ncf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wga-MW-hzI"/>
+                        <viewControllerLayoutGuide type="bottom" id="yoB-TS-HZp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JA8-UG-agL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" misplaced="YES" image="rocket" translatesAutoresizingMaskIntoConstraints="NO" id="3sH-wa-RYA">
+                                <rect key="frame" x="37" y="135" width="301" height="512"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3sH-wa-RYA" firstAttribute="width" secondItem="JA8-UG-agL" secondAttribute="height" multiplier="301:667" id="B7S-MV-iSU"/>
+                            <constraint firstItem="3sH-wa-RYA" firstAttribute="centerX" secondItem="JA8-UG-agL" secondAttribute="centerX" id="CDw-s9-UUX"/>
+                            <constraint firstItem="3sH-wa-RYA" firstAttribute="width" secondItem="JA8-UG-agL" secondAttribute="width" multiplier="0.75" id="hit-HI-y8S"/>
+                            <constraint firstItem="yoB-TS-HZp" firstAttribute="top" secondItem="3sH-wa-RYA" secondAttribute="bottom" constant="20" id="k48-qH-65N"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="B7S-MV-iSU"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J7f-nc-lNu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-988.5" y="359.5"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="vYu-h5-nAJ">
             <objects>
@@ -19,8 +55,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayd-fl-YeR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" indicatorStyle="white" minimumZoomScale="0.80000000000000004" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="ayd-fl-YeR">
+                                <rect key="frame" x="-20" y="-20" width="375" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4cz-z8-YbF">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="834"/>
@@ -42,14 +78,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYn-Ci-TUq" userLabel="info">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYn-Ci-TUq" userLabel="info">
                                 <rect key="frame" x="321" y="613" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="PJW-RE-HEd"/>
                                     <constraint firstAttribute="height" constant="44" id="wbh-7e-6q7"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="transport"/>
                                 <connections>
                                     <action selector="infoTapped:" destination="mMp-kA-hJQ" eventType="touchUpInside" id="RR9-BX-hOY"/>
                                 </connections>
@@ -63,26 +98,25 @@
                                 <state key="normal" title="Button" image="rocket"/>
                                 <connections>
                                     <action selector="rocketTapped:" destination="mMp-kA-hJQ" eventType="touchUpInside" id="gfH-4O-QUh"/>
-                                    <segue destination="gF0-xh-Kng" kind="show" identifier="segueToMars" id="4hZ-WT-cYD"/>
+                                    <segue destination="gF0-xh-Kng" kind="presentation" identifier="segueToMars" id="uLf-M4-Mqi"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ayd-fl-YeR" secondAttribute="trailing" id="0Y0-o3-MjC"/>
+                            <constraint firstItem="ayd-fl-YeR" firstAttribute="height" secondItem="kmw-ve-JYc" secondAttribute="height" id="7fH-pl-lKj"/>
                             <constraint firstItem="Pcf-Bq-aS4" firstAttribute="centerX" secondItem="kmw-ve-JYc" secondAttribute="centerX" id="C5L-g8-UaE"/>
                             <constraint firstItem="4cz-z8-YbF" firstAttribute="width" relation="greaterThanOrEqual" secondItem="kmw-ve-JYc" secondAttribute="width" id="D84-bM-YFI"/>
                             <constraint firstAttribute="trailing" secondItem="MYn-Ci-TUq" secondAttribute="trailing" constant="10" id="GFe-Zc-8WA"/>
                             <constraint firstItem="fZc-BQ-nQS" firstAttribute="top" secondItem="MYn-Ci-TUq" secondAttribute="bottom" constant="10" id="LzN-dq-14C"/>
-                            <constraint firstItem="fZc-BQ-nQS" firstAttribute="top" secondItem="ayd-fl-YeR" secondAttribute="bottom" id="NCd-X6-38l"/>
                             <constraint firstItem="fZc-BQ-nQS" firstAttribute="top" secondItem="Pcf-Bq-aS4" secondAttribute="bottom" id="Ufx-M3-vxB"/>
                             <constraint firstItem="4cz-z8-YbF" firstAttribute="height" secondItem="kmw-ve-JYc" secondAttribute="height" multiplier="1.25" id="YGR-Kc-Tnf"/>
                             <constraint firstItem="fZc-BQ-nQS" firstAttribute="top" secondItem="v8i-mS-yGB" secondAttribute="bottom" constant="10" id="Yl9-qO-gOo"/>
                             <constraint firstItem="v8i-mS-yGB" firstAttribute="leading" secondItem="kmw-ve-JYc" secondAttribute="leading" constant="10" id="b8v-cN-8DP"/>
-                            <constraint firstItem="ayd-fl-YeR" firstAttribute="leading" secondItem="kmw-ve-JYc" secondAttribute="leading" id="eDX-hx-ehj"/>
+                            <constraint firstItem="ayd-fl-YeR" firstAttribute="centerX" secondItem="kmw-ve-JYc" secondAttribute="centerX" id="kp9-3L-sgM"/>
+                            <constraint firstItem="ayd-fl-YeR" firstAttribute="width" secondItem="kmw-ve-JYc" secondAttribute="width" id="mko-bf-ZfA"/>
                             <constraint firstItem="Pcf-Bq-aS4" firstAttribute="width" secondItem="kmw-ve-JYc" secondAttribute="width" constant="-108" id="nz6-2U-xf2"/>
-                            <constraint firstItem="ayd-fl-YeR" firstAttribute="top" secondItem="l8M-Rs-I36" secondAttribute="bottom" constant="-20" id="qS9-S6-zZr"/>
-                            <constraint firstItem="ayd-fl-YeR" firstAttribute="width" secondItem="kmw-ve-JYc" secondAttribute="width" id="wCx-8Z-N4P"/>
+                            <constraint firstItem="ayd-fl-YeR" firstAttribute="centerY" secondItem="kmw-ve-JYc" secondAttribute="centerY" id="xzr-yu-4uI"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -197,8 +231,8 @@
                                 </constraints>
                                 <state key="normal" title="Button" image="rocket"/>
                                 <connections>
-                                    <action selector="rocketTapped:" destination="gF0-xh-Kng" eventType="touchUpInside" id="QIs-of-bQA"/>
-                                    <segue destination="mMp-kA-hJQ" kind="show" identifier="segueToSpace" id="zY6-gD-yqA"/>
+                                    <action selector="rocketTapped:" destination="gF0-xh-Kng" eventType="touchUpInside" id="oqg-FK-9ZF"/>
+                                    <segue destination="L0V-Pj-wq6" kind="unwind" unwindAction="myUnwindAction:" id="PYI-si-W7b"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -234,6 +268,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13p-zj-Qbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="L0V-Pj-wq6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="101.5" y="261.5"/>
         </scene>
@@ -243,6 +278,5 @@
         <image name="rocket" width="512" height="512"/>
         <image name="star field" width="2000" height="1200"/>
         <image name="sun" width="612" height="612"/>
-        <image name="transport" width="512" height="512"/>
     </resources>
 </document>
