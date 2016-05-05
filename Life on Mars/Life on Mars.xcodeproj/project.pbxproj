@@ -11,6 +11,7 @@
 		CB0C5EDA1CDA70F000D898DF /* RocketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0C5ED91CDA70F000D898DF /* RocketViewController.m */; };
 		CB0C5EDC1CDA955E00D898DF /* space-sunrise.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB0C5EDB1CDA955E00D898DF /* space-sunrise.jpg */; };
 		CB0C5EDE1CDBE4FF00D898DF /* ray.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB0C5EDD1CDBE4FF00D898DF /* ray.mp3 */; };
+		CB0C5EE01CDBFB6100D898DF /* sun.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0C5EDF1CDBFB6100D898DF /* sun.png */; };
 		CB69990B1CD7B86500ADFE4F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CB69990A1CD7B86500ADFE4F /* main.m */; };
 		CB69990E1CD7B86500ADFE4F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CB69990D1CD7B86500ADFE4F /* AppDelegate.m */; };
 		CB6999141CD7B86500ADFE4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB6999121CD7B86500ADFE4F /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		CB0C5ED91CDA70F000D898DF /* RocketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RocketViewController.m; sourceTree = "<group>"; };
 		CB0C5EDB1CDA955E00D898DF /* space-sunrise.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "space-sunrise.jpg"; sourceTree = "<group>"; };
 		CB0C5EDD1CDBE4FF00D898DF /* ray.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ray.mp3; sourceTree = "<group>"; };
+		CB0C5EDF1CDBFB6100D898DF /* sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sun.png; sourceTree = "<group>"; };
 		CB6999061CD7B86500ADFE4F /* Life on Mars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Life on Mars.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB69990A1CD7B86500ADFE4F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CB69990C1CD7B86500ADFE4F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				CB6999491CD7F3BA00ADFE4F /* fly.wav */,
 				CB0C5EDD1CDBE4FF00D898DF /* ray.mp3 */,
 				CB0C5EDB1CDA955E00D898DF /* space-sunrise.jpg */,
+				CB0C5EDF1CDBFB6100D898DF /* sun.png */,
 				CB6999121CD7B86500ADFE4F /* Main.storyboard */,
 				CB6999151CD7B86500ADFE4F /* Assets.xcassets */,
 				CB6999171CD7B86500ADFE4F /* LaunchScreen.storyboard */,
@@ -306,6 +309,7 @@
 				CB6999481CD7F3AC00ADFE4F /* launch.mp3 in Resources */,
 				CB6999161CD7B86500ADFE4F /* Assets.xcassets in Resources */,
 				CB0C5EDC1CDA955E00D898DF /* space-sunrise.jpg in Resources */,
+				CB0C5EE01CDBFB6100D898DF /* sun.png in Resources */,
 				CB6999141CD7B86500ADFE4F /* Main.storyboard in Resources */,
 				CB6999461CD7EB3B00ADFE4F /* intro.mp3 in Resources */,
 			);

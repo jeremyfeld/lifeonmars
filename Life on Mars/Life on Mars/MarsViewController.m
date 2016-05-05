@@ -28,6 +28,26 @@
 {
     [super viewDidLoad];
     
+    //take center x
+    //center y
+    //width
+    //height
+    
+    //        CGRect boundingRect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, self.view.frame.size.width, self.view.frame.size.height);
+    
+    CGRect boundingRect = CGRectMake(0, 0, 300, 300);
+    
+    CAKeyframeAnimation *orbit = [CAKeyframeAnimation animation];
+    orbit.keyPath = @"position";
+    orbit.path = CFAutorelease(CGPathCreateWithEllipseInRect(boundingRect, NULL));
+    orbit.duration = 8;
+    orbit.additive = YES;
+    orbit.repeatCount = HUGE_VALF;
+    orbit.calculationMode = kCAAnimationPaced;
+    orbit.rotationMode = kCAAnimationRotateAuto;
+    
+    [self.sun.layer addAnimation:orbit forKey:@"orbit"];
+    
     NSString *marsWeather = [NSString stringWithFormat:@"http://marsweather.ingenology.com/v1/latest/"];
     
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
@@ -66,24 +86,6 @@
         //error message
         
     }];
-    
-    
-    //    CGRect boundingRect = CGRectMake(-300, 0, 200, 200);
-    //
-    //    CAKeyframeAnimation *orbit = [CAKeyframeAnimation animation];
-    //    orbit.keyPath = @"position";
-    //    orbit.path = CFAutorelease(CGPathCreateWithEllipseInRect(boundingRect, NULL));
-    //    orbit.duration = 8;
-    //    orbit.additive = YES;
-    //    orbit.repeatCount = HUGE_VALF;
-    //    orbit.calculationMode = kCAAnimationPaced;
-    //    orbit.rotationMode = kCAAnimationRotateAuto;
-    //
-    //    [self.sun.layer addAnimation:orbit forKey:@"orbit"];
-    
-    
-    //    [self animateSun];
-    
 }
 
 -(BOOL)prefersStatusBarHidden

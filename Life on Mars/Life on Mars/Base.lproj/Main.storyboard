@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mMp-kA-hJQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z4P-eb-Ncf">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="ows-uq-e2t">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundnew" translatesAutoresizingMaskIntoConstraints="NO" id="ows-uq-e2t">
                                 <rect key="frame" x="0.0" y="-2668" width="375" height="3335"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fire 2" translatesAutoresizingMaskIntoConstraints="NO" id="yjA-I4-K8N">
@@ -315,13 +315,6 @@
                                     <constraint firstAttribute="height" constant="75" id="x4d-h3-F6V"/>
                                 </constraints>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun" translatesAutoresizingMaskIntoConstraints="NO" id="lOy-Ip-fPB">
-                                <rect key="frame" x="36" y="35" width="75" height="75"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="75" id="Gal-K4-Ryx"/>
-                                    <constraint firstAttribute="height" constant="75" id="zAB-9s-M7Z"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sh-Az-xFw">
                                 <rect key="frame" x="10" y="613" width="44" height="44"/>
                                 <constraints>
@@ -334,6 +327,13 @@
                                     <segue destination="L0V-Pj-wq6" kind="unwind" unwindAction="myUnwindAction:" id="PYI-si-W7b"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun.png" translatesAutoresizingMaskIntoConstraints="NO" id="lOy-Ip-fPB">
+                                <rect key="frame" x="150" y="40" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="Gal-K4-Ryx"/>
+                                    <constraint firstAttribute="height" constant="75" id="zAB-9s-M7Z"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -347,13 +347,21 @@
                             <constraint firstItem="iYD-WO-aX0" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="Ifw-NM-3Pm"/>
                             <constraint firstItem="gca-S7-qIm" firstAttribute="top" secondItem="2Q1-Dx-gvS" secondAttribute="bottom" constant="-20" id="NNc-fk-FWW"/>
                             <constraint firstItem="4sh-Az-xFw" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leading" constant="10" id="UgY-aZ-8Bu"/>
+                            <constraint firstItem="lOy-Ip-fPB" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="bZk-ao-pst"/>
                             <constraint firstItem="qcB-yd-L05" firstAttribute="width" secondItem="dgq-Lk-8bl" secondAttribute="width" multiplier="0.75" id="cag-vw-Yff"/>
                             <constraint firstItem="qcB-yd-L05" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="iyq-d9-37c"/>
                             <constraint firstItem="aEB-7C-Ux3" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="l7g-SG-UKh"/>
                             <constraint firstItem="lOy-Ip-fPB" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leadingMargin" constant="20" id="lx8-mH-9fj"/>
                             <constraint firstItem="gca-S7-qIm" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leadingMargin" constant="-20" id="nBh-6a-1hI"/>
                             <constraint firstItem="2VG-PN-LbY" firstAttribute="top" secondItem="4sh-Az-xFw" secondAttribute="bottom" constant="10" id="q2r-D4-8Ce"/>
+                            <constraint firstItem="lOy-Ip-fPB" firstAttribute="top" secondItem="2Q1-Dx-gvS" secondAttribute="bottom" constant="20" id="re4-i5-lY9"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="CQD-uf-Orf"/>
+                                <exclude reference="lx8-mH-9fj"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -363,7 +371,7 @@
                         <outlet property="maxFar" destination="OFp-bZ-EwP" id="gLU-4V-9uh"/>
                         <outlet property="minCel" destination="1x3-8s-VHp" id="lLc-cs-bc7"/>
                         <outlet property="minFar" destination="bdR-6d-LvT" id="bCC-Wm-qUN"/>
-                        <outlet property="sun" destination="lOy-Ip-fPB" id="Ts7-L0-XTS"/>
+                        <outlet property="sun" destination="lOy-Ip-fPB" id="FpR-bH-9HP"/>
                         <outlet property="weatherLabel" destination="Yu8-bd-mtI" id="e9m-pW-t5b"/>
                     </connections>
                 </viewController>
@@ -375,14 +383,14 @@
     </scenes>
     <resources>
         <image name="Red_button" width="191" height="177"/>
-        <image name="background" width="1200" height="5374"/>
+        <image name="backgroundnew" width="1200" height="5375"/>
         <image name="fire 2" width="100" height="146"/>
         <image name="floppydisk" width="512" height="512"/>
         <image name="mars no background" width="1200" height="675"/>
         <image name="marsIcon" width="512" height="512"/>
         <image name="rocket" width="512" height="512"/>
         <image name="star field" width="2000" height="1200"/>
-        <image name="sun" width="612" height="612"/>
+        <image name="sun.png" width="612" height="612"/>
         <image name="transport" width="512" height="512"/>
     </resources>
 </document>
