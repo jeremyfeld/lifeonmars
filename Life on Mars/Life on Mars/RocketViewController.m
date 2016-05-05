@@ -10,25 +10,27 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface RocketViewController ()
+
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImage;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *backgroundBottomConstraint;
-@property (strong, nonatomic) NSLayoutConstraint *backgroundAfterAnimation;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *rocketHeightConstraint;
 @property (strong, nonatomic) IBOutlet UIImageView *rocketImage;
-@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (strong, nonatomic) IBOutlet UIImageView *fireImage;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *backgroundBottomConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *fireHeightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *rocketHeightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *rocketBottomConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *backgroundAfterAnimation;
+@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 
 @end
 
 @implementation RocketViewController
 
-- (void)viewDidLoad {
+-(void)viewDidLoad
+{
     [super viewDidLoad];
     
     self.backgroundImage.translatesAutoresizingMaskIntoConstraints = NO;
     self.fireImage.alpha = 0;
-    self.fireImage.hidden = YES;
 }
 
 -(BOOL)prefersStatusBarHidden
@@ -36,9 +38,8 @@
     return YES;
 }
 
-- (IBAction)redButtonTapped:(id)sender
+-(IBAction)redButtonTapped:(id)sender
 {
-    self.fireImage.hidden = NO;
     CGFloat screenHeight = self.backgroundImage.frame.size.height/5;
     CGFloat animationConstant = screenHeight * 4;
     
@@ -48,19 +49,31 @@
     [self prepareAudio];
     [self.audioPlayer play];
     
-    [UIView animateWithDuration:2.5 animations:^{
+    [UIView animateWithDuration:2.1 animations:^{
+        
         self.fireImage.alpha = 1;
         [self.view layoutIfNeeded];
         
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.33 animations:^{
+        
+        [UIView animateWithDuration:0.2 animations:^{
+        
             self.fireImage.alpha = 0;
-            
-            
         }];
     }];
     
+    [UIView animateWithDuration:1 delay:5 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        self.rocketBottomConstraint.active = NO;
+        
+        [self.rocketImage.bottomAnchor constraintEqualToAnchor:self.view.topAnchor constant:50].active = YES;
+        
+    } completion:^(BOOL finished) {
+        //
+    }];
+    
     [UIView animateWithDuration:6.5 delay:2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
         self.backgroundBottomConstraint.active = NO;
         self.backgroundAfterAnimation.active = YES;
         
@@ -68,6 +81,7 @@
         [self.rocketImage.heightAnchor constraintEqualToConstant:0].active = YES;
         
         [self.view layoutIfNeeded];
+        
     } completion:^(BOOL finished) {
         
         CATransition *transition = [CATransition animation];
@@ -75,9 +89,9 @@
         transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
         transition.type = kCATransitionPush;
         transition.subtype = kCATransitionFromBottom;
+        
         [self.view.window.layer addAnimation:transition forKey:nil];
         [self performSegueWithIdentifier:@"segueToSpace" sender:self];
-        
     }];
 }
 
@@ -87,14 +101,5 @@
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     [self.audioPlayer prepareToPlay];
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

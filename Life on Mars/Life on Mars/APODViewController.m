@@ -7,23 +7,27 @@
 //
 
 #import "APODViewController.h"
+#import "Secrets.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
-#import "Secrets.h"
 
 @interface APODViewController () <UIScrollViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *APODImage;
-@property (strong, nonatomic) NSString *APODdescriptionText;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (strong, nonatomic) UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *infoButton;
+@property (strong, nonatomic) IBOutlet UIButton *spaceshipButton;
+@property (strong, nonatomic) IBOutlet UIStackView *buttonStackView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonStackRightConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *rocketAfterAnimation;
 @property (strong, nonatomic) NSLayoutConstraint *descriptionTop;
 @property (strong, nonatomic) NSLayoutConstraint *descriptionAfterAnimation;
-@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *rocketBottomConstraint;
-@property (strong, nonatomic) NSLayoutConstraint *rocketAfterAnimation;
+@property (strong, nonatomic) NSLayoutConstraint *buttonPreAnimation;
+@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
+@property (strong, nonatomic) NSString *APODdescriptionText;
 
 @end
 
@@ -46,6 +50,11 @@
 {
     self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
     self.APODImage.translatesAutoresizingMaskIntoConstraints = NO;
+     self.buttonStackView.translatesAutoresizingMaskIntoConstraints = NO;
+     
+     self.buttonStackRightConstraint.active = NO;
+     self.buttonPreAnimation = [self.buttonStackView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:100];
+     self.buttonPreAnimation.active = YES;
     
     NSString *APODurl = [NSString stringWithFormat:@"https://api.nasa.gov/planetary/apod?api_key=%@", APOD_API_KEY];
     
@@ -53,7 +62,7 @@
     [sessionManager GET:APODurl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
         //progress bar?
-        
+  
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         NSDictionary *APODDictionary = responseObject;
@@ -72,7 +81,6 @@
         } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
             
             //present an error message
-            
         }];
         
         [self setUpDescriptionLabel];
@@ -82,7 +90,6 @@
         
         NSLog(@"error");
         //present error message
-        
     }];
 }
 
@@ -92,11 +99,39 @@
 }
 
 #pragma - IBActions
+- (IBAction)spaceshipTapped:(id)sender
+{
+     [self prepareSpaceshipAudio];
+     [self.audioPlayer play];
+     if (self.buttonPreAnimation.active) {
+          [UIView animateWithDuration:1 animations:^{
+               self.buttonPreAnimation.active = NO;
+               self.buttonStackRightConstraint.active = YES;
+               
+               [self.view layoutIfNeeded];
+               
+          } completion:^(BOOL finished) {
+               //
+          }];
+     } else {
+          [UIView animateWithDuration:1 animations:^{
+               self.buttonStackRightConstraint.active = NO;
+               self.buttonPreAnimation.active = YES;
+               
+               [self.view layoutIfNeeded];
+               
+          } completion:^(BOOL finished) {
+               //
+          }];
+     }
+     
+}
 
 - (IBAction)infoTapped:(id)sender
 {
     self.infoButton.userInteractionEnabled = NO;
-    [self prepareAudio];
+     self.spaceshipButton.userInteractionEnabled = NO;
+    [self prepareScrollAudio];
     [self.audioPlayer play];
     
     [UIView animateWithDuration:51 animations:^{
@@ -115,31 +150,25 @@
         [self.view layoutIfNeeded];
         [self.audioPlayer stop];
         self.infoButton.userInteractionEnabled = YES;
-        
+         self.spaceshipButton.userInteractionEnabled = YES;
     }];
 }
 
-- (IBAction)rocketTapped:(id)sender
-{
-    CATransition *transition = [CATransition animation];
-    transition.duration = 1.5;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionReveal;
-    transition.subtype = kCATransitionFromTop;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    
-    [self performSegueWithIdentifier:@"segueToMars" sender:self];
-}
+ #pragma - Set-Up
 
- #pragma - View Set-Up
-
--(void)prepareAudio
+-(void)prepareScrollAudio
 {
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"intro" withExtension:@"mp3"];
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     [self.audioPlayer prepareToPlay];
 }
 
+-(void)prepareSpaceshipAudio
+{
+     NSURL *url = [[NSBundle mainBundle] URLForResource:@"ray" withExtension:@"mp3"];
+     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+     [self.audioPlayer prepareToPlay];
+}
 
 -(void)setUpDescriptionLabel
 {
@@ -151,29 +180,18 @@
     descriptionCenter.active = YES;
     NSLayoutConstraint *descriptionWidth = [self.descriptionLabel.widthAnchor constraintEqualToAnchor:self.view.widthAnchor multiplier:0.9];
     descriptionWidth.active = YES;
-    NSLayoutConstraint *descriptionHeight = [self.descriptionLabel.heightAnchor constraintEqualToAnchor:self.view.heightAnchor];
+    NSLayoutConstraint *descriptionHeight = [self.descriptionLabel.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:0.75];
     descriptionHeight.active = YES;
     self.descriptionTop = [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.view.bottomAnchor];
     self.descriptionTop.active = YES;
     
     self.descriptionLabel.text = self.APODdescriptionText;
-    self.descriptionLabel.textColor = [UIColor yellowColor];
-    self.descriptionLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
-    self.descriptionLabel.numberOfLines = 50;
+     self.descriptionLabel.textColor = [UIColor whiteColor];
+     self.descriptionLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
+     self.descriptionLabel.numberOfLines = 50;
     
     self.descriptionAfterAnimation = [self.descriptionLabel.bottomAnchor constraintEqualToAnchor:self.view.topAnchor];
     self.descriptionAfterAnimation.active = NO;
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
-
- */
 
 @end

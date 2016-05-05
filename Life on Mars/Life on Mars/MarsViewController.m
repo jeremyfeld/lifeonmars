@@ -10,12 +10,12 @@
 #import <AFNetworking/AFNetworking.h>
 
 @interface MarsViewController ()
+
 @property (weak, nonatomic) IBOutlet UILabel *minFar;
 @property (weak, nonatomic) IBOutlet UILabel *minCel;
 @property (weak, nonatomic) IBOutlet UILabel *maxFar;
 @property (weak, nonatomic) IBOutlet UILabel *maxCel;
 @property (weak, nonatomic) IBOutlet UILabel *lastUpdated;
-
 @property (weak, nonatomic) IBOutlet UILabel *weatherLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *background;
 @property (weak, nonatomic) IBOutlet UIImageView *sun;
@@ -27,14 +27,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     NSString *marsWeather = [NSString stringWithFormat:@"http://marsweather.ingenology.com/v1/latest/"];
     
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     [sessionManager GET:marsWeather parameters:nil progress:^(NSProgress *downloadProgress) {
         
-        //progress bar?
+        //add progress bar?
         
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         
@@ -92,32 +91,18 @@
     return YES;
 }
 
-
-
 - (IBAction)rocketTapped:(id)sender
 {
-    CATransition *transition = [CATransition animation];
-    transition.duration = 1.5;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionReveal;
-    transition.subtype = kCATransitionFromTop;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 1.5;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionReveal;
+//    transition.subtype = kCATransitionFromTop;
+//    
+//    [self.view.window.layer addAnimation:transition forKey:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- 
- }
- 
- 
  //-(void)animateSun
  //{
  //    [UIView animateWithDuration:1 animations:^{
@@ -131,9 +116,5 @@
  //        [self animateSun];
  //    }];
  //}
- 
- 
- 
- */
 
 @end
