@@ -20,6 +20,8 @@
 @property (strong, nonatomic) UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (strong, nonatomic) IBOutlet UIButton *spaceshipButton;
+@property (strong, nonatomic) IBOutlet UIButton *marsButton;
+@property (strong, nonatomic) IBOutlet UIButton *saveButton;
 @property (strong, nonatomic) IBOutlet UIStackView *buttonStackView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonStackRightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *rocketAfterAnimation;
@@ -131,6 +133,11 @@
 {
     self.infoButton.userInteractionEnabled = NO;
      self.spaceshipButton.userInteractionEnabled = NO;
+     self.infoButton.hidden = YES;
+     self.spaceshipButton.hidden = YES;
+     self.marsButton.hidden = YES;
+     self.saveButton.hidden = YES;
+     
     [self prepareScrollAudio];
     [self.audioPlayer play];
     
@@ -151,7 +158,27 @@
         [self.audioPlayer stop];
         self.infoButton.userInteractionEnabled = YES;
          self.spaceshipButton.userInteractionEnabled = YES;
+         self.infoButton.hidden = NO;
+         self.spaceshipButton.hidden = NO;
+         self.marsButton.hidden = NO;
+         self.saveButton.hidden = NO;
     }];
+}
+
+-(IBAction)saveTapped:(id)sender
+{
+     NSData *imageData = UIImageJPEGRepresentation(self.APODImage.image, 1);
+     UIImage *compressedJPGImage = [UIImage imageWithData:imageData];
+     UIImageWriteToSavedPhotosAlbum(compressedJPGImage, nil, nil, nil);
+     
+     UIAlertController *saveAlert = [UIAlertController alertControllerWithTitle:@"Saved!" message:[NSString stringWithFormat:@"%@ is now in your Photos!", self.titleLabel.text] preferredStyle:UIAlertControllerStyleAlert];
+     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"🚀👾 OK 👾🚀" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //
+     }];
+     
+     [saveAlert addAction:okAction];
+     
+     [self presentViewController:saveAlert animated:YES completion:nil];
 }
 
  #pragma - Set-Up

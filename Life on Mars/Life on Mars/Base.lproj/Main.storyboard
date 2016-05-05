@@ -140,20 +140,39 @@
                                     <action selector="spaceshipTapped:" destination="mMp-kA-hJQ" eventType="touchUpInside" id="xmm-gC-yC4"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tAQ-f5-nON" userLabel="button stack">
-                                <rect key="frame" x="315" y="485" width="44" height="98"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tAQ-f5-nON" userLabel="button stack">
+                                <rect key="frame" x="0.0" y="441" width="44" height="142"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbE-OJ-boe" userLabel="mars">
-                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="41"/>
                                         <state key="normal" title="Button" image="marsIcon"/>
                                         <connections>
-                                            <segue destination="gF0-xh-Kng" kind="presentation" id="833-Xu-8WO"/>
+                                            <segue destination="gF0-xh-Kng" kind="presentation" modalTransitionStyle="crossDissolve" id="833-Xu-8WO"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q91-Cp-XC2">
+                                        <rect key="frame" x="0.0" y="51" width="44" height="41"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uc-NL-25Z">
+                                                <rect key="frame" x="2" y="2" width="40" height="37"/>
+                                                <state key="normal" title="Button" image="floppydisk"/>
+                                                <connections>
+                                                    <action selector="saveTapped:" destination="mMp-kA-hJQ" eventType="touchUpInside" id="UOP-72-aMm"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="2uc-NL-25Z" firstAttribute="width" secondItem="Q91-Cp-XC2" secondAttribute="width" multiplier="0.8" id="1BN-tL-YWx"/>
+                                            <constraint firstItem="2uc-NL-25Z" firstAttribute="centerX" secondItem="Q91-Cp-XC2" secondAttribute="centerX" id="UN7-3Y-4aH"/>
+                                            <constraint firstItem="2uc-NL-25Z" firstAttribute="height" secondItem="Q91-Cp-XC2" secondAttribute="height" multiplier="0.9" id="UzT-kD-d4Q"/>
+                                            <constraint firstItem="2uc-NL-25Z" firstAttribute="centerY" secondItem="Q91-Cp-XC2" secondAttribute="centerY" id="aJZ-lF-JpC"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kii-t9-EDr" userLabel="info">
-                                        <rect key="frame" x="11" y="54" width="22" height="44"/>
+                                        <rect key="frame" x="0.0" y="102" width="44" height="41"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="1" green="0.83921568627450982" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="infoTapped:" destination="mMp-kA-hJQ" eventType="touchUpInside" id="Dr2-h4-X74"/>
                                         </connections>
@@ -161,7 +180,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="al7-Ga-ujF"/>
-                                    <constraint firstAttribute="height" constant="98" id="dIj-4j-I5o"/>
+                                    <constraint firstAttribute="height" constant="142" id="dIj-4j-I5o"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -200,6 +219,8 @@
                         <outlet property="buttonStackRightConstraint" destination="GEe-ad-Omd" id="2Vs-Vg-sps"/>
                         <outlet property="buttonStackView" destination="tAQ-f5-nON" id="LoA-W8-fAU"/>
                         <outlet property="infoButton" destination="Kii-t9-EDr" id="PzB-Ph-G3Z"/>
+                        <outlet property="marsButton" destination="fbE-OJ-boe" id="f4I-qy-AWL"/>
+                        <outlet property="saveButton" destination="2uc-NL-25Z" id="ax2-je-epq"/>
                         <outlet property="scrollView" destination="ayd-fl-YeR" id="qky-oe-HIK"/>
                         <outlet property="spaceshipButton" destination="MYn-Ci-TUq" id="lUY-ID-lq2"/>
                         <outlet property="titleLabel" destination="Pcf-Bq-aS4" id="sk1-q2-IyY"/>
@@ -223,6 +244,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star field" translatesAutoresizingMaskIntoConstraints="NO" id="gca-S7-qIm">
                                 <rect key="frame" x="-4" y="0.0" width="600" height="289"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="289" id="3zG-rI-mFP"/>
                                     <constraint firstAttribute="width" constant="600" id="YtX-c0-aMx"/>
@@ -313,6 +335,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="aEB-7C-Ux3" firstAttribute="width" secondItem="dgq-Lk-8bl" secondAttribute="width" multiplier="0.85" id="1tS-uH-bDt"/>
                             <constraint firstItem="iYD-WO-aX0" firstAttribute="centerY" secondItem="dgq-Lk-8bl" secondAttribute="centerY" id="9tq-Lq-hzg"/>
@@ -354,6 +377,7 @@
         <image name="Red_button" width="191" height="177"/>
         <image name="background" width="1200" height="5374"/>
         <image name="fire 2" width="100" height="146"/>
+        <image name="floppydisk" width="512" height="512"/>
         <image name="mars no background" width="1200" height="675"/>
         <image name="marsIcon" width="512" height="512"/>
         <image name="rocket" width="512" height="512"/>
