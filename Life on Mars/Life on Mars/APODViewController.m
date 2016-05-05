@@ -169,16 +169,31 @@
 {
      NSData *imageData = UIImageJPEGRepresentation(self.APODImage.image, 1);
      UIImage *compressedJPGImage = [UIImage imageWithData:imageData];
-     UIImageWriteToSavedPhotosAlbum(compressedJPGImage, nil, nil, nil);
-     
-     UIAlertController *saveAlert = [UIAlertController alertControllerWithTitle:@"Saved!" message:[NSString stringWithFormat:@"%@ is now in your Photos!", self.titleLabel.text] preferredStyle:UIAlertControllerStyleAlert];
-     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"🚀👾 OK 👾🚀" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        //
-     }];
-     
-     [saveAlert addAction:okAction];
-     
-     [self presentViewController:saveAlert animated:YES completion:nil];
+     UIImageWriteToSavedPhotosAlbum(compressedJPGImage, self, @selector(saveImageHandler:didFinishSavingWithError:contextInfo:), nil);
+}
+
+-(void)saveImageHandler:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+     if (error) {
+          UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"OH NO!" message:[NSString stringWithFormat:@"There was an error saving the image: %@", error.localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+          UIAlertAction *errorAction = [UIAlertAction actionWithTitle:@"🚀👾 OK 👾🚀" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+               //
+          }];
+          
+          [errorAlert addAction:errorAction];
+          
+          [self presentViewController:errorAlert animated:YES completion:nil];
+     } else {
+          
+          UIAlertController *saveAlert = [UIAlertController alertControllerWithTitle:@"Saved!" message:[NSString stringWithFormat:@"%@ is now in your Photos!", self.titleLabel.text] preferredStyle:UIAlertControllerStyleAlert];
+          UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"🚀👾 OK 👾🚀" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+               //
+          }];
+          
+          [saveAlert addAction:okAction];
+          
+          [self presentViewController:saveAlert animated:YES completion:nil];
+     }
 }
 
  #pragma - Set-Up
