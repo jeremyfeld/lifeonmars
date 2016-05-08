@@ -230,7 +230,8 @@
     self.descriptionLabel.text = self.APODdescriptionText;
      self.descriptionLabel.textColor = [UIColor whiteColor];
      self.descriptionLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
-     self.descriptionLabel.numberOfLines = 50;
+     self.descriptionLabel.numberOfLines = 25;
+     self.descriptionLabel.adjustsFontSizeToFitWidth = YES;
     
     self.descriptionAfterAnimation = [self.descriptionLabel.bottomAnchor constraintEqualToAnchor:self.view.topAnchor];
     self.descriptionAfterAnimation.active = NO;
