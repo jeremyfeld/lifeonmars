@@ -14,6 +14,12 @@
 @property (strong, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (strong, nonatomic) IBOutlet UIImageView *rocketImage;
 @property (strong, nonatomic) IBOutlet UIImageView *fireImage;
+@property (strong, nonatomic) IBOutlet UITextView *attributionTextView;
+@property (strong, nonatomic) IBOutlet UIButton *redButton;
+@property (strong, nonatomic) IBOutlet UIButton *teleportButton;
+@property (strong, nonatomic) IBOutlet UIButton *infoButton;
+@property (strong, nonatomic) IBOutlet UILabel *teleportLabel;
+@property (strong, nonatomic) IBOutlet UILabel *launchLabel;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *backgroundBottomConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *fireHeightConstraint;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *rocketHeightConstraint;
@@ -31,6 +37,7 @@
     
     self.backgroundImage.translatesAutoresizingMaskIntoConstraints = NO;
     self.fireImage.alpha = 0;
+    self.attributionTextView.hidden = YES;
 }
 
 -(BOOL)prefersStatusBarHidden
@@ -40,6 +47,14 @@
 
 -(IBAction)redButtonTapped:(id)sender
 {
+    self.redButton.userInteractionEnabled = NO;
+    self.teleportButton.userInteractionEnabled = NO;
+    self.infoButton.hidden = YES;
+    self.redButton.hidden = YES;
+    self.launchLabel.hidden = YES;
+    self.teleportButton.hidden = YES;
+    self.teleportLabel.hidden = YES;
+    
     CGFloat screenHeight = self.backgroundImage.frame.size.height/5;
     CGFloat animationConstant = screenHeight * 4;
     
@@ -72,7 +87,7 @@
         //
     }];
     
-    [UIView animateWithDuration:6.5 delay:2 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:7 delay:2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         
         self.backgroundBottomConstraint.active = NO;
         self.backgroundAfterAnimation.active = YES;
@@ -84,6 +99,14 @@
         
     } completion:^(BOOL finished) {
         
+        self.redButton.userInteractionEnabled = YES;
+        self.teleportButton.userInteractionEnabled = YES;
+        self.infoButton.hidden = NO;
+        self.redButton.hidden = NO;
+        self.launchLabel.hidden = NO;
+        self.teleportButton.hidden = NO;
+        self.teleportLabel.hidden = NO;
+        
         CATransition *transition = [CATransition animation];
         transition.duration = .8;
         transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
@@ -93,6 +116,30 @@
         [self.view.window.layer addAnimation:transition forKey:nil];
         [self performSegueWithIdentifier:@"segueToSpace" sender:self];
     }];
+}
+
+- (IBAction)infoTapped:(id)sender
+{
+    if (self.attributionTextView.hidden) {
+        
+        self.attributionTextView.hidden = NO;
+        
+    } else {
+        
+        self.attributionTextView.hidden = YES;
+    }
+}
+
+- (IBAction)teleportTapped:(id)sender
+{
+    CATransition *transition = [CATransition animation];
+    transition.duration = .8;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    transition.type = kCATransitionFade;
+    transition.subtype = kCATransitionFromBottom;
+    
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    [self performSegueWithIdentifier:@"segueToSpace" sender:self];
 }
 
 -(void)prepareAudio
