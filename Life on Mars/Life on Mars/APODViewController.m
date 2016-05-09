@@ -11,6 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <SafariServices/SafariServices.h>
 
 @interface APODViewController () <UIScrollViewDelegate>
 
@@ -37,67 +38,90 @@
 
 -(void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-    self.scrollView.delegate = self;
-
+     [super viewDidLoad];
+     
+     self.scrollView.delegate = self;
+     
 }
 
 -(BOOL)prefersStatusBarHidden
 {
-    return YES;
+     return YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.APODImage.translatesAutoresizingMaskIntoConstraints = NO;
+     self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
+     self.APODImage.translatesAutoresizingMaskIntoConstraints = NO;
      self.buttonStackView.translatesAutoresizingMaskIntoConstraints = NO;
      
      self.buttonStackRightConstraint.active = NO;
      self.buttonPreAnimation = [self.buttonStackView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:100];
      self.buttonPreAnimation.active = YES;
-    
-    NSString *APODurl = [NSString stringWithFormat:@"https://api.nasa.gov/planetary/apod?api_key=%@", APOD_API_KEY];
-    
-    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
-    [sessionManager GET:APODurl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        
-        //progress bar?
-  
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        NSDictionary *APODDictionary = responseObject;
-        self.titleLabel.text = APODDictionary[@"title"];
-        self.APODdescriptionText = APODDictionary[@"explanation"];
-        
-        NSURL *picURL = [NSURL URLWithString:APODDictionary[@"hdurl"]];
-        NSURLRequest *request = [NSURLRequest requestWithURL:picURL];
-        
-        [self.APODImage setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-            
-            CGFloat imageAspectRatio = image.size.width / image.size.height;
-            [self.APODImage.widthAnchor constraintEqualToAnchor:self.APODImage.heightAnchor multiplier:imageAspectRatio].active = YES;
-            self.APODImage.image = image;
-            
-        } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
-            
-            //present an error message
-        }];
-        
-        [self setUpDescriptionLabel];
-        self.descriptionLabel.hidden = YES;
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        NSLog(@"error");
-        //present error message
-    }];
+     
+     NSString *APODurl = [NSString stringWithFormat:@"https://api.nasa.gov/planetary/apod?api_key=%@", APOD_API_KEY];
+     
+     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+     [sessionManager GET:APODurl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+          
+          //progress bar?
+          
+     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+          
+          NSDictionary *APODDictionary = responseObject;
+          self.titleLabel.text = APODDictionary[@"title"];
+          self.APODdescriptionText = APODDictionary[@"explanation"];
+          
+          if ([APODDictionary[@"media_type"] isEqualToString:@"video"]) {
+               
+               UIAlertController *videoAlert = [UIAlertController alertControllerWithTitle:@"Hmmm..." message:@"The picture of the day is actually a video. Would you like to watch it?" preferredStyle:UIAlertControllerStyleAlert];
+               
+               UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No Thanks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    //
+               }];
+               
+               UIAlertAction *watchAction = [UIAlertAction actionWithTitle:@"Of Course!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    NSURL *youtubeURL = [NSURL URLWithString:APODDictionary[@"url"]];
+                    SFSafariViewController *youtubeView = [[SFSafariViewController alloc] initWithURL:youtubeURL];
+                    [self presentViewController:youtubeView animated:YES completion:nil];
+               }];
+               
+               [videoAlert addAction:noAction];
+               [videoAlert addAction:watchAction];
+               
+               [self presentViewController:videoAlert animated:YES completion:nil];
+               
+          } else {
+               
+               NSURL *picURL = [NSURL URLWithString:APODDictionary[@"hdurl"]];
+               NSLog(@"dictionary... %@", APODDictionary);
+               NSURLRequest *request = [NSURLRequest requestWithURL:picURL];
+               
+               [self.APODImage setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                    
+                    CGFloat imageAspectRatio = image.size.width / image.size.height;
+                    [self.APODImage.widthAnchor constraintEqualToAnchor:self.APODImage.heightAnchor multiplier:imageAspectRatio].active = YES;
+                    self.APODImage.image = image;
+                    
+               } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+                    
+                    //present an error message
+               }];
+          }
+          
+          [self setUpDescriptionLabel];
+          self.descriptionLabel.hidden = YES;
+          
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+          
+          NSLog(@"error");
+          //present error message
+     }];
 }
 
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-    return self.APODImage;
+     return self.APODImage;
 }
 
 #pragma - IBActions
@@ -131,38 +155,38 @@
 
 - (IBAction)infoTapped:(id)sender
 {
-    self.infoButton.userInteractionEnabled = NO;
+     self.infoButton.userInteractionEnabled = NO;
      self.spaceshipButton.userInteractionEnabled = NO;
      self.infoButton.hidden = YES;
      self.spaceshipButton.hidden = YES;
      self.marsButton.hidden = YES;
      self.saveButton.hidden = YES;
      
-    [self prepareScrollAudio];
-    [self.audioPlayer play];
-    
-    [UIView animateWithDuration:51 animations:^{
-        self.descriptionLabel.hidden = NO;
-        self.titleLabel.hidden = YES;
-        self.descriptionTop.active = NO;
-        self.descriptionAfterAnimation.active = YES;
-        [self.view layoutIfNeeded];
-        
-    } completion:^(BOOL finished) {
-        
-        self.titleLabel.hidden = NO;
-        self.descriptionAfterAnimation.active = NO;
-        self.descriptionTop.active = YES;
-        self.descriptionLabel.hidden = YES;
-        [self.view layoutIfNeeded];
-        [self.audioPlayer stop];
-        self.infoButton.userInteractionEnabled = YES;
-         self.spaceshipButton.userInteractionEnabled = YES;
-         self.infoButton.hidden = NO;
-         self.spaceshipButton.hidden = NO;
-         self.marsButton.hidden = NO;
-         self.saveButton.hidden = NO;
-    }];
+     [self prepareScrollAudio];
+     [self.audioPlayer play];
+     
+     [UIView animateWithDuration:51 animations:^{
+          self.descriptionLabel.hidden = NO;
+          self.titleLabel.hidden = YES;
+          self.descriptionTop.active = NO;
+          self.descriptionAfterAnimation.active = YES;
+          [self.view layoutIfNeeded];
+          
+     } completion:^(BOOL finished) {
+          
+          self.titleLabel.hidden = NO;
+          self.descriptionAfterAnimation.active = NO;
+          self.descriptionTop.active = YES;
+          self.descriptionLabel.hidden = YES;
+          [self.view layoutIfNeeded];
+          [self.audioPlayer stop];
+          self.infoButton.userInteractionEnabled = YES;
+          self.spaceshipButton.userInteractionEnabled = YES;
+          self.infoButton.hidden = NO;
+          self.spaceshipButton.hidden = NO;
+          self.marsButton.hidden = NO;
+          self.saveButton.hidden = NO;
+     }];
 }
 
 -(IBAction)saveTapped:(id)sender
@@ -196,13 +220,13 @@
      }
 }
 
- #pragma - Set-Up
+#pragma - Set-Up
 
 -(void)prepareScrollAudio
 {
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"intro" withExtension:@"mp3"];
-    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
-    [self.audioPlayer prepareToPlay];
+     NSURL *url = [[NSBundle mainBundle] URLForResource:@"intro" withExtension:@"mp3"];
+     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+     [self.audioPlayer prepareToPlay];
 }
 
 -(void)prepareSpaceshipAudio
@@ -214,27 +238,27 @@
 
 -(void)setUpDescriptionLabel
 {
-    self.descriptionLabel = [[UILabel alloc]init];
-    [self.view addSubview:self.descriptionLabel];
-    self.descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    NSLayoutConstraint *descriptionCenter = [self.descriptionLabel.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor];
-    descriptionCenter.active = YES;
-    NSLayoutConstraint *descriptionWidth = [self.descriptionLabel.widthAnchor constraintEqualToAnchor:self.view.widthAnchor multiplier:0.9];
-    descriptionWidth.active = YES;
-    NSLayoutConstraint *descriptionHeight = [self.descriptionLabel.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:0.75];
-    descriptionHeight.active = YES;
-    self.descriptionTop = [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.view.bottomAnchor];
-    self.descriptionTop.active = YES;
-    
-    self.descriptionLabel.text = self.APODdescriptionText;
+     self.descriptionLabel = [[UILabel alloc]init];
+     [self.view addSubview:self.descriptionLabel];
+     self.descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
+     
+     NSLayoutConstraint *descriptionCenter = [self.descriptionLabel.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor];
+     descriptionCenter.active = YES;
+     NSLayoutConstraint *descriptionWidth = [self.descriptionLabel.widthAnchor constraintEqualToAnchor:self.view.widthAnchor multiplier:0.9];
+     descriptionWidth.active = YES;
+     NSLayoutConstraint *descriptionHeight = [self.descriptionLabel.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:0.75];
+     descriptionHeight.active = YES;
+     self.descriptionTop = [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.view.bottomAnchor];
+     self.descriptionTop.active = YES;
+     
+     self.descriptionLabel.text = self.APODdescriptionText;
      self.descriptionLabel.textColor = [UIColor whiteColor];
      self.descriptionLabel.font = [UIFont fontWithName:@"Futura-Medium" size:18];
      self.descriptionLabel.numberOfLines = 25;
      self.descriptionLabel.adjustsFontSizeToFitWidth = YES;
-    
-    self.descriptionAfterAnimation = [self.descriptionLabel.bottomAnchor constraintEqualToAnchor:self.view.topAnchor];
-    self.descriptionAfterAnimation.active = NO;
+     
+     self.descriptionAfterAnimation = [self.descriptionLabel.bottomAnchor constraintEqualToAnchor:self.view.topAnchor];
+     self.descriptionAfterAnimation.active = NO;
 }
 
 @end
