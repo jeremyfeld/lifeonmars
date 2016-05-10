@@ -71,11 +71,15 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        NSLog(@"error: %@", error.localizedDescription);
-        //error message
+        UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem!" message:[NSString stringWithFormat:@"There was an error loading the data: %@", error.localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
         
+        UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        }];
+        
+        [errorAlert addAction:dismissAction];
+        
+        [self presentViewController:errorAlert animated:YES completion:nil];
     }];
-    
 }
 
 -(BOOL)prefersStatusBarHidden

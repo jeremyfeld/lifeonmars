@@ -75,7 +75,7 @@
           
           if ([APODDictionary[@"media_type"] isEqualToString:@"video"]) {
                
-               UIAlertController *videoAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem" message:@"The picture of the day is actually a video. Would you like to watch it?" preferredStyle:UIAlertControllerStyleAlert];
+               UIAlertController *videoAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem!" message:@"The picture of the day is actually a video. Would you like to watch it?" preferredStyle:UIAlertControllerStyleAlert];
                
                UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No Thanks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                }];
@@ -110,7 +110,14 @@
                                                        
                                                   } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
                                                        
-                                                       //present an error message
+                                                       UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem!" message:[NSString stringWithFormat:@"There was an error loading the image: %@", error.localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+                                                       
+                                                       UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                                                       }];
+                                                       
+                                                       [errorAlert addAction:dismissAction];
+                                                       
+                                                       [self presentViewController:errorAlert animated:YES completion:nil];
                                                   }];
           }
           
@@ -119,8 +126,14 @@
           
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
           
-          NSLog(@"error");
-          //present error message
+          UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem!" message:[NSString stringWithFormat:@"There was an error loading the data: %@", error.localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+          
+          UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          }];
+          
+          [errorAlert addAction:dismissAction];
+          
+          [self presentViewController:errorAlert animated:YES completion:nil];
      }];
 }
 
@@ -144,9 +157,7 @@
                
                [self.view layoutIfNeeded];
                
-          } completion:^(BOOL finished) {
-               //
-          }];
+          } completion:nil];
           
      } else {
           
@@ -181,6 +192,7 @@
      self.spaceshipButton.hidden = YES;
      self.marsButton.hidden = YES;
      self.saveButton.hidden = YES;
+     self.earthButton.hidden = YES;
      
      [self prepareScrollAudio];
      [self.audioPlayer play];
@@ -210,6 +222,7 @@
           self.spaceshipButton.hidden = NO;
           self.marsButton.hidden = NO;
           self.saveButton.hidden = NO;
+          self.earthButton.hidden = NO;
      }];
 }
 
