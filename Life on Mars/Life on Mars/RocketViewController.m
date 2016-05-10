@@ -11,9 +11,9 @@
 
 @interface RocketViewController ()
 
-@property (strong, nonatomic) IBOutlet UIImageView *backgroundImage;
-@property (strong, nonatomic) IBOutlet UIImageView *rocketImage;
-@property (strong, nonatomic) IBOutlet UIImageView *fireImage;
+@property (strong, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *rocketImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *fireImageView;
 @property (strong, nonatomic) IBOutlet UITextView *attributionTextView;
 @property (strong, nonatomic) IBOutlet UIButton *redButton;
 @property (strong, nonatomic) IBOutlet UIButton *teleportButton;
@@ -35,9 +35,14 @@
 {
     [super viewDidLoad];
     
-    self.backgroundImage.translatesAutoresizingMaskIntoConstraints = NO;
-    self.fireImage.alpha = 0;
+    self.backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.fireImageView.alpha = 0;
     self.attributionTextView.hidden = YES;
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
 }
 
 -(BOOL)prefersStatusBarHidden
@@ -54,11 +59,12 @@
     self.launchLabel.hidden = YES;
     self.teleportButton.hidden = YES;
     self.teleportLabel.hidden = YES;
+    self.attributionTextView.hidden = YES;
     
-    CGFloat screenHeight = self.backgroundImage.frame.size.height/5;
+    CGFloat screenHeight = self.backgroundImageView.frame.size.height/5;
     CGFloat animationConstant = screenHeight * 4;
     
-    self.backgroundAfterAnimation = [self.backgroundImage.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:animationConstant];
+    self.backgroundAfterAnimation = [self.backgroundImageView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:animationConstant];
     self.backgroundAfterAnimation.active = NO;
     
     [self prepareAudio];
@@ -66,56 +72,61 @@
     
     [UIView animateWithDuration:2.1 animations:^{
         
-        self.fireImage.alpha = 1;
+        self.fireImageView.alpha = 1;
+        
         [self.view layoutIfNeeded];
         
     } completion:^(BOOL finished) {
         
         [UIView animateWithDuration:0.1 animations:^{
             
-            self.fireImage.alpha = 0;
+            self.fireImageView.alpha = 0;
         }];
     }];
     
-    [UIView animateWithDuration:1 delay:5 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        
-        self.rocketBottomConstraint.active = NO;
-        
-        [self.rocketImage.bottomAnchor constraintEqualToAnchor:self.view.topAnchor constant:50].active = YES;
-        
-    } completion:^(BOOL finished) {
-        //
-    }];
+    [UIView animateWithDuration:1
+                          delay:5
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         
+                         self.rocketBottomConstraint.active = NO;
+                         
+                         [self.rocketImageView.bottomAnchor constraintEqualToAnchor:self.view.topAnchor constant:50].active = YES;
+                         
+                     } completion:nil];
     
-    [UIView animateWithDuration:7 delay:2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        
-        self.backgroundBottomConstraint.active = NO;
-        self.backgroundAfterAnimation.active = YES;
-        
-        self.rocketHeightConstraint.active = NO;
-        [self.rocketImage.heightAnchor constraintEqualToConstant:0].active = YES;
-        
-        [self.view layoutIfNeeded];
-        
-    } completion:^(BOOL finished) {
-        
-        self.redButton.userInteractionEnabled = YES;
-        self.teleportButton.userInteractionEnabled = YES;
-        self.infoButton.hidden = NO;
-        self.redButton.hidden = NO;
-        self.launchLabel.hidden = NO;
-        self.teleportButton.hidden = NO;
-        self.teleportLabel.hidden = NO;
-        
-        CATransition *transition = [CATransition animation];
-        transition.duration = .8;
-        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-        transition.type = kCATransitionPush;
-        transition.subtype = kCATransitionFromBottom;
-        
-        [self.view.window.layer addAnimation:transition forKey:nil];
-        [self performSegueWithIdentifier:@"segueToSpace" sender:self];
-    }];
+    [UIView animateWithDuration:7
+                          delay:2
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         
+                         self.backgroundBottomConstraint.active = NO;
+                         self.backgroundAfterAnimation.active = YES;
+                         
+                         self.rocketHeightConstraint.active = NO;
+                         [self.rocketImageView.heightAnchor constraintEqualToConstant:0].active = YES;
+                         
+                         [self.view layoutIfNeeded];
+                         
+                     } completion:^(BOOL finished) {
+                         
+                         self.redButton.userInteractionEnabled = YES;
+                         self.teleportButton.userInteractionEnabled = YES;
+                         self.infoButton.hidden = NO;
+                         self.redButton.hidden = NO;
+                         self.launchLabel.hidden = NO;
+                         self.teleportButton.hidden = NO;
+                         self.teleportLabel.hidden = NO;
+                         
+                         CATransition *transition = [CATransition animation];
+                         transition.duration = .8;
+                         transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+                         transition.type = kCATransitionPush;
+                         transition.subtype = kCATransitionFromBottom;
+                         
+                         [self.view.window.layer addAnimation:transition forKey:nil];
+                         [self performSegueWithIdentifier:@"segueToSpace" sender:self];
+                     }];
 }
 
 - (IBAction)infoTapped:(id)sender

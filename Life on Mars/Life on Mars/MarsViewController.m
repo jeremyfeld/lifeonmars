@@ -11,15 +11,19 @@
 
 @interface MarsViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *minFar;
-@property (weak, nonatomic) IBOutlet UILabel *minCel;
-@property (weak, nonatomic) IBOutlet UILabel *maxFar;
-@property (weak, nonatomic) IBOutlet UILabel *maxCel;
-@property (weak, nonatomic) IBOutlet UILabel *lastUpdated;
+@property (weak, nonatomic) IBOutlet UILabel *minFarLabel;
+@property (weak, nonatomic) IBOutlet UILabel *minCelLabel;
+@property (weak, nonatomic) IBOutlet UILabel *maxFarLabel;
+@property (weak, nonatomic) IBOutlet UILabel *maxCelLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lastUpdatedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *weatherLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *background;
-@property (weak, nonatomic) IBOutlet UIImageView *sun;
+@property (strong, nonatomic) IBOutlet UIButton *rocketButton;
 @property (strong, nonatomic) IBOutlet UIImageView *martianImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *ufoImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *blackholeImageView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *ufoWidthConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *ufoWidthAfterAnimationConstraint;
+@property (assign, nonatomic) NSUInteger ufoAnimationCounter;
 
 @end
 
@@ -28,6 +32,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.ufoWidthAfterAnimationConstraint.active = NO;
+    self.ufoWidthAfterAnimationConstraint = [self.ufoImageView.widthAnchor constraintEqualToConstant:5];
+    self.ufoAnimationCounter = 0;
     
     NSString *marsWeather = [NSString stringWithFormat:@"http://marsweather.ingenology.com/v1/latest/"];
     
@@ -47,19 +55,19 @@
         dateFormatter.dateFormat = @"MM-dd-yyyy";
         NSString *newDate = [dateFormatter stringFromDate:earthDate];
         
-        self.minCel.text = [NSString stringWithFormat:@"Low: %@ °C", marsWeatherDictionary[@"min_temp"]];
-        self.minFar.text = [NSString stringWithFormat:@"Low: %@ °F", marsWeatherDictionary[@"min_temp_fahrenheit"]];
-        self.maxCel.text = [NSString stringWithFormat:@"High: %@ °C", marsWeatherDictionary[@"max_temp"]];
-        self.maxFar.text = [NSString stringWithFormat:@"High: %@ °F", marsWeatherDictionary[@"max_temp_fahrenheit"]];
-        self.weatherLabel.text = [NSString stringWithFormat:@"The weather on Mars is %@.", marsWeatherDictionary[@"atmo_opacity"]];
-        self.lastUpdated.text = [NSString stringWithFormat:@"Last updated: %@", newDate];
+        self.minCelLabel.text = [NSString stringWithFormat:@"Low: %@ °C", marsWeatherDictionary[@"min_temp"]];
+        self.minFarLabel.text = [NSString stringWithFormat:@"Low: %@ °F", marsWeatherDictionary[@"min_temp_fahrenheit"]];
+        self.maxCelLabel.text = [NSString stringWithFormat:@"High: %@ °C", marsWeatherDictionary[@"max_temp"]];
+        self.maxFarLabel.text = [NSString stringWithFormat:@"High: %@ °F", marsWeatherDictionary[@"max_temp_fahrenheit"]];
+        self.weatherLabel.text = [NSString stringWithFormat:@"The weather on Mars is %@", marsWeatherDictionary[@"atmo_opacity"]];
+        self.lastUpdatedLabel.text = [NSString stringWithFormat:@"Last updated: %@", newDate];
         
-        self.minCel.hidden = NO;
-        self.minFar.hidden = NO;
-        self.maxCel.hidden = NO;
-        self.maxFar.hidden = NO;
+        self.minCelLabel.hidden = NO;
+        self.minFarLabel.hidden = NO;
+        self.maxCelLabel.hidden = NO;
+        self.maxFarLabel.hidden = NO;
         self.weatherLabel.hidden = NO;
-        self.lastUpdated.hidden = NO;
+        self.lastUpdatedLabel.hidden = NO;
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -80,7 +88,8 @@
     [super viewDidAppear:YES];
     
     [self animateMartian];
-    [self animateSun];
+    [self animateBlackhole];
+    [self animateUFO];
     
 }
 
@@ -91,49 +100,125 @@
 
 -(void)animateMartian
 {
-
+    
     CGFloat centerY = self.view.frame.size.height * 0.75 / 2;
     CGFloat newY = self.view.frame.size.height * 0.375 / 2;
     CGFloat transformationY = centerY - newY;
     
-    [UIView animateWithDuration:1 delay:3 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        
-        self.martianImageView.transform = CGAffineTransformMakeTranslation(0, -transformationY);
-        
-        [self.martianImageView layoutIfNeeded];
-        
-    } completion:^(BOOL finished) {
-        
-        [UIView animateWithDuration:1 delay:3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            self.martianImageView.transform = CGAffineTransformIdentity;
-        } completion:^(BOOL finished) {
-            
-            [self animateMartian];
-        }];
-    }];
+    [UIView animateWithDuration:1
+                          delay:4
+         usingSpringWithDamping:0.6
+          initialSpringVelocity:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         
+                         self.martianImageView.transform = CGAffineTransformMakeTranslation(0, -transformationY);
+                         
+                         [self.view layoutIfNeeded];
+                         
+                     } completion:^(BOOL finished) {
+                         
+                         [UIView animateWithDuration:1
+                                               delay:3
+                                             options:UIViewAnimationOptionCurveEaseInOut
+                                          animations:^{
+                                              
+                                              self.martianImageView.transform = CGAffineTransformIdentity;
+                                              
+                                          } completion:^(BOOL finished) {
+                                              
+                                              [self animateMartian];
+                                          }];
+                     }];
 }
 
-//take center x
-//center y
-//width
-//height
-
--(void)animateSun
+-(void)animateBlackhole
 {
-    CGFloat xPoint = self.view.frame.size.width;
-    CGFloat yPoint = self.view.frame.size.height/2;
-    CGRect boundingRect = CGRectMake(-xPoint, 0, self.view.frame.size.width*3, self.view.frame.size.height*1.25);
+    [UIView animateWithDuration:1
+                          delay:0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         
+                         [self.blackholeImageView setTransform:CGAffineTransformRotate(self.blackholeImageView.transform, M_PI_2)];
+                         
+                         [self.view layoutIfNeeded];
+                         
+                     } completion:^(BOOL finished) {
+                         
+                         [self animateBlackhole];
+                     }];
+}
+
+-(void)animateUFO
+{
+    CGFloat centerY = self.view.frame.size.height / 2;
+    CGFloat transformationY = 0 - centerY;
     
-    CAKeyframeAnimation *orbit = [CAKeyframeAnimation animation];
-    orbit.keyPath = @"position";
-    orbit.path = CFAutorelease(CGPathCreateWithEllipseInRect(boundingRect, NULL));
-    orbit.duration = 20;
-    orbit.additive = YES;
-    orbit.repeatCount = HUGE_VALF;
-    orbit.calculationMode = kCAAnimationPaced;
-    orbit.rotationMode = kCAAnimationRotateAuto;
-    
-    [self.sun.layer addAnimation:orbit forKey:@"orbit"];
+    if (self.ufoAnimationCounter % 2 == 0) {
+        
+        [UIView animateWithDuration:6
+                              delay:8
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             
+                             self.ufoImageView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width+300, transformationY);
+                             
+                             self.ufoWidthConstraint.active = NO;
+                             self.ufoWidthAfterAnimationConstraint.active = YES;
+                             
+                             [self.view layoutIfNeeded];
+                             
+                         } completion:^(BOOL finished) {
+                             
+                             [UIView animateWithDuration:6
+                                                   delay:7
+                                                 options:UIViewAnimationOptionCurveEaseIn
+                                              animations:^{
+                                                  
+                                                  self.ufoImageView.transform = CGAffineTransformIdentity;
+                                                  self.ufoWidthAfterAnimationConstraint.active = NO;
+                                                  self.ufoWidthConstraint.active = YES;
+                                                  
+                                                  [self.view layoutIfNeeded];
+                                                  
+                                              } completion:^(BOOL finished) {
+                                                  
+                                                  self.ufoAnimationCounter ++;
+                                                  
+                                                  [self animateUFO];
+                                              }];
+                         }];
+        
+    } else {
+        
+        [UIView animateWithDuration:3
+                              delay:8
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             
+                             self.ufoImageView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width+300, 0);
+                             
+                             [self.view layoutIfNeeded];
+                             
+                         } completion:^(BOOL finished) {
+                             
+                             [UIView animateWithDuration:3
+                                                   delay:7
+                                                 options:UIViewAnimationOptionCurveLinear
+                                              animations:^{
+                                                  
+                                                  self.ufoImageView.transform = CGAffineTransformIdentity;
+                                                  
+                                                  [self.view layoutIfNeeded];
+                                                  
+                                              } completion:^(BOOL finished) {
+                                                  
+                                                  self.ufoAnimationCounter ++;
+                                                  
+                                                  [self animateUFO];
+                                              }];
+                         }];
+    }
 }
 
 @end

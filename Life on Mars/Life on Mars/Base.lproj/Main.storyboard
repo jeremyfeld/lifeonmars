@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gF0-xh-Kng">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z4P-eb-Ncf">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -87,7 +87,7 @@
                                     <constraint firstAttribute="height" constant="128" id="3cW-hu-Hef"/>
                                     <constraint firstAttribute="width" constant="240" id="JtA-xN-p3c"/>
                                 </constraints>
-                                <string key="text">Acknowledgements
+                                <mutableString key="text">Acknowledgements
 
 Artwork from:
 http://worldartsme.com/
@@ -101,13 +101,20 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                            Copyright 2013 Ingenology
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and limitations under the License.</mutableString>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAJ-J7-koH">
-                                <rect key="frame" x="16" y="20" width="22" height="22"/>
+                                <rect key="frame" x="16" y="40" width="22" height="22"/>
                                 <connections>
                                     <action selector="infoTapped:" destination="Z4P-eb-Ncf" eventType="touchUpInside" id="mwj-Qr-gox"/>
                                 </connections>
@@ -123,7 +130,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                             <constraint firstItem="yoB-TS-HZp" firstAttribute="top" secondItem="gTD-Du-m9o" secondAttribute="bottom" constant="20" id="Xge-rw-RSZ"/>
                             <constraint firstItem="2yr-NB-AwI" firstAttribute="centerX" secondItem="JA8-UG-agL" secondAttribute="centerX" id="YtE-sD-4q8"/>
                             <constraint firstItem="JhJ-bl-nfK" firstAttribute="centerX" secondItem="7By-xK-CMX" secondAttribute="centerX" id="b7X-vn-jYX"/>
-                            <constraint firstItem="LAJ-J7-koH" firstAttribute="top" secondItem="wga-MW-hzI" secondAttribute="bottom" id="c6l-xG-9us"/>
+                            <constraint firstItem="LAJ-J7-koH" firstAttribute="top" secondItem="wga-MW-hzI" secondAttribute="bottom" constant="20" id="c6l-xG-9us"/>
                             <constraint firstItem="gTD-Du-m9o" firstAttribute="top" secondItem="lzQ-wd-W6H" secondAttribute="bottom" constant="3" id="eWG-GS-6Ev"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gTD-Du-m9o" secondAttribute="trailing" id="gCO-ML-q6K"/>
                             <constraint firstItem="lzQ-wd-W6H" firstAttribute="centerX" secondItem="gTD-Du-m9o" secondAttribute="centerX" id="gHQ-Zc-7L7"/>
@@ -142,15 +149,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <connections>
                         <outlet property="attributionTextView" destination="2yr-NB-AwI" id="Egy-Ge-c84"/>
                         <outlet property="backgroundBottomConstraint" destination="wtw-G6-LIH" id="P5T-5I-hFo"/>
-                        <outlet property="backgroundImage" destination="ows-uq-e2t" id="iva-3a-ZFS"/>
+                        <outlet property="backgroundImageView" destination="ows-uq-e2t" id="qmR-lT-DP6"/>
                         <outlet property="fireHeightConstraint" destination="yDq-Mg-ML6" id="0sn-f0-KWk"/>
-                        <outlet property="fireImage" destination="yjA-I4-K8N" id="Cpr-Zb-WsN"/>
+                        <outlet property="fireImageView" destination="yjA-I4-K8N" id="lZo-sw-bee"/>
                         <outlet property="infoButton" destination="LAJ-J7-koH" id="iMP-SL-RDz"/>
                         <outlet property="launchLabel" destination="JhJ-bl-nfK" id="Ed6-LG-AB6"/>
                         <outlet property="redButton" destination="7By-xK-CMX" id="Qv1-b0-HTr"/>
                         <outlet property="rocketBottomConstraint" destination="k48-qH-65N" id="ldo-rV-hMJ"/>
                         <outlet property="rocketHeightConstraint" destination="KGc-YH-nkm" id="UNh-Zc-iqb"/>
-                        <outlet property="rocketImage" destination="3sH-wa-RYA" id="suU-Xk-1ZS"/>
+                        <outlet property="rocketImageView" destination="3sH-wa-RYA" id="6Z4-lr-S7v"/>
                         <outlet property="teleportButton" destination="gTD-Du-m9o" id="VEQ-Ed-ZgO"/>
                         <outlet property="teleportLabel" destination="lzQ-wd-W6H" id="t03-HQ-XkD"/>
                         <segue destination="mMp-kA-hJQ" kind="show" identifier="segueToSpace" id="SI9-BM-xwa"/>
@@ -158,7 +165,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7f-nc-lNu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-244.5" y="366.5"/>
+            <point key="canvasLocation" x="-335.5" y="359.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="vYu-h5-nAJ">
@@ -289,7 +296,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <navigationItem key="navigationItem" id="EOc-W8-dLv"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="APODImage" destination="4cz-z8-YbF" id="VuH-0V-mcY"/>
+                        <outlet property="APODImageView" destination="4cz-z8-YbF" id="Um4-4n-eOb"/>
                         <outlet property="buttonStackRightConstraint" destination="GEe-ad-Omd" id="2Vs-Vg-sps"/>
                         <outlet property="buttonStackView" destination="tAQ-f5-nON" id="LoA-W8-fAU"/>
                         <outlet property="earthButton" destination="epO-pn-RoA" id="fXq-wU-747"/>
@@ -319,12 +326,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star field" translatesAutoresizingMaskIntoConstraints="NO" id="gca-S7-qIm">
-                                <rect key="frame" x="-4" y="0.0" width="600" height="289"/>
+                                <rect key="frame" x="0.0" y="-80" width="375" height="433.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="289" id="3zG-rI-mFP"/>
-                                    <constraint firstAttribute="width" constant="600" id="YtX-c0-aMx"/>
-                                </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue martian" translatesAutoresizingMaskIntoConstraints="NO" id="AQK-gb-RJV">
                                 <rect key="frame" x="16" y="184" width="88" height="132"/>
@@ -336,10 +339,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mars no background" translatesAutoresizingMaskIntoConstraints="NO" id="iYD-WO-aX0">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aEB-7C-Ux3" userLabel="Temp Stack">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aEB-7C-Ux3" userLabel="Temp Stack">
                                 <rect key="frame" x="28" y="393" width="319" height="100"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="0pk-Hv-z00" userLabel="Min Stack">
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="0pk-Hv-z00" userLabel="Min Stack">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Min Temp:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdR-6d-LvT">
@@ -348,7 +351,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min Temp:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1x3-8s-VHp">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Min Temp:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1x3-8s-VHp">
                                                 <rect key="frame" x="0.0" y="57" width="72" height="43"/>
                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -359,7 +362,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="v6Y-Tj-c0Z" userLabel="Max Stack">
                                         <rect key="frame" x="155" y="0.0" width="165" height="100"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max Temp:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFp-bZ-EwP">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Max Temp:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFp-bZ-EwP">
                                                 <rect key="frame" x="0.0" y="0.0" width="103" height="57"/>
                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -374,29 +377,29 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="zsk-ut-3In"/>
-                                </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qcB-yd-L05" userLabel="Weather Stack">
-                                <rect key="frame" x="47" y="513" width="281" height="75"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qcB-yd-L05" userLabel="Weather Stack">
+                                <rect key="frame" x="20" y="501" width="338" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-bd-mtI">
-                                        <rect key="frame" x="0.0" y="0.0" width="281" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="338" height="30"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather data transmitted by the Mars Curiosity Rover" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="6ev-ht-SJu">
+                                        <rect key="frame" x="0.0" y="35" width="338" height="30"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uh-bu-4vH">
-                                        <rect key="frame" x="0.0" y="40" width="281" height="35"/>
+                                        <rect key="frame" x="0.0" y="70" width="338" height="30"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="x4d-h3-F6V"/>
-                                </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sh-Az-xFw">
                                 <rect key="frame" x="10" y="613" width="44" height="44"/>
@@ -404,69 +407,74 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                                     <constraint firstAttribute="width" constant="44" id="Hqq-Ie-H9l"/>
                                     <constraint firstAttribute="height" constant="44" id="fCg-zs-idb"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="black-hole"/>
+                                <state key="normal" title="Button" image="rocket"/>
                                 <connections>
                                     <action selector="rocketTapped:" destination="gF0-xh-Kng" eventType="touchUpInside" id="oqg-FK-9ZF"/>
                                     <segue destination="L0V-Pj-wq6" kind="unwind" unwindAction="myUnwindAction:" id="PYI-si-W7b"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="sun.png" translatesAutoresizingMaskIntoConstraints="NO" id="lOy-Ip-fPB">
-                                <rect key="frame" x="150" y="40" width="75" height="75"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ufo" translatesAutoresizingMaskIntoConstraints="NO" id="yyg-wY-Wrz">
+                                <rect key="frame" x="-154" y="258" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="75" id="Gal-K4-Ryx"/>
-                                    <constraint firstAttribute="height" constant="75" id="zAB-9s-M7Z"/>
+                                    <constraint firstAttribute="width" constant="150" id="AZY-05-6aY"/>
+                                    <constraint firstAttribute="width" secondItem="yyg-wY-Wrz" secondAttribute="height" multiplier="1:1" id="Asi-Ud-9VS"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="black-hole" translatesAutoresizingMaskIntoConstraints="NO" id="Yo5-2h-nKK">
+                                <rect key="frame" x="309" y="40" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="5ny-aQ-eBa"/>
+                                    <constraint firstAttribute="height" constant="50" id="EHl-GE-P2c"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="qcB-yd-L05" firstAttribute="height" secondItem="dgq-Lk-8bl" secondAttribute="height" multiplier="0.15" id="1n4-MV-tJ9"/>
                             <constraint firstItem="aEB-7C-Ux3" firstAttribute="width" secondItem="dgq-Lk-8bl" secondAttribute="width" multiplier="0.85" id="1tS-uH-bDt"/>
                             <constraint firstItem="iYD-WO-aX0" firstAttribute="centerY" secondItem="dgq-Lk-8bl" secondAttribute="centerY" id="9tq-Lq-hzg"/>
                             <constraint firstItem="iYD-WO-aX0" firstAttribute="height" secondItem="dgq-Lk-8bl" secondAttribute="height" id="A1e-oY-xY6"/>
-                            <constraint firstItem="lOy-Ip-fPB" firstAttribute="top" secondItem="2Q1-Dx-gvS" secondAttribute="bottom" constant="15" id="CQD-uf-Orf"/>
                             <constraint firstItem="iYD-WO-aX0" firstAttribute="width" secondItem="dgq-Lk-8bl" secondAttribute="width" id="CkE-U2-kNG"/>
+                            <constraint firstItem="yyg-wY-Wrz" firstAttribute="centerY" secondItem="dgq-Lk-8bl" secondAttribute="centerY" id="GSq-7H-xU1"/>
                             <constraint firstItem="qcB-yd-L05" firstAttribute="centerY" secondItem="dgq-Lk-8bl" secondAttribute="centerY" multiplier="1.65" id="GWt-Hz-AMI"/>
                             <constraint firstItem="aEB-7C-Ux3" firstAttribute="centerY" secondItem="dgq-Lk-8bl" secondAttribute="centerY" multiplier="1.33" id="Hem-t0-fra"/>
                             <constraint firstItem="iYD-WO-aX0" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="Ifw-NM-3Pm"/>
-                            <constraint firstItem="gca-S7-qIm" firstAttribute="top" secondItem="2Q1-Dx-gvS" secondAttribute="bottom" constant="-20" id="NNc-fk-FWW"/>
+                            <constraint firstItem="yyg-wY-Wrz" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leadingMargin" constant="-170" id="LhP-ki-g2W"/>
+                            <constraint firstItem="gca-S7-qIm" firstAttribute="top" secondItem="2Q1-Dx-gvS" secondAttribute="bottom" constant="-100" id="NNc-fk-FWW"/>
                             <constraint firstItem="4sh-Az-xFw" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leading" constant="10" id="UgY-aZ-8Bu"/>
-                            <constraint firstItem="lOy-Ip-fPB" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="bZk-ao-pst"/>
-                            <constraint firstItem="qcB-yd-L05" firstAttribute="width" secondItem="dgq-Lk-8bl" secondAttribute="width" multiplier="0.75" id="cag-vw-Yff"/>
+                            <constraint firstItem="qcB-yd-L05" firstAttribute="width" secondItem="dgq-Lk-8bl" secondAttribute="width" multiplier="0.9" id="cag-vw-Yff"/>
+                            <constraint firstItem="gca-S7-qIm" firstAttribute="width" secondItem="dgq-Lk-8bl" secondAttribute="width" id="ddr-Np-xjd"/>
                             <constraint firstAttribute="leadingMargin" secondItem="AQK-gb-RJV" secondAttribute="leading" id="iU5-br-KvA"/>
                             <constraint firstItem="AQK-gb-RJV" firstAttribute="centerY" secondItem="dgq-Lk-8bl" secondAttribute="centerY" multiplier="0.75" id="idk-PT-6Et"/>
                             <constraint firstItem="qcB-yd-L05" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="iyq-d9-37c"/>
+                            <constraint firstItem="aEB-7C-Ux3" firstAttribute="height" secondItem="dgq-Lk-8bl" secondAttribute="height" multiplier="0.15" id="jgz-9Y-l00"/>
                             <constraint firstItem="aEB-7C-Ux3" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="l7g-SG-UKh"/>
-                            <constraint firstItem="lOy-Ip-fPB" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leadingMargin" constant="20" id="lx8-mH-9fj"/>
-                            <constraint firstItem="gca-S7-qIm" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leadingMargin" constant="-20" id="nBh-6a-1hI"/>
+                            <constraint firstItem="gca-S7-qIm" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leading" id="nBh-6a-1hI"/>
+                            <constraint firstItem="gca-S7-qIm" firstAttribute="height" secondItem="dgq-Lk-8bl" secondAttribute="height" multiplier="0.5" constant="100" id="nWX-un-CSd"/>
                             <constraint firstItem="2VG-PN-LbY" firstAttribute="top" secondItem="4sh-Az-xFw" secondAttribute="bottom" constant="10" id="q2r-D4-8Ce"/>
-                            <constraint firstItem="lOy-Ip-fPB" firstAttribute="top" secondItem="2Q1-Dx-gvS" secondAttribute="bottom" constant="20" id="re4-i5-lY9"/>
+                            <constraint firstItem="Yo5-2h-nKK" firstAttribute="top" secondItem="2Q1-Dx-gvS" secondAttribute="bottom" constant="20" id="sDA-GS-fpj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Yo5-2h-nKK" secondAttribute="trailing" id="vuC-cZ-r8Q"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="CQD-uf-Orf"/>
-                                <exclude reference="bZk-ao-pst"/>
-                                <exclude reference="lx8-mH-9fj"/>
-                                <exclude reference="re4-i5-lY9"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="background" destination="iYD-WO-aX0" id="2HE-e8-NT8"/>
-                        <outlet property="lastUpdated" destination="8Uh-bu-4vH" id="8By-71-jYb"/>
+                        <outlet property="blackholeImageView" destination="Yo5-2h-nKK" id="mM2-aZ-6bb"/>
+                        <outlet property="lastUpdatedLabel" destination="8Uh-bu-4vH" id="5BG-D5-UUO"/>
                         <outlet property="martianImageView" destination="AQK-gb-RJV" id="D3k-ld-BlL"/>
-                        <outlet property="maxCel" destination="TEI-VI-6dO" id="AeT-Ji-nMU"/>
-                        <outlet property="maxFar" destination="OFp-bZ-EwP" id="gLU-4V-9uh"/>
-                        <outlet property="minCel" destination="1x3-8s-VHp" id="lLc-cs-bc7"/>
-                        <outlet property="minFar" destination="bdR-6d-LvT" id="bCC-Wm-qUN"/>
-                        <outlet property="sun" destination="lOy-Ip-fPB" id="FpR-bH-9HP"/>
+                        <outlet property="maxCelLabel" destination="TEI-VI-6dO" id="pqF-7z-3cn"/>
+                        <outlet property="maxFarLabel" destination="OFp-bZ-EwP" id="BxP-hM-FlI"/>
+                        <outlet property="minCelLabel" destination="1x3-8s-VHp" id="gjH-8F-fYT"/>
+                        <outlet property="minFarLabel" destination="bdR-6d-LvT" id="t18-b1-XLw"/>
+                        <outlet property="rocketButton" destination="4sh-Az-xFw" id="G9G-0a-6Di"/>
+                        <outlet property="ufoImageView" destination="yyg-wY-Wrz" id="OmB-Pm-bgw"/>
+                        <outlet property="ufoWidthConstraint" destination="AZY-05-6aY" id="UpU-dO-bVW"/>
                         <outlet property="weatherLabel" destination="Yu8-bd-mtI" id="e9m-pW-t5b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13p-zj-Qbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="L0V-Pj-wq6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="913.5" y="261.5"/>
+            <point key="canvasLocation" x="915.5" y="275.5"/>
         </scene>
     </scenes>
     <resources>
@@ -481,7 +489,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <image name="planet-earth" width="512" height="512"/>
         <image name="rocket" width="512" height="512"/>
         <image name="star field" width="2000" height="1200"/>
-        <image name="sun.png" width="612" height="612"/>
         <image name="transport" width="512" height="512"/>
+        <image name="ufo" width="512" height="512"/>
     </resources>
 </document>

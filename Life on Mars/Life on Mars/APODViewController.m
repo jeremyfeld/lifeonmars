@@ -16,7 +16,7 @@
 @interface APODViewController () <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIImageView *APODImage;
+@property (weak, nonatomic) IBOutlet UIImageView *APODImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
@@ -26,10 +26,9 @@
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
 @property (strong, nonatomic) IBOutlet UIStackView *buttonStackView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonStackRightConstraint;
-@property (strong, nonatomic) NSLayoutConstraint *rocketAfterAnimation;
-@property (strong, nonatomic) NSLayoutConstraint *descriptionTop;
-@property (strong, nonatomic) NSLayoutConstraint *descriptionAfterAnimation;
-@property (strong, nonatomic) NSLayoutConstraint *buttonPreAnimation;
+@property (strong, nonatomic) NSLayoutConstraint *descriptionTopConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *descriptionAfterAnimationConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *buttonPreAnimationConstraint;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (strong, nonatomic) NSString *APODdescriptionText;
 
@@ -54,12 +53,12 @@
      [super viewDidAppear:YES];
      
      self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
-     self.APODImage.translatesAutoresizingMaskIntoConstraints = NO;
+     self.APODImageView.translatesAutoresizingMaskIntoConstraints = NO;
      self.buttonStackView.translatesAutoresizingMaskIntoConstraints = NO;
      
      self.buttonStackRightConstraint.active = NO;
-     self.buttonPreAnimation = [self.buttonStackView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:100];
-     self.buttonPreAnimation.active = YES;
+     self.buttonPreAnimationConstraint = [self.buttonStackView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:100];
+     self.buttonPreAnimationConstraint.active = YES;
      
      NSString *APODurl = [NSString stringWithFormat:@"https://api.nasa.gov/planetary/apod?api_key=%@", APOD_API_KEY];
      
@@ -79,11 +78,12 @@
                UIAlertController *videoAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem" message:@"The picture of the day is actually a video. Would you like to watch it?" preferredStyle:UIAlertControllerStyleAlert];
                
                UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No Thanks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    //
                }];
                
                UIAlertAction *watchAction = [UIAlertAction actionWithTitle:@"Of Course!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    
                     NSURL *youtubeURL = [NSURL URLWithString:APODDictionary[@"url"]];
+                    
                     SFSafariViewController *youtubeView = [[SFSafariViewController alloc] initWithURL:youtubeURL];
                     [self presentViewController:youtubeView animated:YES completion:nil];
                }];
@@ -96,19 +96,22 @@
           } else {
                
                NSURL *picURL = [NSURL URLWithString:APODDictionary[@"hdurl"]];
-               NSLog(@"dictionary... %@", APODDictionary);
                NSURLRequest *request = [NSURLRequest requestWithURL:picURL];
                
-               [self.APODImage setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                    
-                    CGFloat imageAspectRatio = image.size.width / image.size.height;
-                    [self.APODImage.widthAnchor constraintEqualToAnchor:self.APODImage.heightAnchor multiplier:imageAspectRatio].active = YES;
-                    self.APODImage.image = image;
-                    
-               } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
-                    
-                    //present an error message
-               }];
+               [self.APODImageView setImageWithURLRequest:request
+                                         placeholderImage:nil
+                                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                                       
+                                                       CGFloat imageAspectRatio = image.size.width / image.size.height;
+                                                       
+                                                       [self.APODImageView.widthAnchor constraintEqualToAnchor:self.APODImageView.heightAnchor multiplier:imageAspectRatio].active = YES;
+                                                       
+                                                       self.APODImageView.image = image;
+                                                       
+                                                  } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+                                                       
+                                                       //present an error message
+                                                  }];
           }
           
           [self setUpDescriptionLabel];
@@ -123,7 +126,7 @@
 
 -(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
-     return self.APODImage;
+     return self.APODImageView;
 }
 
 #pragma - IBActions
@@ -131,9 +134,12 @@
 {
      [self prepareSpaceshipAudio];
      [self.audioPlayer play];
-     if (self.buttonPreAnimation.active) {
+     
+     if (self.buttonPreAnimationConstraint.active) {
+          
           [UIView animateWithDuration:1 animations:^{
-               self.buttonPreAnimation.active = NO;
+               
+               self.buttonPreAnimationConstraint.active = NO;
                self.buttonStackRightConstraint.active = YES;
                
                [self.view layoutIfNeeded];
@@ -141,18 +147,18 @@
           } completion:^(BOOL finished) {
                //
           }];
+          
      } else {
+          
           [UIView animateWithDuration:1 animations:^{
+               
                self.buttonStackRightConstraint.active = NO;
-               self.buttonPreAnimation.active = YES;
+               self.buttonPreAnimationConstraint.active = YES;
                
                [self.view layoutIfNeeded];
                
-          } completion:^(BOOL finished) {
-               //
-          }];
+          } completion:nil];
      }
-     
 }
 
 - (IBAction)earthButtonTapped:(id)sender
@@ -180,20 +186,24 @@
      [self.audioPlayer play];
      
      [UIView animateWithDuration:51 animations:^{
+          
           self.descriptionLabel.hidden = NO;
           self.titleLabel.hidden = YES;
-          self.descriptionTop.active = NO;
-          self.descriptionAfterAnimation.active = YES;
+          self.descriptionTopConstraint.active = NO;
+          self.descriptionAfterAnimationConstraint.active = YES;
+          
           [self.view layoutIfNeeded];
           
      } completion:^(BOOL finished) {
           
           self.titleLabel.hidden = NO;
-          self.descriptionAfterAnimation.active = NO;
-          self.descriptionTop.active = YES;
+          self.descriptionAfterAnimationConstraint.active = NO;
+          self.descriptionTopConstraint.active = YES;
           self.descriptionLabel.hidden = YES;
+          
           [self.view layoutIfNeeded];
           [self.audioPlayer stop];
+          
           self.infoButton.userInteractionEnabled = YES;
           self.spaceshipButton.userInteractionEnabled = YES;
           self.infoButton.hidden = NO;
@@ -205,7 +215,7 @@
 
 -(IBAction)saveTapped:(id)sender
 {
-     NSData *imageData = UIImageJPEGRepresentation(self.APODImage.image, 1);
+     NSData *imageData = UIImageJPEGRepresentation(self.APODImageView.image, 1);
      UIImage *compressedJPGImage = [UIImage imageWithData:imageData];
      UIImageWriteToSavedPhotosAlbum(compressedJPGImage, self, @selector(saveImageHandler:didFinishSavingWithError:contextInfo:), nil);
 }
@@ -213,19 +223,21 @@
 -(void)saveImageHandler:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
 {
      if (error) {
+          
           UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"OH NO!" message:[NSString stringWithFormat:@"There was an error saving the image: %@", error.localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+          
           UIAlertAction *errorAction = [UIAlertAction actionWithTitle:@"🚀👾 OK 👾🚀" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-               //
           }];
           
           [errorAlert addAction:errorAction];
           
           [self presentViewController:errorAlert animated:YES completion:nil];
+          
      } else {
           
           UIAlertController *saveAlert = [UIAlertController alertControllerWithTitle:@"Saved!" message:[NSString stringWithFormat:@"%@ is now in your Photos!", self.titleLabel.text] preferredStyle:UIAlertControllerStyleAlert];
+          
           UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"🚀👾 OK 👾🚀" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-               //
           }];
           
           [saveAlert addAction:okAction];
@@ -262,8 +274,9 @@
      descriptionWidth.active = YES;
      NSLayoutConstraint *descriptionHeight = [self.descriptionLabel.heightAnchor constraintEqualToAnchor:self.view.heightAnchor multiplier:0.75];
      descriptionHeight.active = YES;
-     self.descriptionTop = [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.view.bottomAnchor];
-     self.descriptionTop.active = YES;
+     
+     self.descriptionTopConstraint = [self.descriptionLabel.topAnchor constraintEqualToAnchor:self.view.bottomAnchor];
+     self.descriptionTopConstraint.active = YES;
      
      self.descriptionLabel.text = self.APODdescriptionText;
      self.descriptionLabel.textColor = [UIColor whiteColor];
@@ -271,8 +284,8 @@
      self.descriptionLabel.numberOfLines = 25;
      self.descriptionLabel.adjustsFontSizeToFitWidth = YES;
      
-     self.descriptionAfterAnimation = [self.descriptionLabel.bottomAnchor constraintEqualToAnchor:self.view.topAnchor];
-     self.descriptionAfterAnimation.active = NO;
+     self.descriptionAfterAnimationConstraint = [self.descriptionLabel.bottomAnchor constraintEqualToAnchor:self.view.topAnchor];
+     self.descriptionAfterAnimationConstraint.active = NO;
 }
 
 @end
