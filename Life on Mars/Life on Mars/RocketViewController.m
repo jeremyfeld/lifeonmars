@@ -72,7 +72,7 @@
     } completion:^(BOOL finished) {
         
         [UIView animateWithDuration:0.1 animations:^{
-        
+            
             self.fireImage.alpha = 0;
         }];
     }];

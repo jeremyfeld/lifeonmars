@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z4P-eb-Ncf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gF0-xh-Kng">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -87,7 +87,7 @@
                                     <constraint firstAttribute="height" constant="128" id="3cW-hu-Hef"/>
                                     <constraint firstAttribute="width" constant="240" id="JtA-xN-p3c"/>
                                 </constraints>
-                                <mutableString key="text">Acknowledgements
+                                <string key="text">Acknowledgements
 
 Artwork from:
 http://worldartsme.com/
@@ -101,7 +101,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</mutableString>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -208,20 +208,27 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tAQ-f5-nON" userLabel="button stack">
-                                <rect key="frame" x="0.0" y="441" width="44" height="142"/>
+                                <rect key="frame" x="0.0" y="387" width="44" height="196"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbE-OJ-boe" userLabel="mars">
-                                        <rect key="frame" x="0.0" y="0.0" width="44" height="41"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="42"/>
                                         <state key="normal" title="Button" image="marsIcon"/>
                                         <connections>
                                             <segue destination="gF0-xh-Kng" kind="presentation" modalTransitionStyle="crossDissolve" id="833-Xu-8WO"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epO-pn-RoA">
+                                        <rect key="frame" x="0.0" y="52" width="44" height="42"/>
+                                        <state key="normal" title="Button" image="planet-earth"/>
+                                        <connections>
+                                            <action selector="earthButtonTapped:" destination="mMp-kA-hJQ" eventType="touchUpInside" id="IZp-3C-lIZ"/>
+                                        </connections>
+                                    </button>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q91-Cp-XC2">
-                                        <rect key="frame" x="0.0" y="51" width="44" height="41"/>
+                                        <rect key="frame" x="0.0" y="103" width="44" height="42"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uc-NL-25Z">
-                                                <rect key="frame" x="2" y="2" width="40" height="37"/>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uc-NL-25Z">
+                                                <rect key="frame" x="5" y="2" width="35" height="37"/>
                                                 <state key="normal" title="Button" image="floppydisk"/>
                                                 <connections>
                                                     <action selector="saveTapped:" destination="mMp-kA-hJQ" eventType="touchUpInside" id="UOP-72-aMm"/>
@@ -237,7 +244,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kii-t9-EDr" userLabel="info">
-                                        <rect key="frame" x="0.0" y="102" width="44" height="41"/>
+                                        <rect key="frame" x="0.0" y="155" width="44" height="42"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                         <color key="tintColor" red="1" green="0.83921568627450982" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -247,7 +254,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="al7-Ga-ujF"/>
-                                    <constraint firstAttribute="height" constant="142" id="dIj-4j-I5o"/>
+                                    <constraint firstAttribute="height" constant="196" id="dIj-4j-I5o"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -285,12 +292,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                         <outlet property="APODImage" destination="4cz-z8-YbF" id="VuH-0V-mcY"/>
                         <outlet property="buttonStackRightConstraint" destination="GEe-ad-Omd" id="2Vs-Vg-sps"/>
                         <outlet property="buttonStackView" destination="tAQ-f5-nON" id="LoA-W8-fAU"/>
+                        <outlet property="earthButton" destination="epO-pn-RoA" id="fXq-wU-747"/>
                         <outlet property="infoButton" destination="Kii-t9-EDr" id="PzB-Ph-G3Z"/>
                         <outlet property="marsButton" destination="fbE-OJ-boe" id="f4I-qy-AWL"/>
                         <outlet property="saveButton" destination="2uc-NL-25Z" id="ax2-je-epq"/>
                         <outlet property="scrollView" destination="ayd-fl-YeR" id="qky-oe-HIK"/>
                         <outlet property="spaceshipButton" destination="MYn-Ci-TUq" id="lUY-ID-lq2"/>
                         <outlet property="titleLabel" destination="Pcf-Bq-aS4" id="sk1-q2-IyY"/>
+                        <segue destination="Z4P-eb-Ncf" kind="show" identifier="segueToEarth" id="cFi-qC-bGI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4X-ap-wkQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -315,6 +324,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                                 <constraints>
                                     <constraint firstAttribute="height" constant="289" id="3zG-rI-mFP"/>
                                     <constraint firstAttribute="width" constant="600" id="YtX-c0-aMx"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue martian" translatesAutoresizingMaskIntoConstraints="NO" id="AQK-gb-RJV">
+                                <rect key="frame" x="16" y="184" width="88" height="132"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="88" id="7L4-FJ-ZOI"/>
+                                    <constraint firstAttribute="height" constant="132" id="sT4-tq-6GY"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mars no background" translatesAutoresizingMaskIntoConstraints="NO" id="iYD-WO-aX0">
@@ -388,13 +404,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                                     <constraint firstAttribute="width" constant="44" id="Hqq-Ie-H9l"/>
                                     <constraint firstAttribute="height" constant="44" id="fCg-zs-idb"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="rocket"/>
+                                <state key="normal" title="Button" image="black-hole"/>
                                 <connections>
                                     <action selector="rocketTapped:" destination="gF0-xh-Kng" eventType="touchUpInside" id="oqg-FK-9ZF"/>
                                     <segue destination="L0V-Pj-wq6" kind="unwind" unwindAction="myUnwindAction:" id="PYI-si-W7b"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun.png" translatesAutoresizingMaskIntoConstraints="NO" id="lOy-Ip-fPB">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="sun.png" translatesAutoresizingMaskIntoConstraints="NO" id="lOy-Ip-fPB">
                                 <rect key="frame" x="150" y="40" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="Gal-K4-Ryx"/>
@@ -416,6 +432,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                             <constraint firstItem="4sh-Az-xFw" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leading" constant="10" id="UgY-aZ-8Bu"/>
                             <constraint firstItem="lOy-Ip-fPB" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="bZk-ao-pst"/>
                             <constraint firstItem="qcB-yd-L05" firstAttribute="width" secondItem="dgq-Lk-8bl" secondAttribute="width" multiplier="0.75" id="cag-vw-Yff"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="AQK-gb-RJV" secondAttribute="leading" id="iU5-br-KvA"/>
+                            <constraint firstItem="AQK-gb-RJV" firstAttribute="centerY" secondItem="dgq-Lk-8bl" secondAttribute="centerY" multiplier="0.75" id="idk-PT-6Et"/>
                             <constraint firstItem="qcB-yd-L05" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="iyq-d9-37c"/>
                             <constraint firstItem="aEB-7C-Ux3" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="l7g-SG-UKh"/>
                             <constraint firstItem="lOy-Ip-fPB" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leadingMargin" constant="20" id="lx8-mH-9fj"/>
@@ -426,7 +444,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="CQD-uf-Orf"/>
+                                <exclude reference="bZk-ao-pst"/>
                                 <exclude reference="lx8-mH-9fj"/>
+                                <exclude reference="re4-i5-lY9"/>
                             </mask>
                         </variation>
                     </view>
@@ -434,6 +454,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
                     <connections>
                         <outlet property="background" destination="iYD-WO-aX0" id="2HE-e8-NT8"/>
                         <outlet property="lastUpdated" destination="8Uh-bu-4vH" id="8By-71-jYb"/>
+                        <outlet property="martianImageView" destination="AQK-gb-RJV" id="D3k-ld-BlL"/>
                         <outlet property="maxCel" destination="TEI-VI-6dO" id="AeT-Ji-nMU"/>
                         <outlet property="maxFar" destination="OFp-bZ-EwP" id="gLU-4V-9uh"/>
                         <outlet property="minCel" destination="1x3-8s-VHp" id="lLc-cs-bc7"/>
@@ -452,10 +473,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <image name="Red_button" width="191" height="177"/>
         <image name="backgroundnew" width="1200" height="5375"/>
         <image name="black-hole" width="512" height="512"/>
+        <image name="blue martian" width="1131" height="1600"/>
         <image name="fire 2" width="100" height="146"/>
         <image name="floppydisk" width="512" height="512"/>
         <image name="mars no background" width="1200" height="675"/>
         <image name="marsIcon" width="512" height="512"/>
+        <image name="planet-earth" width="512" height="512"/>
         <image name="rocket" width="512" height="512"/>
         <image name="star field" width="2000" height="1200"/>
         <image name="sun.png" width="612" height="612"/>

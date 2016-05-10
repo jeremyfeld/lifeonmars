@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *weatherLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *background;
 @property (weak, nonatomic) IBOutlet UIImageView *sun;
+@property (strong, nonatomic) IBOutlet UIImageView *martianImageView;
 
 @end
 
@@ -27,26 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //take center x
-    //center y
-    //width
-    //height
-    
-    //        CGRect boundingRect = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/2, self.view.frame.size.width, self.view.frame.size.height);
-    
-    CGRect boundingRect = CGRectMake(0, 0, 300, 300);
-    
-    CAKeyframeAnimation *orbit = [CAKeyframeAnimation animation];
-    orbit.keyPath = @"position";
-    orbit.path = CFAutorelease(CGPathCreateWithEllipseInRect(boundingRect, NULL));
-    orbit.duration = 8;
-    orbit.additive = YES;
-    orbit.repeatCount = HUGE_VALF;
-    orbit.calculationMode = kCAAnimationPaced;
-    orbit.rotationMode = kCAAnimationRotateAuto;
-    
-    [self.sun.layer addAnimation:orbit forKey:@"orbit"];
     
     NSString *marsWeather = [NSString stringWithFormat:@"http://marsweather.ingenology.com/v1/latest/"];
     
@@ -86,6 +67,7 @@
         //error message
         
     }];
+    
 }
 
 -(BOOL)prefersStatusBarHidden
@@ -93,30 +75,65 @@
     return YES;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    
+    [self animateMartian];
+    [self animateSun];
+    
+}
+
 - (IBAction)rocketTapped:(id)sender
 {
-//    CATransition *transition = [CATransition animation];
-//    transition.duration = 1.5;
-//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    transition.type = kCATransitionReveal;
-//    transition.subtype = kCATransitionFromTop;
-//    
-//    [self.view.window.layer addAnimation:transition forKey:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
- //-(void)animateSun
- //{
- //    [UIView animateWithDuration:1 animations:^{
- //        self.hiddenLeftConstraint.active = NO;
- //        self.animateRightConstraint.active = YES;
- //
- //        [self.view layoutIfNeeded];
- //
- //    } completion:^(BOOL finished) {
- //
- //        [self animateSun];
- //    }];
- //}
+-(void)animateMartian
+{
+
+    CGFloat centerY = self.view.frame.size.height * 0.75 / 2;
+    CGFloat newY = self.view.frame.size.height * 0.375 / 2;
+    CGFloat transformationY = centerY - newY;
+    
+    [UIView animateWithDuration:1 delay:3 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        
+        self.martianImageView.transform = CGAffineTransformMakeTranslation(0, -transformationY);
+        
+        [self.martianImageView layoutIfNeeded];
+        
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:1 delay:3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.martianImageView.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {
+            
+            [self animateMartian];
+        }];
+    }];
+}
+
+//take center x
+//center y
+//width
+//height
+
+-(void)animateSun
+{
+    CGFloat xPoint = self.view.frame.size.width;
+    CGFloat yPoint = self.view.frame.size.height/2;
+    CGRect boundingRect = CGRectMake(-xPoint, 0, self.view.frame.size.width*3, self.view.frame.size.height*1.25);
+    
+    CAKeyframeAnimation *orbit = [CAKeyframeAnimation animation];
+    orbit.keyPath = @"position";
+    orbit.path = CFAutorelease(CGPathCreateWithEllipseInRect(boundingRect, NULL));
+    orbit.duration = 20;
+    orbit.additive = YES;
+    orbit.repeatCount = HUGE_VALF;
+    orbit.calculationMode = kCAAnimationPaced;
+    orbit.rotationMode = kCAAnimationRotateAuto;
+    
+    [self.sun.layer addAnimation:orbit forKey:@"orbit"];
+}
 
 @end

@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (strong, nonatomic) IBOutlet UIButton *spaceshipButton;
 @property (strong, nonatomic) IBOutlet UIButton *marsButton;
+@property (strong, nonatomic) IBOutlet UIButton *earthButton;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
 @property (strong, nonatomic) IBOutlet UIStackView *buttonStackView;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonStackRightConstraint;
@@ -41,7 +42,6 @@
      [super viewDidLoad];
      
      self.scrollView.delegate = self;
-     
 }
 
 -(BOOL)prefersStatusBarHidden
@@ -51,6 +51,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+     [super viewDidAppear:YES];
+     
      self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
      self.APODImage.translatesAutoresizingMaskIntoConstraints = NO;
      self.buttonStackView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -74,7 +76,7 @@
           
           if ([APODDictionary[@"media_type"] isEqualToString:@"video"]) {
                
-               UIAlertController *videoAlert = [UIAlertController alertControllerWithTitle:@"Hmmm..." message:@"The picture of the day is actually a video. Would you like to watch it?" preferredStyle:UIAlertControllerStyleAlert];
+               UIAlertController *videoAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem" message:@"The picture of the day is actually a video. Would you like to watch it?" preferredStyle:UIAlertControllerStyleAlert];
                
                UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No Thanks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     //
@@ -151,6 +153,18 @@
           }];
      }
      
+}
+
+- (IBAction)earthButtonTapped:(id)sender
+{
+     CATransition *transition = [CATransition animation];
+     transition.duration = .8;
+     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+     transition.type = kCATransitionFade;
+     transition.subtype = kCATransitionFromTop;
+     
+     [self.view.window.layer addAnimation:transition forKey:nil];
+     [self performSegueWithIdentifier:@"segueToEarth" sender:self];
 }
 
 - (IBAction)infoTapped:(id)sender
