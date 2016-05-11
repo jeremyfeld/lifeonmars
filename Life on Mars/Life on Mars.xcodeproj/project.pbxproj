@@ -9,22 +9,16 @@
 /* Begin PBXBuildFile section */
 		A30AD13F51E6C4325F987201 /* libPods-Life on Mars.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2543E98EB2BABC9B84821B /* libPods-Life on Mars.a */; };
 		CB0C5EDA1CDA70F000D898DF /* RocketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0C5ED91CDA70F000D898DF /* RocketViewController.m */; };
-		CB0C5EDC1CDA955E00D898DF /* space-sunrise.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CB0C5EDB1CDA955E00D898DF /* space-sunrise.jpg */; };
-		CB0C5EDE1CDBE4FF00D898DF /* ray.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB0C5EDD1CDBE4FF00D898DF /* ray.mp3 */; };
-		CB0C5EE01CDBFB6100D898DF /* sun.png in Resources */ = {isa = PBXBuildFile; fileRef = CB0C5EDF1CDBFB6100D898DF /* sun.png */; };
+		CB0F83051CE39DAD00B1813C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6999151CD7B86500ADFE4F /* Assets.xcassets */; };
 		CB69990B1CD7B86500ADFE4F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CB69990A1CD7B86500ADFE4F /* main.m */; };
 		CB69990E1CD7B86500ADFE4F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CB69990D1CD7B86500ADFE4F /* AppDelegate.m */; };
 		CB6999141CD7B86500ADFE4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB6999121CD7B86500ADFE4F /* Main.storyboard */; };
-		CB6999161CD7B86500ADFE4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6999151CD7B86500ADFE4F /* Assets.xcassets */; };
 		CB6999191CD7B86500ADFE4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB6999171CD7B86500ADFE4F /* LaunchScreen.storyboard */; };
 		CB6999241CD7B86500ADFE4F /* Life_on_MarsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6999231CD7B86500ADFE4F /* Life_on_MarsTests.m */; };
 		CB69992F1CD7B86500ADFE4F /* Life_on_MarsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CB69992E1CD7B86500ADFE4F /* Life_on_MarsUITests.m */; };
 		CB69993E1CD7B91000ADFE4F /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = CB69993D1CD7B91000ADFE4F /* Secrets.m */; };
 		CB6999411CD7B98300ADFE4F /* MarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6999401CD7B98300ADFE4F /* MarsViewController.m */; };
 		CB6999441CD7BB0A00ADFE4F /* APODViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6999431CD7BB0A00ADFE4F /* APODViewController.m */; };
-		CB6999461CD7EB3B00ADFE4F /* intro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB6999451CD7EB3B00ADFE4F /* intro.mp3 */; };
-		CB6999481CD7F3AC00ADFE4F /* launch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB6999471CD7F3AC00ADFE4F /* launch.mp3 */; };
-		CB69994A1CD7F3BA00ADFE4F /* fly.wav in Resources */ = {isa = PBXBuildFile; fileRef = CB6999491CD7F3BA00ADFE4F /* fly.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,9 +44,6 @@
 		AA2543E98EB2BABC9B84821B /* libPods-Life on Mars.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Life on Mars.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0C5ED81CDA70F000D898DF /* RocketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RocketViewController.h; sourceTree = "<group>"; };
 		CB0C5ED91CDA70F000D898DF /* RocketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RocketViewController.m; sourceTree = "<group>"; };
-		CB0C5EDB1CDA955E00D898DF /* space-sunrise.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "space-sunrise.jpg"; sourceTree = "<group>"; };
-		CB0C5EDD1CDBE4FF00D898DF /* ray.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ray.mp3; sourceTree = "<group>"; };
-		CB0C5EDF1CDBFB6100D898DF /* sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sun.png; sourceTree = "<group>"; };
 		CB6999061CD7B86500ADFE4F /* Life on Mars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Life on Mars.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB69990A1CD7B86500ADFE4F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CB69990C1CD7B86500ADFE4F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -73,9 +64,6 @@
 		CB6999401CD7B98300ADFE4F /* MarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsViewController.m; sourceTree = "<group>"; };
 		CB6999421CD7BB0A00ADFE4F /* APODViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APODViewController.h; sourceTree = "<group>"; };
 		CB6999431CD7BB0A00ADFE4F /* APODViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 5; lastKnownFileType = sourcecode.c.objc; path = APODViewController.m; sourceTree = "<group>"; };
-		CB6999451CD7EB3B00ADFE4F /* intro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = intro.mp3; sourceTree = "<group>"; };
-		CB6999471CD7F3AC00ADFE4F /* launch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = launch.mp3; sourceTree = "<group>"; };
-		CB6999491CD7F3BA00ADFE4F /* fly.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fly.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,12 +144,6 @@
 				CB6999401CD7B98300ADFE4F /* MarsViewController.m */,
 				CB6999421CD7BB0A00ADFE4F /* APODViewController.h */,
 				CB6999431CD7BB0A00ADFE4F /* APODViewController.m */,
-				CB6999451CD7EB3B00ADFE4F /* intro.mp3 */,
-				CB6999471CD7F3AC00ADFE4F /* launch.mp3 */,
-				CB6999491CD7F3BA00ADFE4F /* fly.wav */,
-				CB0C5EDD1CDBE4FF00D898DF /* ray.mp3 */,
-				CB0C5EDB1CDA955E00D898DF /* space-sunrise.jpg */,
-				CB0C5EDF1CDBFB6100D898DF /* sun.png */,
 				CB6999121CD7B86500ADFE4F /* Main.storyboard */,
 				CB6999151CD7B86500ADFE4F /* Assets.xcassets */,
 				CB6999171CD7B86500ADFE4F /* LaunchScreen.storyboard */,
@@ -303,15 +285,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB69994A1CD7F3BA00ADFE4F /* fly.wav in Resources */,
-				CB0C5EDE1CDBE4FF00D898DF /* ray.mp3 in Resources */,
+				CB0F83051CE39DAD00B1813C /* Assets.xcassets in Resources */,
 				CB6999191CD7B86500ADFE4F /* LaunchScreen.storyboard in Resources */,
-				CB6999481CD7F3AC00ADFE4F /* launch.mp3 in Resources */,
-				CB6999161CD7B86500ADFE4F /* Assets.xcassets in Resources */,
-				CB0C5EDC1CDA955E00D898DF /* space-sunrise.jpg in Resources */,
-				CB0C5EE01CDBFB6100D898DF /* sun.png in Resources */,
 				CB6999141CD7B86500ADFE4F /* Main.storyboard in Resources */,
-				CB6999461CD7EB3B00ADFE4F /* intro.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,7 +457,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -519,7 +495,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -532,6 +508,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Life on Mars/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JBF.Life-on-Mars";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -544,6 +521,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Life on Mars/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JBF.Life-on-Mars";
 				PRODUCT_NAME = "$(TARGET_NAME)";

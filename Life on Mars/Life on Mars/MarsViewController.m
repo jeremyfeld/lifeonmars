@@ -8,6 +8,7 @@
 
 #import "MarsViewController.h"
 #import <AFNetworking/AFNetworking.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface MarsViewController ()
 
@@ -17,12 +18,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *maxCelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastUpdatedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *weatherLabel;
-@property (strong, nonatomic) IBOutlet UIButton *rocketButton;
-@property (strong, nonatomic) IBOutlet UIImageView *martianImageView;
-@property (strong, nonatomic) IBOutlet UIImageView *ufoImageView;
-@property (strong, nonatomic) IBOutlet UIImageView *blackholeImageView;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *ufoWidthConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *rocketButton;
+@property (weak, nonatomic) IBOutlet UIImageView *martianImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *ufoImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *blackholeImageView;
+@property (weak, nonatomic) IBOutlet UIStackView *buttonStackView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ufoWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonStackViewTrailingConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *ufoWidthAfterAnimationConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *buttonStackAfterAnimationConstraint;
+@property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (assign, nonatomic) NSUInteger ufoAnimationCounter;
 
 @end
@@ -35,6 +40,9 @@
     
     self.ufoWidthAfterAnimationConstraint.active = NO;
     self.ufoWidthAfterAnimationConstraint = [self.ufoImageView.widthAnchor constraintEqualToConstant:5];
+    self.buttonStackAfterAnimationConstraint.active = NO;
+    self.buttonStackAfterAnimationConstraint = [self.buttonStackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-10];
+    
     self.ufoAnimationCounter = 0;
     
     NSString *marsWeather = [NSString stringWithFormat:@"http://marsweather.ingenology.com/v1/latest/"];
@@ -42,52 +50,23 @@
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     [sessionManager GET:marsWeather parameters:nil progress:^(NSProgress *downloadProgress) {
         
-        //add progress bar?
-        
     } success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *marsWeatherDictionary = responseObject[@"report"];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd";
-        NSString *dateString = marsWeatherDictionary[@"terrestrial_date"];
-        NSDate *earthDate = [dateFormatter dateFromString:dateString];
-        dateFormatter.dateFormat = @"MM-dd-yyyy";
-        NSString *newDate = [dateFormatter stringFromDate:earthDate];
-        
-        self.minCelLabel.text = [NSString stringWithFormat:@"Low: %@ °C", marsWeatherDictionary[@"min_temp"]];
-        self.minFarLabel.text = [NSString stringWithFormat:@"Low: %@ °F", marsWeatherDictionary[@"min_temp_fahrenheit"]];
-        self.maxCelLabel.text = [NSString stringWithFormat:@"High: %@ °C", marsWeatherDictionary[@"max_temp"]];
-        self.maxFarLabel.text = [NSString stringWithFormat:@"High: %@ °F", marsWeatherDictionary[@"max_temp_fahrenheit"]];
-        self.weatherLabel.text = [NSString stringWithFormat:@"The weather on Mars is %@", marsWeatherDictionary[@"atmo_opacity"]];
-        self.lastUpdatedLabel.text = [NSString stringWithFormat:@"Last updated: %@", newDate];
-        
-        self.minCelLabel.hidden = NO;
-        self.minFarLabel.hidden = NO;
-        self.maxCelLabel.hidden = NO;
-        self.maxFarLabel.hidden = NO;
-        self.weatherLabel.hidden = NO;
-        self.lastUpdatedLabel.hidden = NO;
+        [self updateLabelsWithDictionary:marsWeatherDictionary];
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem!" message:[NSString stringWithFormat:@"There was an error loading the data: %@", error.localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        }];
-        
-        [errorAlert addAction:dismissAction];
-        
-        [self presentViewController:errorAlert animated:YES completion:nil];
+        [self displayErrorAlert:error];
     }];
 }
 
--(BOOL)prefersStatusBarHidden
+- (BOOL)prefersStatusBarHidden
 {
     return YES;
 }
 
--(void)viewDidAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
     
@@ -97,14 +76,51 @@
     
 }
 
+#pragma mark - IBActions
+
+- (IBAction)spaceshipTapped:(id)sender
+{
+    [self prepareAudio:@"ray"];
+    [self.audioPlayer play];
+    
+    if (self.buttonStackViewTrailingConstraint.active) {
+        
+        [UIView animateWithDuration:1 animations:^{
+            
+            self.buttonStackViewTrailingConstraint.active = NO;
+            self.buttonStackAfterAnimationConstraint.active = YES;
+            
+            [self.view layoutIfNeeded];
+            
+        } completion:nil];
+        
+    } else {
+        
+        [UIView animateWithDuration:1 animations:^{
+            
+            self.buttonStackAfterAnimationConstraint.active = NO;
+            self.buttonStackViewTrailingConstraint.active = YES;
+            
+            [self.view layoutIfNeeded];
+            
+        } completion:nil];
+    }
+}
+
 - (IBAction)rocketTapped:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)animateMartian
+- (IBAction)settingsTapped:(id)sender
 {
     
+}
+
+#pragma mark - Animations
+
+- (void)animateMartian
+{
     CGFloat centerY = self.view.frame.size.height * 0.75 / 2;
     CGFloat newY = self.view.frame.size.height * 0.375 / 2;
     CGFloat transformationY = centerY - newY;
@@ -117,8 +133,6 @@
                      animations:^{
                          
                          self.martianImageView.transform = CGAffineTransformMakeTranslation(0, -transformationY);
-                         
-                         [self.view layoutIfNeeded];
                          
                      } completion:^(BOOL finished) {
                          
@@ -136,7 +150,7 @@
                      }];
 }
 
--(void)animateBlackhole
+- (void)animateBlackhole
 {
     [UIView animateWithDuration:1
                           delay:0
@@ -145,15 +159,13 @@
                          
                          [self.blackholeImageView setTransform:CGAffineTransformRotate(self.blackholeImageView.transform, M_PI_2)];
                          
-                         [self.view layoutIfNeeded];
-                         
                      } completion:^(BOOL finished) {
                          
                          [self animateBlackhole];
                      }];
 }
 
--(void)animateUFO
+- (void)animateUFO
 {
     CGFloat centerY = self.view.frame.size.height / 2;
     CGFloat transformationY = 0 - centerY;
@@ -202,8 +214,6 @@
                              
                              self.ufoImageView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width+300, 0);
                              
-                             [self.view layoutIfNeeded];
-                             
                          } completion:^(BOOL finished) {
                              
                              [UIView animateWithDuration:3
@@ -212,9 +222,7 @@
                                               animations:^{
                                                   
                                                   self.ufoImageView.transform = CGAffineTransformIdentity;
-                                                  
-                                                  [self.view layoutIfNeeded];
-                                                  
+                                                                                                    
                                               } completion:^(BOOL finished) {
                                                   
                                                   self.ufoAnimationCounter ++;
@@ -223,6 +231,48 @@
                                               }];
                          }];
     }
+}
+
+#pragma mark - Update Labels
+
+- (void)updateLabelsWithDictionary:(NSDictionary *)marsDictionary
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    NSString *dateString = marsDictionary[@"terrestrial_date"];
+    NSDate *earthDate = [dateFormatter dateFromString:dateString];
+    dateFormatter.dateFormat = @"MM-dd-yyyy";
+    NSString *newDate = [dateFormatter stringFromDate:earthDate];
+    
+    self.minCelLabel.text = [NSString stringWithFormat:@"Low: %@ °C", marsDictionary[@"min_temp"]];
+    self.minFarLabel.text = [NSString stringWithFormat:@"Low: %@ °F", marsDictionary[@"min_temp_fahrenheit"]];
+    self.maxCelLabel.text = [NSString stringWithFormat:@"High: %@ °C", marsDictionary[@"max_temp"]];
+    self.maxFarLabel.text = [NSString stringWithFormat:@"High: %@ °F", marsDictionary[@"max_temp_fahrenheit"]];
+    self.weatherLabel.text = [NSString stringWithFormat:@"The weather on Mars is %@", marsDictionary[@"atmo_opacity"]];
+    self.lastUpdatedLabel.text = [NSString stringWithFormat:@"Last updated: %@", newDate];
+}
+
+#pragma mark - Error Handling
+     
+- (void)displayErrorAlert:(NSError *)error
+{
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem!" message:[NSString stringWithFormat:@"There was an error loading the data: %@", error.localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    
+    [errorAlert addAction:dismissAction];
+    
+    [self presentViewController:errorAlert animated:YES completion:nil];
+}
+
+#pragma mark - Audio Set-Up
+
+- (void)prepareAudio:(NSString *)soundName
+{
+    NSDataAsset *soundAsset = [[NSDataAsset alloc] initWithName:soundName];
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithData:soundAsset.data error:nil];
+    [self.audioPlayer prepareToPlay];
 }
 
 @end

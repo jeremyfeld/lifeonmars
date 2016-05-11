@@ -20,12 +20,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
-@property (strong, nonatomic) IBOutlet UIButton *spaceshipButton;
-@property (strong, nonatomic) IBOutlet UIButton *marsButton;
-@property (strong, nonatomic) IBOutlet UIButton *earthButton;
-@property (strong, nonatomic) IBOutlet UIButton *saveButton;
-@property (strong, nonatomic) IBOutlet UIStackView *buttonStackView;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonStackRightConstraint;
+@property (weak, nonatomic) IBOutlet UIButton *spaceshipButton;
+@property (weak, nonatomic) IBOutlet UIButton *marsButton;
+@property (weak, nonatomic) IBOutlet UIButton *earthButton;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property (weak, nonatomic) IBOutlet UIStackView *buttonStackView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonStackRightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *descriptionTopConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *descriptionAfterAnimationConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *buttonPreAnimationConstraint;
@@ -36,29 +36,25 @@
 
 @implementation APODViewController
 
--(void)viewDidLoad
+- (void)viewDidLoad
 {
      [super viewDidLoad];
      
      self.scrollView.delegate = self;
-}
-
--(BOOL)prefersStatusBarHidden
-{
-     return YES;
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-     [super viewDidAppear:YES];
-     
-     self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
-     self.APODImageView.translatesAutoresizingMaskIntoConstraints = NO;
-     self.buttonStackView.translatesAutoresizingMaskIntoConstraints = NO;
      
      self.buttonStackRightConstraint.active = NO;
      self.buttonPreAnimationConstraint = [self.buttonStackView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:100];
      self.buttonPreAnimationConstraint.active = YES;
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+     return YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+     [super viewDidAppear:YES];
      
      NSString *APODurl = [NSString stringWithFormat:@"https://api.nasa.gov/planetary/apod?api_key=%@", APOD_API_KEY];
      
@@ -75,23 +71,7 @@
           
           if ([APODDictionary[@"media_type"] isEqualToString:@"video"]) {
                
-               UIAlertController *videoAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem!" message:@"The picture of the day is actually a video. Would you like to watch it?" preferredStyle:UIAlertControllerStyleAlert];
-               
-               UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No Thanks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-               }];
-               
-               UIAlertAction *watchAction = [UIAlertAction actionWithTitle:@"Of Course!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    
-                    NSURL *youtubeURL = [NSURL URLWithString:APODDictionary[@"url"]];
-                    
-                    SFSafariViewController *youtubeView = [[SFSafariViewController alloc] initWithURL:youtubeURL];
-                    [self presentViewController:youtubeView animated:YES completion:nil];
-               }];
-               
-               [videoAlert addAction:noAction];
-               [videoAlert addAction:watchAction];
-               
-               [self presentViewController:videoAlert animated:YES completion:nil];
+               [self handleVideoFromDictionary:APODDictionary];
                
           } else {
                
@@ -110,14 +90,7 @@
                                                        
                                                   } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
                                                        
-                                                       UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem!" message:[NSString stringWithFormat:@"There was an error loading the image: %@", error.localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
-                                                       
-                                                       UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                                                       }];
-                                                       
-                                                       [errorAlert addAction:dismissAction];
-                                                       
-                                                       [self presentViewController:errorAlert animated:YES completion:nil];
+                                                       [self displayErrorAlert:error];
                                                   }];
           }
           
@@ -126,18 +99,11 @@
           
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
           
-          UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem!" message:[NSString stringWithFormat:@"There was an error loading the data: %@", error.localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
-          
-          UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-          }];
-          
-          [errorAlert addAction:dismissAction];
-          
-          [self presentViewController:errorAlert animated:YES completion:nil];
+          [self displayErrorAlert:error];
      }];
 }
 
--(UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
 {
      return self.APODImageView;
 }
@@ -145,7 +111,7 @@
 #pragma - IBActions
 - (IBAction)spaceshipTapped:(id)sender
 {
-     [self prepareSpaceshipAudio];
+     [self prepareAudio:@"ray"];
      [self.audioPlayer play];
      
      if (self.buttonPreAnimationConstraint.active) {
@@ -194,7 +160,7 @@
      self.saveButton.hidden = YES;
      self.earthButton.hidden = YES;
      
-     [self prepareScrollAudio];
+     [self prepareAudio:@"intro"];
      [self.audioPlayer play];
      
      [UIView animateWithDuration:51 animations:^{
@@ -214,6 +180,7 @@
           self.descriptionLabel.hidden = YES;
           
           [self.view layoutIfNeeded];
+          
           [self.audioPlayer stop];
           
           self.infoButton.userInteractionEnabled = YES;
@@ -226,56 +193,23 @@
      }];
 }
 
--(IBAction)saveTapped:(id)sender
+- (IBAction)saveTapped:(id)sender
 {
      NSData *imageData = UIImageJPEGRepresentation(self.APODImageView.image, 1);
      UIImage *compressedJPGImage = [UIImage imageWithData:imageData];
      UIImageWriteToSavedPhotosAlbum(compressedJPGImage, self, @selector(saveImageHandler:didFinishSavingWithError:contextInfo:), nil);
 }
 
--(void)saveImageHandler:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-{
-     if (error) {
-          
-          UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"OH NO!" message:[NSString stringWithFormat:@"There was an error saving the image: %@", error.localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
-          
-          UIAlertAction *errorAction = [UIAlertAction actionWithTitle:@"🚀👾 OK 👾🚀" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-          }];
-          
-          [errorAlert addAction:errorAction];
-          
-          [self presentViewController:errorAlert animated:YES completion:nil];
-          
-     } else {
-          
-          UIAlertController *saveAlert = [UIAlertController alertControllerWithTitle:@"Saved!" message:[NSString stringWithFormat:@"%@ is now in your Photos!", self.titleLabel.text] preferredStyle:UIAlertControllerStyleAlert];
-          
-          UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"🚀👾 OK 👾🚀" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-          }];
-          
-          [saveAlert addAction:okAction];
-          
-          [self presentViewController:saveAlert animated:YES completion:nil];
-     }
-}
-
 #pragma - Set-Up
 
--(void)prepareScrollAudio
+- (void)prepareAudio:(NSString *)soundName
 {
-     NSURL *url = [[NSBundle mainBundle] URLForResource:@"intro" withExtension:@"mp3"];
-     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+     NSDataAsset *soundAsset = [[NSDataAsset alloc] initWithName:soundName];
+     self.audioPlayer = [[AVAudioPlayer alloc] initWithData:soundAsset.data error:nil];
      [self.audioPlayer prepareToPlay];
 }
 
--(void)prepareSpaceshipAudio
-{
-     NSURL *url = [[NSBundle mainBundle] URLForResource:@"ray" withExtension:@"mp3"];
-     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
-     [self.audioPlayer prepareToPlay];
-}
-
--(void)setUpDescriptionLabel
+- (void)setUpDescriptionLabel
 {
      self.descriptionLabel = [[UILabel alloc]init];
      [self.view addSubview:self.descriptionLabel];
@@ -299,6 +233,67 @@
      
      self.descriptionAfterAnimationConstraint = [self.descriptionLabel.bottomAnchor constraintEqualToAnchor:self.view.topAnchor];
      self.descriptionAfterAnimationConstraint.active = NO;
+}
+
+#pragma mark - Alert Methods
+
+- (void)saveImageHandler:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+     if (error) {
+          
+          UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem!" message:[NSString stringWithFormat:@"There was an error saving the image: %@", error.localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+          
+          UIAlertAction *errorAction = [UIAlertAction actionWithTitle:@"🚀👾 OK 👾🚀" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          }];
+          
+          [errorAlert addAction:errorAction];
+          
+          [self presentViewController:errorAlert animated:YES completion:nil];
+          
+     } else {
+          
+          UIAlertController *saveAlert = [UIAlertController alertControllerWithTitle:@"Saved!" message:[NSString stringWithFormat:@"%@ is now in your Photos!", self.titleLabel.text] preferredStyle:UIAlertControllerStyleAlert];
+          
+          UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"🚀👾 OK 👾🚀" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          }];
+          
+          [saveAlert addAction:okAction];
+          
+          [self presentViewController:saveAlert animated:YES completion:nil];
+     }
+}
+
+- (void)handleVideoFromDictionary:(NSDictionary *)APODDictionary
+{
+     UIAlertController *videoAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem!" message:@"The picture of the day is actually a video. Would you like to watch it?" preferredStyle:UIAlertControllerStyleAlert];
+     
+     UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No Thanks" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+     }];
+     
+     UIAlertAction *watchAction = [UIAlertAction actionWithTitle:@"Of Course!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          
+          NSURL *youtubeURL = [NSURL URLWithString:APODDictionary[@"url"]];
+          
+          SFSafariViewController *youtubeView = [[SFSafariViewController alloc] initWithURL:youtubeURL];
+          [self presentViewController:youtubeView animated:YES completion:nil];
+     }];
+     
+     [videoAlert addAction:noAction];
+     [videoAlert addAction:watchAction];
+     
+     [self presentViewController:videoAlert animated:YES completion:nil];
+}
+
+- (void)displayErrorAlert:(NSError *)error
+{
+     UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem!" message:[NSString stringWithFormat:@"There was an error loading the data: %@", error.localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
+     
+     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"🚀👾 OK 👾🚀" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+     }];
+     
+     [errorAlert addAction:dismissAction];
+     
+     [self presentViewController:errorAlert animated:YES completion:nil];
 }
 
 @end

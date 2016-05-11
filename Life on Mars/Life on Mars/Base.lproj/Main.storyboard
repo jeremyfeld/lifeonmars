@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z4P-eb-Ncf">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -378,8 +377,8 @@ See the License for the specific language governing permissions and limitations 
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qcB-yd-L05" userLabel="Weather Stack">
-                                <rect key="frame" x="20" y="501" width="338" height="100"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qcB-yd-L05" userLabel="Weather Stack">
+                                <rect key="frame" x="19" y="501" width="338" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-bd-mtI">
                                         <rect key="frame" x="0.0" y="0.0" width="338" height="30"/>
@@ -401,18 +400,6 @@ See the License for the specific language governing permissions and limitations 
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sh-Az-xFw">
-                                <rect key="frame" x="10" y="613" width="44" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="Hqq-Ie-H9l"/>
-                                    <constraint firstAttribute="height" constant="44" id="fCg-zs-idb"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="rocket"/>
-                                <connections>
-                                    <action selector="rocketTapped:" destination="gF0-xh-Kng" eventType="touchUpInside" id="oqg-FK-9ZF"/>
-                                    <segue destination="L0V-Pj-wq6" kind="unwind" unwindAction="myUnwindAction:" id="PYI-si-W7b"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ufo" translatesAutoresizingMaskIntoConstraints="NO" id="yyg-wY-Wrz">
                                 <rect key="frame" x="-154" y="258" width="150" height="150"/>
                                 <constraints>
@@ -427,6 +414,37 @@ See the License for the specific language governing permissions and limitations 
                                     <constraint firstAttribute="height" constant="50" id="EHl-GE-P2c"/>
                                 </constraints>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pHA-iT-6as">
+                                <rect key="frame" x="321" y="613" width="152" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVq-UA-A76">
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                        <state key="normal" title="Button" image="transport"/>
+                                        <connections>
+                                            <action selector="spaceshipTapped:" destination="gF0-xh-Kng" eventType="touchUpInside" id="4Rk-U6-9OD"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sh-Az-xFw">
+                                        <rect key="frame" x="54" y="0.0" width="44" height="44"/>
+                                        <state key="normal" title="Button" image="rocket"/>
+                                        <connections>
+                                            <action selector="rocketTapped:" destination="gF0-xh-Kng" eventType="touchUpInside" id="oqg-FK-9ZF"/>
+                                            <segue destination="L0V-Pj-wq6" kind="unwind" unwindAction="myUnwindAction:" id="PYI-si-W7b"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IN-2v-NNH">
+                                        <rect key="frame" x="108" y="0.0" width="44" height="44"/>
+                                        <state key="normal" title="Button" image="settings-gears"/>
+                                        <connections>
+                                            <action selector="settingsTapped:" destination="gF0-xh-Kng" eventType="touchUpInside" id="lie-zm-9ml"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="152" id="1Pv-4P-6Dp"/>
+                                    <constraint firstAttribute="height" constant="44" id="8xf-KT-SuP"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -441,7 +459,8 @@ See the License for the specific language governing permissions and limitations 
                             <constraint firstItem="iYD-WO-aX0" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="Ifw-NM-3Pm"/>
                             <constraint firstItem="yyg-wY-Wrz" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leadingMargin" constant="-170" id="LhP-ki-g2W"/>
                             <constraint firstItem="gca-S7-qIm" firstAttribute="top" secondItem="2Q1-Dx-gvS" secondAttribute="bottom" constant="-100" id="NNc-fk-FWW"/>
-                            <constraint firstItem="4sh-Az-xFw" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leading" constant="10" id="UgY-aZ-8Bu"/>
+                            <constraint firstItem="2VG-PN-LbY" firstAttribute="top" secondItem="pHA-iT-6as" secondAttribute="bottom" constant="10" id="Wyx-gE-OLV"/>
+                            <constraint firstItem="pHA-iT-6as" firstAttribute="trailing" secondItem="dgq-Lk-8bl" secondAttribute="trailing" constant="98" id="a6d-cG-hgI"/>
                             <constraint firstItem="qcB-yd-L05" firstAttribute="width" secondItem="dgq-Lk-8bl" secondAttribute="width" multiplier="0.9" id="cag-vw-Yff"/>
                             <constraint firstItem="gca-S7-qIm" firstAttribute="width" secondItem="dgq-Lk-8bl" secondAttribute="width" id="ddr-Np-xjd"/>
                             <constraint firstAttribute="leadingMargin" secondItem="AQK-gb-RJV" secondAttribute="leading" id="iU5-br-KvA"/>
@@ -451,7 +470,6 @@ See the License for the specific language governing permissions and limitations 
                             <constraint firstItem="aEB-7C-Ux3" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="l7g-SG-UKh"/>
                             <constraint firstItem="gca-S7-qIm" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leading" id="nBh-6a-1hI"/>
                             <constraint firstItem="gca-S7-qIm" firstAttribute="height" secondItem="dgq-Lk-8bl" secondAttribute="height" multiplier="0.5" constant="100" id="nWX-un-CSd"/>
-                            <constraint firstItem="2VG-PN-LbY" firstAttribute="top" secondItem="4sh-Az-xFw" secondAttribute="bottom" constant="10" id="q2r-D4-8Ce"/>
                             <constraint firstItem="Yo5-2h-nKK" firstAttribute="top" secondItem="2Q1-Dx-gvS" secondAttribute="bottom" constant="20" id="sDA-GS-fpj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Yo5-2h-nKK" secondAttribute="trailing" id="vuC-cZ-r8Q"/>
                         </constraints>
@@ -459,6 +477,8 @@ See the License for the specific language governing permissions and limitations 
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="blackholeImageView" destination="Yo5-2h-nKK" id="mM2-aZ-6bb"/>
+                        <outlet property="buttonStackView" destination="pHA-iT-6as" id="xZY-6t-HgS"/>
+                        <outlet property="buttonStackViewTrailingConstraint" destination="a6d-cG-hgI" id="7C7-mc-8QZ"/>
                         <outlet property="lastUpdatedLabel" destination="8Uh-bu-4vH" id="5BG-D5-UUO"/>
                         <outlet property="martianImageView" destination="AQK-gb-RJV" id="D3k-ld-BlL"/>
                         <outlet property="maxCelLabel" destination="TEI-VI-6dO" id="pqF-7z-3cn"/>
@@ -488,6 +508,7 @@ See the License for the specific language governing permissions and limitations 
         <image name="marsIcon" width="512" height="512"/>
         <image name="planet-earth" width="512" height="512"/>
         <image name="rocket" width="512" height="512"/>
+        <image name="settings-gears" width="512" height="512"/>
         <image name="star field" width="2000" height="1200"/>
         <image name="transport" width="512" height="512"/>
         <image name="ufo" width="512" height="512"/>

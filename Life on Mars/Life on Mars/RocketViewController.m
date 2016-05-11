@@ -11,19 +11,19 @@
 
 @interface RocketViewController ()
 
-@property (strong, nonatomic) IBOutlet UIImageView *backgroundImageView;
-@property (strong, nonatomic) IBOutlet UIImageView *rocketImageView;
-@property (strong, nonatomic) IBOutlet UIImageView *fireImageView;
-@property (strong, nonatomic) IBOutlet UITextView *attributionTextView;
-@property (strong, nonatomic) IBOutlet UIButton *redButton;
-@property (strong, nonatomic) IBOutlet UIButton *teleportButton;
-@property (strong, nonatomic) IBOutlet UIButton *infoButton;
-@property (strong, nonatomic) IBOutlet UILabel *teleportLabel;
-@property (strong, nonatomic) IBOutlet UILabel *launchLabel;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *backgroundBottomConstraint;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *fireHeightConstraint;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *rocketHeightConstraint;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *rocketBottomConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *rocketImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *fireImageView;
+@property (weak, nonatomic) IBOutlet UITextView *attributionTextView;
+@property (weak, nonatomic) IBOutlet UIButton *redButton;
+@property (weak, nonatomic) IBOutlet UIButton *teleportButton;
+@property (weak, nonatomic) IBOutlet UIButton *infoButton;
+@property (weak, nonatomic) IBOutlet UILabel *teleportLabel;
+@property (weak, nonatomic) IBOutlet UILabel *launchLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *fireHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rocketHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rocketBottomConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *backgroundAfterAnimation;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 
@@ -31,26 +31,22 @@
 
 @implementation RocketViewController
 
--(void)viewDidLoad
+- (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.backgroundImageView.translatesAutoresizingMaskIntoConstraints = NO;
     self.fireImageView.alpha = 0;
     self.attributionTextView.hidden = YES;
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
-}
-
--(BOOL)prefersStatusBarHidden
+- (BOOL)prefersStatusBarHidden
 {
     return YES;
 }
 
--(IBAction)redButtonTapped:(id)sender
+#pragma mark - IBActions
+
+- (IBAction)redButtonTapped:(id)sender
 {
     self.redButton.userInteractionEnabled = NO;
     self.teleportButton.userInteractionEnabled = NO;
@@ -67,14 +63,12 @@
     self.backgroundAfterAnimation = [self.backgroundImageView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:animationConstant];
     self.backgroundAfterAnimation.active = NO;
     
-    [self prepareAudio];
+    [self prepareAudio:@"launch"];
     [self.audioPlayer play];
     
     [UIView animateWithDuration:2.1 animations:^{
         
         self.fireImageView.alpha = 1;
-        
-        [self.view layoutIfNeeded];
         
     } completion:^(BOOL finished) {
         
@@ -92,7 +86,7 @@
                          self.rocketBottomConstraint.active = NO;
                          
                          [self.rocketImageView.bottomAnchor constraintEqualToAnchor:self.view.topAnchor constant:50].active = YES;
-                         
+                                                                           
                      } completion:nil];
     
     [UIView animateWithDuration:7
@@ -153,10 +147,12 @@
     [self performSegueWithIdentifier:@"segueToSpace" sender:self];
 }
 
--(void)prepareAudio
+#pragma mark - Audio Set-Up
+
+- (void)prepareAudio:(NSString *)soundName
 {
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"launch" withExtension:@"mp3"];
-    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    NSDataAsset *soundAsset = [[NSDataAsset alloc] initWithName:soundName];
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithData:soundAsset.data error:nil];
     [self.audioPlayer prepareToPlay];
 }
 
