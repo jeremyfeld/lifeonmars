@@ -13,3 +13,9 @@
 extern NSString *const APOD_API_KEY;
 
 @end
+
+@implementation Secrets
+
+NSString *const APOD_API_KEY = @"";
+
+@end

@@ -12,6 +12,7 @@
 
 @interface MarsViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextView *attributionTextView;
 @property (weak, nonatomic) IBOutlet UILabel *minFarLabel;
 @property (weak, nonatomic) IBOutlet UILabel *minCelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *maxFarLabel;
@@ -23,8 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ufoImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *blackholeImageView;
 @property (weak, nonatomic) IBOutlet UIStackView *buttonStackView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ufoWidthConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonStackViewTrailingConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *ufoWidthConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonStackViewTrailingConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *ufoWidthAfterAnimationConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *buttonStackAfterAnimationConstraint;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
@@ -44,6 +45,8 @@
     self.buttonStackAfterAnimationConstraint = [self.buttonStackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-10];
     
     self.ufoAnimationCounter = 0;
+    
+    self.attributionTextView.hidden = YES;
     
     NSString *marsWeather = [NSString stringWithFormat:@"http://marsweather.ingenology.com/v1/latest/"];
     
@@ -114,7 +117,14 @@
 
 - (IBAction)settingsTapped:(id)sender
 {
-    
+    if (self.attributionTextView.hidden) {
+        
+        self.attributionTextView.hidden = NO;
+        
+    } else {
+        
+        self.attributionTextView.hidden = YES;
+    }
 }
 
 #pragma mark - Animations

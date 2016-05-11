@@ -14,16 +14,14 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *rocketImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *fireImageView;
-@property (weak, nonatomic) IBOutlet UITextView *attributionTextView;
 @property (weak, nonatomic) IBOutlet UIButton *redButton;
 @property (weak, nonatomic) IBOutlet UIButton *teleportButton;
-@property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UILabel *teleportLabel;
 @property (weak, nonatomic) IBOutlet UILabel *launchLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundBottomConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *fireHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rocketHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rocketBottomConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *backgroundBottomConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *fireHeightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *rocketHeightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *rocketBottomConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *backgroundAfterAnimation;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 
@@ -36,7 +34,6 @@
     [super viewDidLoad];
     
     self.fireImageView.alpha = 0;
-    self.attributionTextView.hidden = YES;
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -50,12 +47,10 @@
 {
     self.redButton.userInteractionEnabled = NO;
     self.teleportButton.userInteractionEnabled = NO;
-    self.infoButton.hidden = YES;
     self.redButton.hidden = YES;
     self.launchLabel.hidden = YES;
     self.teleportButton.hidden = YES;
     self.teleportLabel.hidden = YES;
-    self.attributionTextView.hidden = YES;
     
     CGFloat screenHeight = self.backgroundImageView.frame.size.height/5;
     CGFloat animationConstant = screenHeight * 4;
@@ -106,7 +101,6 @@
                          
                          self.redButton.userInteractionEnabled = YES;
                          self.teleportButton.userInteractionEnabled = YES;
-                         self.infoButton.hidden = NO;
                          self.redButton.hidden = NO;
                          self.launchLabel.hidden = NO;
                          self.teleportButton.hidden = NO;
@@ -121,18 +115,6 @@
                          [self.view.window.layer addAnimation:transition forKey:nil];
                          [self performSegueWithIdentifier:@"segueToSpace" sender:self];
                      }];
-}
-
-- (IBAction)infoTapped:(id)sender
-{
-    if (self.attributionTextView.hidden) {
-        
-        self.attributionTextView.hidden = NO;
-        
-    } else {
-        
-        self.attributionTextView.hidden = YES;
-    }
 }
 
 - (IBAction)teleportTapped:(id)sender

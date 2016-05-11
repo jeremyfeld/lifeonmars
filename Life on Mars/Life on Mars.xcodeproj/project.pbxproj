@@ -16,7 +16,6 @@
 		CB6999191CD7B86500ADFE4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB6999171CD7B86500ADFE4F /* LaunchScreen.storyboard */; };
 		CB6999241CD7B86500ADFE4F /* Life_on_MarsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6999231CD7B86500ADFE4F /* Life_on_MarsTests.m */; };
 		CB69992F1CD7B86500ADFE4F /* Life_on_MarsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CB69992E1CD7B86500ADFE4F /* Life_on_MarsUITests.m */; };
-		CB69993E1CD7B91000ADFE4F /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = CB69993D1CD7B91000ADFE4F /* Secrets.m */; };
 		CB6999411CD7B98300ADFE4F /* MarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6999401CD7B98300ADFE4F /* MarsViewController.m */; };
 		CB6999441CD7BB0A00ADFE4F /* APODViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6999431CD7BB0A00ADFE4F /* APODViewController.m */; };
 /* End PBXBuildFile section */
@@ -58,8 +57,7 @@
 		CB69992A1CD7B86500ADFE4F /* Life on MarsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Life on MarsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB69992E1CD7B86500ADFE4F /* Life_on_MarsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Life_on_MarsUITests.m; sourceTree = "<group>"; };
 		CB6999301CD7B86500ADFE4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CB69993C1CD7B91000ADFE4F /* Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
-		CB69993D1CD7B91000ADFE4F /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
+		CB69993C1CD7B91000ADFE4F /* JBFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JBFConstants.h; sourceTree = "<group>"; };
 		CB69993F1CD7B98300ADFE4F /* MarsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarsViewController.h; sourceTree = "<group>"; };
 		CB6999401CD7B98300ADFE4F /* MarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsViewController.m; sourceTree = "<group>"; };
 		CB6999421CD7BB0A00ADFE4F /* APODViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APODViewController.h; sourceTree = "<group>"; };
@@ -136,8 +134,7 @@
 			children = (
 				CB69990C1CD7B86500ADFE4F /* AppDelegate.h */,
 				CB69990D1CD7B86500ADFE4F /* AppDelegate.m */,
-				CB69993C1CD7B91000ADFE4F /* Secrets.h */,
-				CB69993D1CD7B91000ADFE4F /* Secrets.m */,
+				CB69993C1CD7B91000ADFE4F /* JBFConstants.h */,
 				CB0C5ED81CDA70F000D898DF /* RocketViewController.h */,
 				CB0C5ED91CDA70F000D898DF /* RocketViewController.m */,
 				CB69993F1CD7B98300ADFE4F /* MarsViewController.h */,
@@ -362,7 +359,6 @@
 			files = (
 				CB0C5EDA1CDA70F000D898DF /* RocketViewController.m in Sources */,
 				CB6999441CD7BB0A00ADFE4F /* APODViewController.m in Sources */,
-				CB69993E1CD7B91000ADFE4F /* Secrets.m in Sources */,
 				CB6999411CD7B98300ADFE4F /* MarsViewController.m in Sources */,
 				CB69990E1CD7B86500ADFE4F /* AppDelegate.m in Sources */,
 				CB69990B1CD7B86500ADFE4F /* main.m in Sources */,

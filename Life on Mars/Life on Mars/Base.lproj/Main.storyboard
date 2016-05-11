@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Z4P-eb-Ncf">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -79,45 +80,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2yr-NB-AwI">
-                                <rect key="frame" x="67" y="270" width="240" height="128"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="3cW-hu-Hef"/>
-                                    <constraint firstAttribute="width" constant="240" id="JtA-xN-p3c"/>
-                                </constraints>
-                                <string key="text">Acknowledgements
-
-Artwork from:
-http://worldartsme.com/
-
-Icons made by Freepik: http://www.freepik.com http://www.flaticon.com is licensed by: http://creativecommons.org/licenses/by/3.0/
-
-AFNetworking
-Copyright (c) 2011-2016 Alamofire Software Foundation (http://alamofire.org/)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                            Copyright 2013 Ingenology
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and limitations under the License.</string>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAJ-J7-koH">
-                                <rect key="frame" x="16" y="40" width="22" height="22"/>
-                                <connections>
-                                    <action selector="infoTapped:" destination="Z4P-eb-Ncf" eventType="touchUpInside" id="mwj-Qr-gox"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -127,17 +89,13 @@ See the License for the specific language governing permissions and limitations 
                             <constraint firstItem="yoB-TS-HZp" firstAttribute="top" secondItem="yjA-I4-K8N" secondAttribute="bottom" constant="13" id="Joy-eT-My9"/>
                             <constraint firstItem="7By-xK-CMX" firstAttribute="leading" secondItem="JA8-UG-agL" secondAttribute="leadingMargin" id="LYS-b0-1rR"/>
                             <constraint firstItem="yoB-TS-HZp" firstAttribute="top" secondItem="gTD-Du-m9o" secondAttribute="bottom" constant="20" id="Xge-rw-RSZ"/>
-                            <constraint firstItem="2yr-NB-AwI" firstAttribute="centerX" secondItem="JA8-UG-agL" secondAttribute="centerX" id="YtE-sD-4q8"/>
                             <constraint firstItem="JhJ-bl-nfK" firstAttribute="centerX" secondItem="7By-xK-CMX" secondAttribute="centerX" id="b7X-vn-jYX"/>
-                            <constraint firstItem="LAJ-J7-koH" firstAttribute="top" secondItem="wga-MW-hzI" secondAttribute="bottom" constant="20" id="c6l-xG-9us"/>
                             <constraint firstItem="gTD-Du-m9o" firstAttribute="top" secondItem="lzQ-wd-W6H" secondAttribute="bottom" constant="3" id="eWG-GS-6Ev"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gTD-Du-m9o" secondAttribute="trailing" id="gCO-ML-q6K"/>
                             <constraint firstItem="lzQ-wd-W6H" firstAttribute="centerX" secondItem="gTD-Du-m9o" secondAttribute="centerX" id="gHQ-Zc-7L7"/>
-                            <constraint firstItem="2yr-NB-AwI" firstAttribute="centerY" secondItem="JA8-UG-agL" secondAttribute="centerY" id="hQj-mL-nLc"/>
                             <constraint firstItem="yoB-TS-HZp" firstAttribute="top" secondItem="3sH-wa-RYA" secondAttribute="bottom" id="k48-qH-65N"/>
                             <constraint firstItem="ows-uq-e2t" firstAttribute="width" secondItem="JA8-UG-agL" secondAttribute="width" id="kRa-LI-9AW"/>
                             <constraint firstItem="7By-xK-CMX" firstAttribute="top" secondItem="JhJ-bl-nfK" secondAttribute="bottom" constant="3" id="pzO-Zm-qrY"/>
-                            <constraint firstItem="LAJ-J7-koH" firstAttribute="leading" secondItem="JA8-UG-agL" secondAttribute="leadingMargin" id="u1H-JX-JvK"/>
                             <constraint firstItem="ows-uq-e2t" firstAttribute="leading" secondItem="JA8-UG-agL" secondAttribute="leading" id="voM-JD-v9I"/>
                             <constraint firstItem="ows-uq-e2t" firstAttribute="height" secondItem="JA8-UG-agL" secondAttribute="height" multiplier="5" id="wOm-45-fDN"/>
                             <constraint firstItem="yoB-TS-HZp" firstAttribute="top" secondItem="ows-uq-e2t" secondAttribute="bottom" id="wtw-G6-LIH"/>
@@ -146,12 +104,10 @@ See the License for the specific language governing permissions and limitations 
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
-                        <outlet property="attributionTextView" destination="2yr-NB-AwI" id="Egy-Ge-c84"/>
                         <outlet property="backgroundBottomConstraint" destination="wtw-G6-LIH" id="P5T-5I-hFo"/>
                         <outlet property="backgroundImageView" destination="ows-uq-e2t" id="qmR-lT-DP6"/>
                         <outlet property="fireHeightConstraint" destination="yDq-Mg-ML6" id="0sn-f0-KWk"/>
                         <outlet property="fireImageView" destination="yjA-I4-K8N" id="lZo-sw-bee"/>
-                        <outlet property="infoButton" destination="LAJ-J7-koH" id="iMP-SL-RDz"/>
                         <outlet property="launchLabel" destination="JhJ-bl-nfK" id="Ed6-LG-AB6"/>
                         <outlet property="redButton" destination="7By-xK-CMX" id="Qv1-b0-HTr"/>
                         <outlet property="rocketBottomConstraint" destination="k48-qH-65N" id="ldo-rV-hMJ"/>
@@ -338,6 +294,35 @@ See the License for the specific language governing permissions and limitations 
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mars no background" translatesAutoresizingMaskIntoConstraints="NO" id="iYD-WO-aX0">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xhs-Hw-3Q1">
+                                <rect key="frame" x="47" y="183.5" width="281.5" height="167"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Acknowledgements
+
+Artwork from:
+http://worldartsme.com/
+
+Icons made by Freepik: http://www.freepik.com http://www.flaticon.com is licensed by: http://creativecommons.org/licenses/by/3.0/
+
+AFNetworking
+Copyright (c) 2011-2016 Alamofire Software Foundation (http://alamofire.org/)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                            Copyright 2013 Ingenology
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and limitations under the License.</mutableString>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aEB-7C-Ux3" userLabel="Temp Stack">
                                 <rect key="frame" x="28" y="393" width="319" height="100"/>
                                 <subviews>
@@ -450,6 +435,8 @@ See the License for the specific language governing permissions and limitations 
                         <constraints>
                             <constraint firstItem="qcB-yd-L05" firstAttribute="height" secondItem="dgq-Lk-8bl" secondAttribute="height" multiplier="0.15" id="1n4-MV-tJ9"/>
                             <constraint firstItem="aEB-7C-Ux3" firstAttribute="width" secondItem="dgq-Lk-8bl" secondAttribute="width" multiplier="0.85" id="1tS-uH-bDt"/>
+                            <constraint firstItem="xhs-Hw-3Q1" firstAttribute="width" secondItem="dgq-Lk-8bl" secondAttribute="width" multiplier="0.75" id="5p2-47-RfO"/>
+                            <constraint firstItem="xhs-Hw-3Q1" firstAttribute="centerY" secondItem="dgq-Lk-8bl" secondAttribute="centerY" multiplier="0.8" id="7Vv-L2-UJe"/>
                             <constraint firstItem="iYD-WO-aX0" firstAttribute="centerY" secondItem="dgq-Lk-8bl" secondAttribute="centerY" id="9tq-Lq-hzg"/>
                             <constraint firstItem="iYD-WO-aX0" firstAttribute="height" secondItem="dgq-Lk-8bl" secondAttribute="height" id="A1e-oY-xY6"/>
                             <constraint firstItem="iYD-WO-aX0" firstAttribute="width" secondItem="dgq-Lk-8bl" secondAttribute="width" id="CkE-U2-kNG"/>
@@ -459,6 +446,7 @@ See the License for the specific language governing permissions and limitations 
                             <constraint firstItem="iYD-WO-aX0" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="Ifw-NM-3Pm"/>
                             <constraint firstItem="yyg-wY-Wrz" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leadingMargin" constant="-170" id="LhP-ki-g2W"/>
                             <constraint firstItem="gca-S7-qIm" firstAttribute="top" secondItem="2Q1-Dx-gvS" secondAttribute="bottom" constant="-100" id="NNc-fk-FWW"/>
+                            <constraint firstItem="xhs-Hw-3Q1" firstAttribute="height" secondItem="dgq-Lk-8bl" secondAttribute="height" multiplier="0.25" id="TzM-CI-TCr"/>
                             <constraint firstItem="2VG-PN-LbY" firstAttribute="top" secondItem="pHA-iT-6as" secondAttribute="bottom" constant="10" id="Wyx-gE-OLV"/>
                             <constraint firstItem="pHA-iT-6as" firstAttribute="trailing" secondItem="dgq-Lk-8bl" secondAttribute="trailing" constant="98" id="a6d-cG-hgI"/>
                             <constraint firstItem="qcB-yd-L05" firstAttribute="width" secondItem="dgq-Lk-8bl" secondAttribute="width" multiplier="0.9" id="cag-vw-Yff"/>
@@ -471,11 +459,13 @@ See the License for the specific language governing permissions and limitations 
                             <constraint firstItem="gca-S7-qIm" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leading" id="nBh-6a-1hI"/>
                             <constraint firstItem="gca-S7-qIm" firstAttribute="height" secondItem="dgq-Lk-8bl" secondAttribute="height" multiplier="0.5" constant="100" id="nWX-un-CSd"/>
                             <constraint firstItem="Yo5-2h-nKK" firstAttribute="top" secondItem="2Q1-Dx-gvS" secondAttribute="bottom" constant="20" id="sDA-GS-fpj"/>
+                            <constraint firstItem="xhs-Hw-3Q1" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="uuP-RN-bVT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Yo5-2h-nKK" secondAttribute="trailing" id="vuC-cZ-r8Q"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="attributionTextView" destination="xhs-Hw-3Q1" id="acG-U4-f0W"/>
                         <outlet property="blackholeImageView" destination="Yo5-2h-nKK" id="mM2-aZ-6bb"/>
                         <outlet property="buttonStackView" destination="pHA-iT-6as" id="xZY-6t-HgS"/>
                         <outlet property="buttonStackViewTrailingConstraint" destination="a6d-cG-hgI" id="7C7-mc-8QZ"/>

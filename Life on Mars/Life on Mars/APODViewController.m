@@ -7,7 +7,7 @@
 //
 
 #import "APODViewController.h"
-#import "Secrets.h"
+#import "JBFConstants.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AFNetworking/AFNetworking.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *earthButton;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UIStackView *buttonStackView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonStackRightConstraint;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonStackRightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *descriptionTopConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *descriptionAfterAnimationConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *buttonPreAnimationConstraint;
