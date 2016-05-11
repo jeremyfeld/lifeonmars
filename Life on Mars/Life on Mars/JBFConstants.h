@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Secrets : NSObject
+@interface JBFConstants : NSObject
 
 extern NSString *const APOD_API_KEY;
 
 @end
 
-@implementation Secrets
+@implementation JBFConstants
 
 NSString *const APOD_API_KEY = @"";
 

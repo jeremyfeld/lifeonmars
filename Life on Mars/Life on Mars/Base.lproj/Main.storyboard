@@ -297,7 +297,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xhs-Hw-3Q1">
                                 <rect key="frame" x="47" y="183.5" width="281.5" height="167"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Acknowledgements
+                                <string key="text">Acknowledgements
 
 Artwork from:
 http://worldartsme.com/
@@ -318,7 +318,7 @@ Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
        http://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and limitations under the License.</mutableString>
+See the License for the specific language governing permissions and limitations under the License.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
