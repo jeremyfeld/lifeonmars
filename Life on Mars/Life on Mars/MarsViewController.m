@@ -7,6 +7,7 @@
 //
 
 #import "MarsViewController.h"
+#import "JBFConstants.h"
 #import <AFNetworking/AFNetworking.h>
 #import <AVFoundation/AVFoundation.h>
 
@@ -24,12 +25,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ufoImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *blackholeImageView;
 @property (weak, nonatomic) IBOutlet UIStackView *buttonStackView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ufoWidthConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonStackViewTrailingConstraint;
-@property (strong, nonatomic) NSLayoutConstraint *ufoWidthAfterAnimationConstraint;
-@property (strong, nonatomic) NSLayoutConstraint *buttonStackAfterAnimationConstraint;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (assign, nonatomic) NSUInteger ufoAnimationCounter;
+@property (assign, nonatomic) BOOL buttonStackShowing;
 
 @end
 
@@ -38,30 +36,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.ufoWidthAfterAnimationConstraint.active = NO;
-    self.ufoWidthAfterAnimationConstraint = [self.ufoImageView.widthAnchor constraintEqualToConstant:5];
-    self.buttonStackAfterAnimationConstraint.active = NO;
-    self.buttonStackAfterAnimationConstraint = [self.buttonStackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-10];
-    
+
     self.ufoAnimationCounter = 0;
-    
+    self.buttonStackShowing = NO;
     self.attributionTextView.hidden = YES;
     
-    NSString *marsWeather = [NSString stringWithFormat:@"http://marsweather.ingenology.com/v1/latest/"];
-    
-    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
-    [sessionManager GET:marsWeather parameters:nil progress:^(NSProgress *downloadProgress) {
-        
-    } success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        NSDictionary *marsWeatherDictionary = responseObject[@"report"];
-        [self updateLabelsWithDictionary:marsWeatherDictionary];
-        
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-        [self displayErrorAlert:error];
-    }];
+    [self fetchMarsWeather];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -85,25 +65,26 @@
 {
     [self playAudio:@"powerup"];
     
-    if (self.buttonStackViewTrailingConstraint.active) {
+    if (!self.buttonStackShowing) {
         
-        [UIView animateWithDuration:1 animations:^{
+        [UIView animateWithDuration:0.4 animations:^{
             
-            self.buttonStackViewTrailingConstraint.active = NO;
-            self.buttonStackAfterAnimationConstraint.active = YES;
+            CGAffineTransform transform = CGAffineTransformIdentity;
             
-            [self.view layoutIfNeeded];
+            transform = CGAffineTransformTranslate(transform, -108, 0);
+            
+            self.buttonStackView.transform = transform;
+            
+            self.buttonStackShowing = YES;
             
         } completion:nil];
         
     } else {
         
-        [UIView animateWithDuration:1 animations:^{
+        [UIView animateWithDuration:0.4 animations:^{
             
-            self.buttonStackAfterAnimationConstraint.active = NO;
-            self.buttonStackViewTrailingConstraint.active = YES;
-            
-            [self.view layoutIfNeeded];
+            self.buttonStackView.transform = CGAffineTransformIdentity;
+            self.buttonStackShowing = NO;
             
         } completion:nil];
     }
@@ -130,20 +111,19 @@
 
 - (void)animateMartian
 {
-    CGFloat centerY = self.view.frame.size.height * 0.75 / 2;
-    CGFloat newY = self.view.frame.size.height * 0.375 / 2;
-    CGFloat transformationY = centerY - newY;
-    
-    //just new Y
+    CGFloat transformationY = -(self.view.frame.size.height * 0.375 / 2);
     
     [UIView animateWithDuration:1
-                          delay:4
+                          delay:3
          usingSpringWithDamping:0.6
           initialSpringVelocity:0
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
+                         CGAffineTransform transform = CGAffineTransformIdentity;
                          
-                         self.martianImageView.transform = CGAffineTransformMakeTranslation(0, -transformationY);
+                         transform = CGAffineTransformTranslate(transform, 0, transformationY);
+                         
+                         self.martianImageView.transform = transform;
                          
                      } completion:^(BOOL finished) {
                          
@@ -178,15 +158,15 @@
 
 - (void)animateUFO
 {
-    CGFloat transformationY = -( (self.view.frame.size.height + 50) / 2 );
+    CGFloat transformationY = -((self.view.frame.size.height + 50) / 2);
     
     if (self.ufoAnimationCounter % 2 == 0) {
         
-        [UIView animateWithDuration:3 delay:2 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [UIView animateWithDuration:2 delay:2 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
             CGAffineTransform transform = CGAffineTransformIdentity;
             
-            transform = CGAffineTransformTranslate(transform, self.view.frame.size.width, transformationY);
+            transform = CGAffineTransformTranslate(transform, self.view.frame.size.width + 300, transformationY);
             
             transform = CGAffineTransformScale(transform, 0.1, 0.1);
             
@@ -194,7 +174,7 @@
             
         } completion:^(BOOL finished) {
             
-            [UIView animateWithDuration:3 delay:7 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [UIView animateWithDuration:2 delay:4 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 
                 self.ufoImageView.transform = CGAffineTransformIdentity;
                 
@@ -208,13 +188,13 @@
         
     } else {
         
-        [UIView animateWithDuration:3 delay:8 options:UIViewAnimationOptionCurveLinear animations:^{
+        [UIView animateWithDuration:2 delay:4 options:UIViewAnimationOptionCurveLinear animations:^{
             
             self.ufoImageView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width + 300, 0);
             
         } completion:^(BOOL finished) {
             
-            [UIView animateWithDuration:3 delay:7 options:UIViewAnimationOptionCurveLinear animations:^{
+            [UIView animateWithDuration:2 delay:4 options:UIViewAnimationOptionCurveLinear animations:^{
                 
                 self.ufoImageView.transform = CGAffineTransformIdentity;
                 
@@ -230,7 +210,7 @@
 
 #pragma mark - Update Labels
 
-- (void)updateLabelsWithDictionary:(NSDictionary *)marsDictionary
+- (void)updateLabelsWithWeatherReport:(NSDictionary *)marsDictionary
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"yyyy-MM-dd";
@@ -261,7 +241,7 @@
     [self presentViewController:errorAlert animated:YES completion:nil];
 }
 
-#pragma mark - Audio Set-Up
+#pragma mark - Audio
 
 - (void)playAudio:(NSString *)soundName
 {
@@ -269,6 +249,23 @@
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     [self.audioPlayer prepareToPlay];
     [self.audioPlayer play];
+}
+
+#pragma mark - API
+
+-(void)fetchMarsWeather
+{
+AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+[sessionManager GET:MARS_API parameters:nil progress:^(NSProgress *downloadProgress) {
+    
+} success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+    [self updateLabelsWithWeatherReport:responseObject[@"report"]];
+    
+} failure:^(NSURLSessionDataTask *task, NSError *error) {
+    
+    [self displayErrorAlert:error];
+}];
 }
 
 @end

@@ -397,7 +397,7 @@ See the License for the specific language governing permissions and limitations 
                                     <constraint firstAttribute="width" secondItem="yyg-wY-Wrz" secondAttribute="height" multiplier="1:1" id="Asi-Ud-9VS"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="black-hole" translatesAutoresizingMaskIntoConstraints="NO" id="Yo5-2h-nKK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blackhole-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Yo5-2h-nKK">
                                 <rect key="frame" x="309" y="40" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="5ny-aQ-eBa"/>
@@ -472,7 +472,6 @@ See the License for the specific language governing permissions and limitations 
                         <outlet property="attributionTextView" destination="xhs-Hw-3Q1" id="acG-U4-f0W"/>
                         <outlet property="blackholeImageView" destination="Yo5-2h-nKK" id="mM2-aZ-6bb"/>
                         <outlet property="buttonStackView" destination="pHA-iT-6as" id="xZY-6t-HgS"/>
-                        <outlet property="buttonStackViewTrailingConstraint" destination="a6d-cG-hgI" id="7C7-mc-8QZ"/>
                         <outlet property="lastUpdatedLabel" destination="8Uh-bu-4vH" id="5BG-D5-UUO"/>
                         <outlet property="martianImageView" destination="AQK-gb-RJV" id="D3k-ld-BlL"/>
                         <outlet property="maxCelLabel" destination="TEI-VI-6dO" id="pqF-7z-3cn"/>
@@ -481,7 +480,6 @@ See the License for the specific language governing permissions and limitations 
                         <outlet property="minFarLabel" destination="bdR-6d-LvT" id="t18-b1-XLw"/>
                         <outlet property="rocketButton" destination="4sh-Az-xFw" id="G9G-0a-6Di"/>
                         <outlet property="ufoImageView" destination="yyg-wY-Wrz" id="OmB-Pm-bgw"/>
-                        <outlet property="ufoWidthConstraint" destination="AZY-05-6aY" id="UpU-dO-bVW"/>
                         <outlet property="weatherLabel" destination="Yu8-bd-mtI" id="e9m-pW-t5b"/>
                     </connections>
                 </viewController>
@@ -494,6 +492,7 @@ See the License for the specific language governing permissions and limitations 
         <image name="Red_button" width="191" height="177"/>
         <image name="backgroundnew" width="1200" height="5375"/>
         <image name="black-hole" width="512" height="512"/>
+        <image name="blackhole-icon" width="256" height="256"/>
         <image name="blue martian" width="1131" height="1600"/>
         <image name="fire 2" width="100" height="146"/>
         <image name="floppydisk" width="512" height="512"/>

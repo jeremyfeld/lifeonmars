@@ -21,7 +21,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *fireHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rocketHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rocketBottomConstraint;
-@property (strong, nonatomic) NSLayoutConstraint *backgroundAfterAnimation;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 
 @end

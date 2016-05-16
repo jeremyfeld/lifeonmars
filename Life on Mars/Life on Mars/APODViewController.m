@@ -39,48 +39,9 @@
      self.scrollView.delegate = self;
      self.buttonStackShowing = NO;
      
-     NSString *APODurl = [NSString stringWithFormat:@"https://api.nasa.gov/planetary/apod?api_key=%@", APOD_API_KEY];
-     
-     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
-     [sessionManager GET:APODurl parameters:nil progress:^(NSProgress *downloadProgress) {
-          
-          //progress bar?
-          
-     } success:^(NSURLSessionDataTask *task, id responseObject) {
-          
-          NSDictionary *APODDictionary = responseObject;
-          self.titleLabel.text = APODDictionary[@"title"];
-          self.descriptionLabel.text = APODDictionary[@"explanation"];;
-          
-          if ([APODDictionary[@"media_type"] isEqualToString:@"video"]) {
-               
-               [self handleVideoFromDictionary:APODDictionary];
-               
-          } else {
-               
-               NSURL *picURL = [NSURL URLWithString:APODDictionary[@"hdurl"]];
-               NSURLRequest *request = [NSURLRequest requestWithURL:picURL];
-               
-               [self.APODImageView setImageWithURLRequest:request
-                                         placeholderImage:nil
-                                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                                       
-                                                       CGFloat imageAspectRatio = image.size.width / image.size.height;
-                                                       
-                                                       [self.APODImageView.widthAnchor constraintEqualToAnchor:self.APODImageView.heightAnchor multiplier:imageAspectRatio].active = YES;
-                                                       
-                                                       self.APODImageView.image = image;
-                                                       
-                                                  } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                                       
-                                                       [self displayErrorAlert:error];
-                                                  }];
-          }
-          
-     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-          
-          [self displayErrorAlert:error];
-     }];
+     if (!self.APODImageView.image) {
+          [self fetchAPOD];
+     }
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -228,6 +189,54 @@
      [errorAlert addAction:dismissAction];
      
      [self presentViewController:errorAlert animated:YES completion:nil];
+}
+
+#pragma mark - API
+
+-(void)fetchAPOD
+{
+     NSString *APODurl = [NSString stringWithFormat:@"https://api.nasa.gov/planetary/apod?api_key=%@", APOD_API_KEY];
+     
+     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+     [sessionManager GET:APODurl parameters:nil progress:^(NSProgress *downloadProgress) {
+          
+          //progress bar?
+          
+     } success:^(NSURLSessionDataTask *task, id responseObject) {
+          
+          NSDictionary *APODDictionary = responseObject;
+          self.titleLabel.text = APODDictionary[@"title"];
+          self.descriptionLabel.text = APODDictionary[@"explanation"];;
+          
+          if ([APODDictionary[@"media_type"] isEqualToString:@"video"]) {
+               
+               [self handleVideoFromDictionary:APODDictionary];
+               
+          } else {
+               
+               NSURL *picURL = [NSURL URLWithString:APODDictionary[@"hdurl"]];
+               NSURLRequest *request = [NSURLRequest requestWithURL:picURL];
+               
+               [self.APODImageView setImageWithURLRequest:request
+                                         placeholderImage:nil
+                                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                                                       
+                                                       CGFloat imageAspectRatio = image.size.width / image.size.height;
+                                                       
+                                                       [self.APODImageView.widthAnchor constraintEqualToAnchor:self.APODImageView.heightAnchor multiplier:imageAspectRatio].active = YES;
+
+                                                       self.APODImageView.image = image;
+                                                       
+                                                  } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                                                       
+                                                       [self displayErrorAlert:error];
+                                                  }];
+          }
+          
+     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+          
+          [self displayErrorAlert:error];
+     }];
 }
 
 @end
