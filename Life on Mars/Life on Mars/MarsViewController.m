@@ -83,8 +83,7 @@
 
 - (IBAction)spaceshipTapped:(id)sender
 {
-    [self prepareAudio:@"ray"];
-    [self.audioPlayer play];
+    [self playAudio:@"powerup"];
     
     if (self.buttonStackViewTrailingConstraint.active) {
         
@@ -179,78 +178,53 @@
 
 - (void)animateUFO
 {
-    CGFloat centerY = (self.view.frame.size.height + 50) / 2;
-    CGFloat transformationY = 0 - centerY;
-    //just make it negative
+    CGFloat transformationY = -( (self.view.frame.size.height + 50) / 2 );
     
     if (self.ufoAnimationCounter % 2 == 0) {
         
-        [UIView animateWithDuration:6
-                              delay:8
-                            options:UIViewAnimationOptionCurveEaseOut
-                         animations:^{
-                             
-//                             self.ufoImageView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width + 300, transformationY);
-//                             
-//                             self.ufoWidthConstraint.active = NO;
-//                             self.ufoWidthAfterAnimationConstraint.active = YES;
-//                             
-//                             [self.ufoImageView layoutIfNeeded];
-                             
-                             
-                             
-                             CGAffineTransform transform = CGAffineTransformIdentity;
-                             
-                             transform = CGAffineTransformTranslate(transform, self.view.frame.size.width, transformationY);
-                             
-                             transform = CGAffineTransformScale(transform, 0.1, 0.1);
-                             
-                         } completion:^(BOOL finished) {
-                             
-                             [UIView animateWithDuration:6
-                                                   delay:7
-                                                 options:UIViewAnimationOptionCurveEaseIn
-                                              animations:^{
-                                                  
-                                                  self.ufoImageView.transform = CGAffineTransformIdentity;
-//                                                  self.ufoWidthAfterAnimationConstraint.active = NO;
-//                                                  self.ufoWidthConstraint.active = YES;
-//                                                  
-//                                                  [self.ufoImageView layoutIfNeeded];
-                                                  
-                                              } completion:^(BOOL finished) {
-                                                  
-                                                  self.ufoAnimationCounter++;
-                                                  
-                                                  [self animateUFO];
-                                              }];
-                         }];
+        [UIView animateWithDuration:3 delay:2 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            
+            CGAffineTransform transform = CGAffineTransformIdentity;
+            
+            transform = CGAffineTransformTranslate(transform, self.view.frame.size.width, transformationY);
+            
+            transform = CGAffineTransformScale(transform, 0.1, 0.1);
+            
+            self.ufoImageView.transform = transform;
+            
+        } completion:^(BOOL finished) {
+            
+            [UIView animateWithDuration:3 delay:7 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                
+                self.ufoImageView.transform = CGAffineTransformIdentity;
+                
+            } completion:^(BOOL finished) {
+                
+                self.ufoAnimationCounter++;
+                
+                [self animateUFO];
+            }];
+        }];
         
     } else {
         
-        [UIView animateWithDuration:3
-                              delay:8
-                            options:UIViewAnimationOptionCurveLinear
-                         animations:^{
-                             
-                             self.ufoImageView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width+ 300, 0);
-                             
-                         } completion:^(BOOL finished) {
-                             
-                             [UIView animateWithDuration:3
-                                                   delay:7
-                                                 options:UIViewAnimationOptionCurveLinear
-                                              animations:^{
-                                                  
-                                                  self.ufoImageView.transform = CGAffineTransformIdentity;
-                                                                                                    
-                                              } completion:^(BOOL finished) {
-                                                  
-                                                  self.ufoAnimationCounter ++;
-                                                  
-                                                  [self animateUFO];
-                                              }];
-                         }];
+        [UIView animateWithDuration:3 delay:8 options:UIViewAnimationOptionCurveLinear animations:^{
+            
+            self.ufoImageView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width + 300, 0);
+            
+        } completion:^(BOOL finished) {
+            
+            [UIView animateWithDuration:3 delay:7 options:UIViewAnimationOptionCurveLinear animations:^{
+                
+                self.ufoImageView.transform = CGAffineTransformIdentity;
+                
+            } completion:^(BOOL finished) {
+                
+                self.ufoAnimationCounter++;
+                
+                [self animateUFO];
+            }];
+        }];
     }
 }
 
@@ -289,11 +263,12 @@
 
 #pragma mark - Audio Set-Up
 
-- (void)prepareAudio:(NSString *)soundName
+- (void)playAudio:(NSString *)soundName
 {
-    NSDataAsset *soundAsset = [[NSDataAsset alloc] initWithName:soundName];
-    self.audioPlayer = [[AVAudioPlayer alloc] initWithData:soundAsset.data error:nil];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:soundName withExtension:@"mp3"];
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     [self.audioPlayer prepareToPlay];
+    [self.audioPlayer play];
 }
 
 @end

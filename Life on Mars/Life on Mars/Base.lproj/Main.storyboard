@@ -104,7 +104,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
-                        <outlet property="backgroundBottomConstraint" destination="wtw-G6-LIH" id="P5T-5I-hFo"/>
                         <outlet property="backgroundImageView" destination="ows-uq-e2t" id="qmR-lT-DP6"/>
                         <outlet property="fireHeightConstraint" destination="yDq-Mg-ML6" id="0sn-f0-KWk"/>
                         <outlet property="fireImageView" destination="yjA-I4-K8N" id="lZo-sw-bee"/>
@@ -115,12 +114,12 @@
                         <outlet property="rocketImageView" destination="3sH-wa-RYA" id="6Z4-lr-S7v"/>
                         <outlet property="teleportButton" destination="gTD-Du-m9o" id="VEQ-Ed-ZgO"/>
                         <outlet property="teleportLabel" destination="lzQ-wd-W6H" id="t03-HQ-XkD"/>
-                        <segue destination="mMp-kA-hJQ" kind="presentation" identifier="segueToSpace" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="SI9-BM-xwa"/>
+                        <segue destination="mMp-kA-hJQ" kind="presentation" identifier="segueToSpace" modalTransitionStyle="crossDissolve" id="SI9-BM-xwa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7f-nc-lNu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-335.5" y="359.5"/>
+            <point key="canvasLocation" x="-454.5" y="428.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="vYu-h5-nAJ">
@@ -157,40 +156,49 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYn-Ci-TUq" userLabel="info">
-                                <rect key="frame" x="311" y="603" width="44" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="PJW-RE-HEd"/>
-                                    <constraint firstAttribute="height" constant="44" id="wbh-7e-6q7"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="transport"/>
-                                <connections>
-                                    <action selector="spaceshipTapped:" destination="mMp-kA-hJQ" eventType="touchUpInside" id="xmm-gC-yC4"/>
-                                </connections>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tAQ-f5-nON" userLabel="button stack">
-                                <rect key="frame" x="0.0" y="387" width="44" height="196"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="25" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="f0i-gx-Y2D">
+                                <rect key="frame" x="19" y="667" width="337" height="501"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tAQ-f5-nON" userLabel="button stack">
+                                <rect key="frame" x="321" y="613" width="260" height="44"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbE-OJ-boe" userLabel="mars">
-                                        <rect key="frame" x="0.0" y="0.0" width="44" height="42"/>
-                                        <state key="normal" title="Button" image="marsIcon"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYn-Ci-TUq" userLabel="info">
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="transport"/>
                                         <connections>
-                                            <segue destination="gF0-xh-Kng" kind="presentation" modalTransitionStyle="crossDissolve" id="833-Xu-8WO"/>
+                                            <action selector="spaceshipTapped:" destination="mMp-kA-hJQ" eventType="touchUpInside" id="xmm-gC-yC4"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epO-pn-RoA">
-                                        <rect key="frame" x="0.0" y="52" width="44" height="42"/>
-                                        <state key="normal" title="Button" image="planet-earth"/>
-                                        <connections>
-                                            <action selector="earthButtonTapped:" destination="mMp-kA-hJQ" eventType="touchUpInside" id="IZp-3C-lIZ"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q91-Cp-XC2">
-                                        <rect key="frame" x="0.0" y="103" width="44" height="42"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1PT-2I-dov">
+                                        <rect key="frame" x="54" y="0.0" width="44" height="44"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uc-NL-25Z">
-                                                <rect key="frame" x="5" y="2" width="35" height="37"/>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kii-t9-EDr" userLabel="info">
+                                                <rect key="frame" x="0.0" y="0.0" width="35" height="44"/>
+                                                <color key="tintColor" red="1" green="0.83921568627450982" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" image="information-button"/>
+                                                <connections>
+                                                    <action selector="infoTapped:" destination="mMp-kA-hJQ" eventType="touchUpInside" id="Dr2-h4-X74"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="Kii-t9-EDr" firstAttribute="width" secondItem="1PT-2I-dov" secondAttribute="width" multiplier="0.9" id="3L7-Wt-BQ0"/>
+                                            <constraint firstItem="Kii-t9-EDr" firstAttribute="centerY" secondItem="1PT-2I-dov" secondAttribute="centerY" id="3LY-A7-lQt"/>
+                                            <constraint firstItem="Kii-t9-EDr" firstAttribute="centerX" secondItem="1PT-2I-dov" secondAttribute="centerX" id="J5C-8n-DNS"/>
+                                            <constraint firstItem="Kii-t9-EDr" firstAttribute="height" secondItem="1PT-2I-dov" secondAttribute="height" multiplier="0.9" id="Pb5-aq-cmR"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q91-Cp-XC2">
+                                        <rect key="frame" x="108" y="0.0" width="44" height="44"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2uc-NL-25Z">
+                                                <rect key="frame" x="4" y="2" width="36" height="40"/>
                                                 <state key="normal" title="Button" image="floppydisk"/>
                                                 <connections>
                                                     <action selector="saveTapped:" destination="mMp-kA-hJQ" eventType="touchUpInside" id="UOP-72-aMm"/>
@@ -205,55 +213,52 @@
                                             <constraint firstItem="2uc-NL-25Z" firstAttribute="centerY" secondItem="Q91-Cp-XC2" secondAttribute="centerY" id="aJZ-lF-JpC"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kii-t9-EDr" userLabel="info">
-                                        <rect key="frame" x="0.0" y="155" width="44" height="42"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                        <color key="tintColor" red="1" green="0.83921568627450982" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbE-OJ-boe" userLabel="mars">
+                                        <rect key="frame" x="162" y="0.0" width="44" height="44"/>
+                                        <state key="normal" title="Button" image="marsIcon"/>
                                         <connections>
-                                            <action selector="infoTapped:" destination="mMp-kA-hJQ" eventType="touchUpInside" id="Dr2-h4-X74"/>
+                                            <segue destination="gF0-xh-Kng" kind="presentation" modalTransitionStyle="crossDissolve" id="833-Xu-8WO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epO-pn-RoA">
+                                        <rect key="frame" x="216" y="0.0" width="44" height="44"/>
+                                        <state key="normal" title="Button" image="planet-earth"/>
+                                        <connections>
+                                            <action selector="earthButtonTapped:" destination="mMp-kA-hJQ" eventType="touchUpInside" id="IZp-3C-lIZ"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="al7-Ga-ujF"/>
-                                    <constraint firstAttribute="height" constant="196" id="dIj-4j-I5o"/>
+                                    <constraint firstAttribute="width" constant="260" id="al7-Ga-ujF"/>
+                                    <constraint firstAttribute="height" constant="44" id="dIj-4j-I5o"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="fZc-BQ-nQS" firstAttribute="top" secondItem="f0i-gx-Y2D" secondAttribute="top" id="71Q-Vv-ArJ"/>
                             <constraint firstItem="ayd-fl-YeR" firstAttribute="height" secondItem="kmw-ve-JYc" secondAttribute="height" id="7fH-pl-lKj"/>
+                            <constraint firstItem="f0i-gx-Y2D" firstAttribute="centerX" secondItem="kmw-ve-JYc" secondAttribute="centerX" id="9kD-Cd-YrT"/>
                             <constraint firstItem="Pcf-Bq-aS4" firstAttribute="top" secondItem="l8M-Rs-I36" secondAttribute="bottom" id="9sz-81-SHL"/>
+                            <constraint firstItem="f0i-gx-Y2D" firstAttribute="width" secondItem="kmw-ve-JYc" secondAttribute="width" multiplier="0.9" id="Be6-a7-jPO"/>
                             <constraint firstItem="Pcf-Bq-aS4" firstAttribute="centerX" secondItem="kmw-ve-JYc" secondAttribute="centerX" id="C5L-g8-UaE"/>
                             <constraint firstItem="4cz-z8-YbF" firstAttribute="width" relation="greaterThanOrEqual" secondItem="kmw-ve-JYc" secondAttribute="width" id="D84-bM-YFI"/>
-                            <constraint firstItem="fZc-BQ-nQS" firstAttribute="top" secondItem="tAQ-f5-nON" secondAttribute="bottom" constant="84" id="E5F-5Z-302"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="tAQ-f5-nON" secondAttribute="trailing" id="GEe-ad-Omd"/>
-                            <constraint firstAttribute="trailing" secondItem="MYn-Ci-TUq" secondAttribute="trailing" constant="20" id="GFe-Zc-8WA"/>
-                            <constraint firstItem="fZc-BQ-nQS" firstAttribute="top" secondItem="MYn-Ci-TUq" secondAttribute="bottom" constant="20" id="LzN-dq-14C"/>
-                            <constraint firstItem="fZc-BQ-nQS" firstAttribute="top" secondItem="Pcf-Bq-aS4" secondAttribute="bottom" id="Ufx-M3-vxB"/>
-                            <constraint firstItem="tAQ-f5-nON" firstAttribute="centerX" secondItem="MYn-Ci-TUq" secondAttribute="centerX" id="VoL-Te-pUr"/>
+                            <constraint firstItem="fZc-BQ-nQS" firstAttribute="top" secondItem="tAQ-f5-nON" secondAttribute="bottom" constant="10" id="E5F-5Z-302"/>
+                            <constraint firstItem="tAQ-f5-nON" firstAttribute="leading" secondItem="kmw-ve-JYc" secondAttribute="trailing" constant="-54" id="GEe-ad-Omd"/>
                             <constraint firstItem="4cz-z8-YbF" firstAttribute="height" secondItem="kmw-ve-JYc" secondAttribute="height" multiplier="1.25" id="YGR-Kc-Tnf"/>
-                            <constraint firstItem="MYn-Ci-TUq" firstAttribute="top" secondItem="tAQ-f5-nON" secondAttribute="bottom" constant="20" id="kZO-kc-ft4"/>
                             <constraint firstItem="ayd-fl-YeR" firstAttribute="centerX" secondItem="kmw-ve-JYc" secondAttribute="centerX" id="kp9-3L-sgM"/>
                             <constraint firstItem="ayd-fl-YeR" firstAttribute="width" secondItem="kmw-ve-JYc" secondAttribute="width" id="mko-bf-ZfA"/>
                             <constraint firstItem="Pcf-Bq-aS4" firstAttribute="width" secondItem="kmw-ve-JYc" secondAttribute="width" constant="-108" id="nz6-2U-xf2"/>
+                            <constraint firstItem="f0i-gx-Y2D" firstAttribute="height" secondItem="kmw-ve-JYc" secondAttribute="height" multiplier="0.75" id="siZ-GI-LLQ"/>
                             <constraint firstItem="ayd-fl-YeR" firstAttribute="centerY" secondItem="kmw-ve-JYc" secondAttribute="centerY" id="xzr-yu-4uI"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="GEe-ad-Omd"/>
-                                <exclude reference="VoL-Te-pUr"/>
-                                <exclude reference="Ufx-M3-vxB"/>
-                                <exclude reference="kZO-kc-ft4"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="EOc-W8-dLv"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="APODImageView" destination="4cz-z8-YbF" id="Um4-4n-eOb"/>
-                        <outlet property="buttonStackRightConstraint" destination="GEe-ad-Omd" id="2Vs-Vg-sps"/>
                         <outlet property="buttonStackView" destination="tAQ-f5-nON" id="LoA-W8-fAU"/>
+                        <outlet property="descriptionLabel" destination="f0i-gx-Y2D" id="GhX-qw-1de"/>
                         <outlet property="earthButton" destination="epO-pn-RoA" id="fXq-wU-747"/>
                         <outlet property="infoButton" destination="Kii-t9-EDr" id="PzB-Ph-G3Z"/>
                         <outlet property="marsButton" destination="fbE-OJ-boe" id="f4I-qy-AWL"/>
@@ -261,7 +266,7 @@
                         <outlet property="scrollView" destination="ayd-fl-YeR" id="qky-oe-HIK"/>
                         <outlet property="spaceshipButton" destination="MYn-Ci-TUq" id="lUY-ID-lq2"/>
                         <outlet property="titleLabel" destination="Pcf-Bq-aS4" id="sk1-q2-IyY"/>
-                        <segue destination="Z4P-eb-Ncf" kind="show" identifier="segueToEarth" id="cFi-qC-bGI"/>
+                        <segue destination="Z4P-eb-Ncf" kind="presentation" identifier="segueToEarth" modalTransitionStyle="crossDissolve" id="cFi-qC-bGI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q4X-ap-wkQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -281,7 +286,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star field" translatesAutoresizingMaskIntoConstraints="NO" id="gca-S7-qIm">
-                                <rect key="frame" x="0.0" y="-80" width="375" height="433.5"/>
+                                <rect key="frame" x="0.0" y="-80" width="375" height="434"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue martian" translatesAutoresizingMaskIntoConstraints="NO" id="AQK-gb-RJV">
@@ -295,7 +300,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xhs-Hw-3Q1">
-                                <rect key="frame" x="47" y="183.5" width="281.5" height="167"/>
+                                <rect key="frame" x="47" y="184" width="282" height="167"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <string key="text">Acknowledgements
 
@@ -414,7 +419,6 @@ See the License for the specific language governing permissions and limitations 
                                         <state key="normal" title="Button" image="rocket"/>
                                         <connections>
                                             <action selector="rocketTapped:" destination="gF0-xh-Kng" eventType="touchUpInside" id="oqg-FK-9ZF"/>
-                                            <segue destination="L0V-Pj-wq6" kind="unwind" unwindAction="myUnwindAction:" id="PYI-si-W7b"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IN-2v-NNH">
@@ -482,7 +486,6 @@ See the License for the specific language governing permissions and limitations 
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13p-zj-Qbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="L0V-Pj-wq6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="915.5" y="275.5"/>
         </scene>
@@ -494,6 +497,7 @@ See the License for the specific language governing permissions and limitations 
         <image name="blue martian" width="1131" height="1600"/>
         <image name="fire 2" width="100" height="146"/>
         <image name="floppydisk" width="512" height="512"/>
+        <image name="information-button" width="512" height="512"/>
         <image name="mars no background" width="1200" height="675"/>
         <image name="marsIcon" width="512" height="512"/>
         <image name="planet-earth" width="512" height="512"/>

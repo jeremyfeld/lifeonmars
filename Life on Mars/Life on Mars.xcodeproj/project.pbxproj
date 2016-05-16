@@ -18,6 +18,10 @@
 		CB69992F1CD7B86500ADFE4F /* Life_on_MarsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = CB69992E1CD7B86500ADFE4F /* Life_on_MarsUITests.m */; };
 		CB6999411CD7B98300ADFE4F /* MarsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6999401CD7B98300ADFE4F /* MarsViewController.m */; };
 		CB6999441CD7BB0A00ADFE4F /* APODViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6999431CD7BB0A00ADFE4F /* APODViewController.m */; };
+		CBB2A3441CEA4B9000AA1C9C /* powerup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBB2A3431CEA4B9000AA1C9C /* powerup.mp3 */; };
+		CBB2A3461CEA4B9F00AA1C9C /* ufo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBB2A3451CEA4B9F00AA1C9C /* ufo.mp3 */; };
+		CBB2A3481CEA4BA500AA1C9C /* rocketLaunch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBB2A3471CEA4BA500AA1C9C /* rocketLaunch.mp3 */; };
+		CBB2A34A1CEA4BAA00AA1C9C /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CBB2A3491CEA4BAA00AA1C9C /* music.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +66,10 @@
 		CB6999401CD7B98300ADFE4F /* MarsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarsViewController.m; sourceTree = "<group>"; };
 		CB6999421CD7BB0A00ADFE4F /* APODViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APODViewController.h; sourceTree = "<group>"; };
 		CB6999431CD7BB0A00ADFE4F /* APODViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 5; lastKnownFileType = sourcecode.c.objc; path = APODViewController.m; sourceTree = "<group>"; };
+		CBB2A3431CEA4B9000AA1C9C /* powerup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = powerup.mp3; sourceTree = "<group>"; };
+		CBB2A3451CEA4B9F00AA1C9C /* ufo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ufo.mp3; sourceTree = "<group>"; };
+		CBB2A3471CEA4BA500AA1C9C /* rocketLaunch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rocketLaunch.mp3; sourceTree = "<group>"; };
+		CBB2A3491CEA4BAA00AA1C9C /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +151,7 @@
 				CB6999431CD7BB0A00ADFE4F /* APODViewController.m */,
 				CB6999121CD7B86500ADFE4F /* Main.storyboard */,
 				CB6999151CD7B86500ADFE4F /* Assets.xcassets */,
+				CBB2A3421CEA4A9500AA1C9C /* Audio Files */,
 				CB6999171CD7B86500ADFE4F /* LaunchScreen.storyboard */,
 				CB69991A1CD7B86500ADFE4F /* Info.plist */,
 				CB6999091CD7B86500ADFE4F /* Supporting Files */,
@@ -174,6 +183,17 @@
 				CB6999301CD7B86500ADFE4F /* Info.plist */,
 			);
 			path = "Life on MarsUITests";
+			sourceTree = "<group>";
+		};
+		CBB2A3421CEA4A9500AA1C9C /* Audio Files */ = {
+			isa = PBXGroup;
+			children = (
+				CBB2A3431CEA4B9000AA1C9C /* powerup.mp3 */,
+				CBB2A3471CEA4BA500AA1C9C /* rocketLaunch.mp3 */,
+				CBB2A3491CEA4BAA00AA1C9C /* music.mp3 */,
+				CBB2A3451CEA4B9F00AA1C9C /* ufo.mp3 */,
+			);
+			name = "Audio Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +305,10 @@
 				CB0F83051CE39DAD00B1813C /* Assets.xcassets in Resources */,
 				CB6999191CD7B86500ADFE4F /* LaunchScreen.storyboard in Resources */,
 				CB6999141CD7B86500ADFE4F /* Main.storyboard in Resources */,
+				CBB2A3461CEA4B9F00AA1C9C /* ufo.mp3 in Resources */,
+				CBB2A3441CEA4B9000AA1C9C /* powerup.mp3 in Resources */,
+				CBB2A34A1CEA4BAA00AA1C9C /* music.mp3 in Resources */,
+				CBB2A3481CEA4BA500AA1C9C /* rocketLaunch.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

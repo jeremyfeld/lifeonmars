@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *teleportButton;
 @property (weak, nonatomic) IBOutlet UILabel *teleportLabel;
 @property (weak, nonatomic) IBOutlet UILabel *launchLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundBottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *fireHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rocketHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rocketBottomConstraint;
@@ -52,16 +51,9 @@
     self.teleportButton.hidden = YES;
     self.teleportLabel.hidden = YES;
     
-    CGFloat screenHeight = self.backgroundImageView.frame.size.height/5;
-    CGFloat animationConstant = screenHeight * 4;
+    [self playAudio:@"rocketLaunch"];
     
-    self.backgroundAfterAnimation = [self.backgroundImageView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:animationConstant];
-    self.backgroundAfterAnimation.active = NO;
-    
-    [self prepareAudio:@"launch"];
-    [self.audioPlayer play];
-    
-    [UIView animateWithDuration:2.1 animations:^{
+    [UIView animateWithDuration:1.6 animations:^{
         
         self.fireImageView.alpha = 1;
         
@@ -73,73 +65,38 @@
         }];
     }];
     
-    [UIView animateWithDuration:1
-                          delay:5
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         
-                         self.rocketBottomConstraint.active = NO;
-                         
-                         [self.rocketImageView.bottomAnchor constraintEqualToAnchor:self.view.topAnchor constant:50].active = YES;
-                                                                           
-                     } completion:nil];
-    
-    [UIView animateWithDuration:7
-                          delay:2
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         
-                         self.backgroundBottomConstraint.active = NO;
-                         self.backgroundAfterAnimation.active = YES;
-                         
-                         self.rocketHeightConstraint.active = NO;
-                         [self.rocketImageView.heightAnchor constraintEqualToConstant:0].active = YES;
-                         
-                         [self.view layoutIfNeeded];
-                         
-                     } completion:^(BOOL finished) {
-                         
-                         self.redButton.userInteractionEnabled = YES;
-                         self.teleportButton.userInteractionEnabled = YES;
-                         self.redButton.hidden = NO;
-                         self.launchLabel.hidden = NO;
-                         self.teleportButton.hidden = NO;
-                         self.teleportLabel.hidden = NO;
-                         
-//                         CATransition *transition = [CATransition animation];
-//                         transition.duration = .8;
-//                         transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-//                         transition.type = kCATransitionPush;
-//                         transition.subtype = kCATransitionFromBottom;
-//                         
-//                         [self.view.window.layer addAnimation:transition forKey:nil];
-                         
-                         
-                         // FADE TO BLACK HERE AND THEN PRESENT
-                         
-                         [self performSegueWithIdentifier:@"segueToSpace" sender:self];
-                     }];
+    [UIView animateWithDuration:5 delay:1.5 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        
+        CGAffineTransform backgroundTransform = CGAffineTransformIdentity;
+        CGAffineTransform rocketTransform = CGAffineTransformIdentity;
+        
+        backgroundTransform = CGAffineTransformTranslate(backgroundTransform, 0, self.backgroundImageView.frame.size.height - self.view.frame.size.height);
+        
+        rocketTransform = CGAffineTransformTranslate(rocketTransform, 0, -self.view.frame.size.height/2);
+        rocketTransform = CGAffineTransformScale(rocketTransform, 0.2, 0.2);
+        
+        self.backgroundImageView.transform = backgroundTransform;
+        self.rocketImageView.transform = rocketTransform;
+        
+    } completion:^(BOOL finished) {
+        
+            [self performSegueWithIdentifier:@"segueToSpace" sender:self];
+        }];
 }
 
 - (IBAction)teleportTapped:(id)sender
 {
-    CATransition *transition = [CATransition animation];
-    transition.duration = .8;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-    transition.type = kCATransitionFade;
-    transition.subtype = kCATransitionFromBottom;
-    
-    [self.view.window.layer addAnimation:transition forKey:nil];
     [self performSegueWithIdentifier:@"segueToSpace" sender:self];
 }
 
 #pragma mark - Audio Set-Up
 
-- (void)prepareAudio:(NSString *)soundName
+- (void)playAudio:(NSString *)soundName
 {
-    NSDataAsset *soundAsset = [[NSDataAsset alloc] initWithName:soundName];
-    self.audioPlayer = [[AVAudioPlayer alloc] initWithData:soundAsset.data error:nil];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:soundName withExtension:@"mp3"];
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     [self.audioPlayer prepareToPlay];
+    [self.audioPlayer play];
 }
 
 @end
