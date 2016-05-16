@@ -24,8 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ufoImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *blackholeImageView;
 @property (weak, nonatomic) IBOutlet UIStackView *buttonStackView;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *ufoWidthConstraint;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttonStackViewTrailingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ufoWidthConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *buttonStackViewTrailingConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *ufoWidthAfterAnimationConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *buttonStackAfterAnimationConstraint;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
@@ -135,6 +135,8 @@
     CGFloat newY = self.view.frame.size.height * 0.375 / 2;
     CGFloat transformationY = centerY - newY;
     
+    //just new Y
+    
     [UIView animateWithDuration:1
                           delay:4
          usingSpringWithDamping:0.6
@@ -177,8 +179,9 @@
 
 - (void)animateUFO
 {
-    CGFloat centerY = self.view.frame.size.height / 2;
+    CGFloat centerY = (self.view.frame.size.height + 50) / 2;
     CGFloat transformationY = 0 - centerY;
+    //just make it negative
     
     if (self.ufoAnimationCounter % 2 == 0) {
         
@@ -187,12 +190,20 @@
                             options:UIViewAnimationOptionCurveEaseOut
                          animations:^{
                              
-                             self.ufoImageView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width+300, transformationY);
+//                             self.ufoImageView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width + 300, transformationY);
+//                             
+//                             self.ufoWidthConstraint.active = NO;
+//                             self.ufoWidthAfterAnimationConstraint.active = YES;
+//                             
+//                             [self.ufoImageView layoutIfNeeded];
                              
-                             self.ufoWidthConstraint.active = NO;
-                             self.ufoWidthAfterAnimationConstraint.active = YES;
                              
-                             [self.view layoutIfNeeded];
+                             
+                             CGAffineTransform transform = CGAffineTransformIdentity;
+                             
+                             transform = CGAffineTransformTranslate(transform, self.view.frame.size.width, transformationY);
+                             
+                             transform = CGAffineTransformScale(transform, 0.1, 0.1);
                              
                          } completion:^(BOOL finished) {
                              
@@ -202,14 +213,14 @@
                                               animations:^{
                                                   
                                                   self.ufoImageView.transform = CGAffineTransformIdentity;
-                                                  self.ufoWidthAfterAnimationConstraint.active = NO;
-                                                  self.ufoWidthConstraint.active = YES;
-                                                  
-                                                  [self.view layoutIfNeeded];
+//                                                  self.ufoWidthAfterAnimationConstraint.active = NO;
+//                                                  self.ufoWidthConstraint.active = YES;
+//                                                  
+//                                                  [self.ufoImageView layoutIfNeeded];
                                                   
                                               } completion:^(BOOL finished) {
                                                   
-                                                  self.ufoAnimationCounter ++;
+                                                  self.ufoAnimationCounter++;
                                                   
                                                   [self animateUFO];
                                               }];
@@ -222,7 +233,7 @@
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
                              
-                             self.ufoImageView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width+300, 0);
+                             self.ufoImageView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width+ 300, 0);
                              
                          } completion:^(BOOL finished) {
                              

@@ -115,7 +115,7 @@
                         <outlet property="rocketImageView" destination="3sH-wa-RYA" id="6Z4-lr-S7v"/>
                         <outlet property="teleportButton" destination="gTD-Du-m9o" id="VEQ-Ed-ZgO"/>
                         <outlet property="teleportLabel" destination="lzQ-wd-W6H" id="t03-HQ-XkD"/>
-                        <segue destination="mMp-kA-hJQ" kind="show" identifier="segueToSpace" id="SI9-BM-xwa"/>
+                        <segue destination="mMp-kA-hJQ" kind="presentation" identifier="segueToSpace" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="SI9-BM-xwa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7f-nc-lNu" userLabel="First Responder" sceneMemberID="firstResponder"/>

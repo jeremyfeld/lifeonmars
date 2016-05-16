@@ -18,10 +18,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *teleportButton;
 @property (weak, nonatomic) IBOutlet UILabel *teleportLabel;
 @property (weak, nonatomic) IBOutlet UILabel *launchLabel;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *backgroundBottomConstraint;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *fireHeightConstraint;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *rocketHeightConstraint;
-@property (strong, nonatomic) IBOutlet NSLayoutConstraint *rocketBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *backgroundBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *fireHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rocketHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rocketBottomConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *backgroundAfterAnimation;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 
@@ -106,13 +106,17 @@
                          self.teleportButton.hidden = NO;
                          self.teleportLabel.hidden = NO;
                          
-                         CATransition *transition = [CATransition animation];
-                         transition.duration = .8;
-                         transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-                         transition.type = kCATransitionPush;
-                         transition.subtype = kCATransitionFromBottom;
+//                         CATransition *transition = [CATransition animation];
+//                         transition.duration = .8;
+//                         transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+//                         transition.type = kCATransitionPush;
+//                         transition.subtype = kCATransitionFromBottom;
+//                         
+//                         [self.view.window.layer addAnimation:transition forKey:nil];
                          
-                         [self.view.window.layer addAnimation:transition forKey:nil];
+                         
+                         // FADE TO BLACK HERE AND THEN PRESENT
+                         
                          [self performSegueWithIdentifier:@"segueToSpace" sender:self];
                      }];
 }

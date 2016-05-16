@@ -94,7 +94,7 @@
                                                   }];
           }
           
-          [self setUpDescriptionLabel];
+          [self setupDescriptionLabel];
           self.descriptionLabel.hidden = YES;
           
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -108,11 +108,11 @@
      return self.APODImageView;
 }
 
-#pragma - IBActions
+#pragma - Actions
 - (IBAction)spaceshipTapped:(id)sender
 {
-     [self prepareAudio:@"ray"];
-     [self.audioPlayer play];
+//     [self prepareAudio:@"ray"];
+//     [self.audioPlayer play];
      
      if (self.buttonPreAnimationConstraint.active) {
           
@@ -200,7 +200,7 @@
      UIImageWriteToSavedPhotosAlbum(compressedJPGImage, self, @selector(saveImageHandler:didFinishSavingWithError:contextInfo:), nil);
 }
 
-#pragma - Set-Up
+#pragma - Setup
 
 - (void)prepareAudio:(NSString *)soundName
 {
@@ -209,9 +209,9 @@
      [self.audioPlayer prepareToPlay];
 }
 
-- (void)setUpDescriptionLabel
+- (void)setupDescriptionLabel
 {
-     self.descriptionLabel = [[UILabel alloc]init];
+     self.descriptionLabel = [[UILabel alloc] init];
      [self.view addSubview:self.descriptionLabel];
      self.descriptionLabel.translatesAutoresizingMaskIntoConstraints = NO;
      
@@ -273,7 +273,8 @@
      UIAlertAction *watchAction = [UIAlertAction actionWithTitle:@"Of Course!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
           
           NSURL *youtubeURL = [NSURL URLWithString:APODDictionary[@"url"]];
-          
+          // ryoutubeURL.relativePath
+          //replae /embed/ with emptystring
           SFSafariViewController *youtubeView = [[SFSafariViewController alloc] initWithURL:youtubeURL];
           [self presentViewController:youtubeView animated:YES completion:nil];
      }];
