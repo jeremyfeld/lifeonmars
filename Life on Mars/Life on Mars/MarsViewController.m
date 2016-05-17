@@ -14,10 +14,9 @@
 @interface MarsViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextView *attributionTextView;
-@property (weak, nonatomic) IBOutlet UILabel *minFarLabel;
-@property (weak, nonatomic) IBOutlet UILabel *minCelLabel;
-@property (weak, nonatomic) IBOutlet UILabel *maxFarLabel;
-@property (weak, nonatomic) IBOutlet UILabel *maxCelLabel;
+@property (weak, nonatomic) IBOutlet UILabel *minTempLabel;
+@property (weak, nonatomic) IBOutlet UILabel *maxTempLabel;
+@property (weak, nonatomic) IBOutlet UIStackView *temperatureStackViw;
 @property (weak, nonatomic) IBOutlet UILabel *lastUpdatedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *weatherLabel;
 @property (weak, nonatomic) IBOutlet UIButton *rocketButton;
@@ -25,9 +24,14 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ufoImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *blackholeImageView;
 @property (weak, nonatomic) IBOutlet UIStackView *buttonStackView;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *temperatureTapGestureRecognizer;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (assign, nonatomic) NSUInteger ufoAnimationCounter;
 @property (assign, nonatomic) BOOL buttonStackShowing;
+@property (strong, nonatomic) NSString *minTempFar;
+@property (strong, nonatomic) NSString *maxTempFar;
+@property (strong, nonatomic) NSString *minTempCel;
+@property (strong, nonatomic) NSString *maxTempCel;
 
 @end
 
@@ -209,6 +213,13 @@
 }
 
 #pragma mark - Update Labels
+- (void)saveTemperaturesFromWeatherReport:(NSDictionary *)marsDictionary
+{
+    self.minTempFar = marsDictionary[@"min_temp_fahrenheit"];
+    self.maxTempFar = marsDictionary[@"max_temp_fahrenheit"];
+    self.minTempCel = marsDictionary[@"min_temp"];
+    self.maxTempCel = marsDictionary[@"max_temp"];
+}
 
 - (void)updateLabelsWithWeatherReport:(NSDictionary *)marsDictionary
 {
@@ -219,12 +230,49 @@
     dateFormatter.dateFormat = @"MM-dd-yyyy";
     NSString *newDate = [dateFormatter stringFromDate:earthDate];
     
-    self.minCelLabel.text = [NSString stringWithFormat:@"Low: %@ °C", marsDictionary[@"min_temp"]];
-    self.minFarLabel.text = [NSString stringWithFormat:@"Low: %@ °F", marsDictionary[@"min_temp_fahrenheit"]];
-    self.maxCelLabel.text = [NSString stringWithFormat:@"High: %@ °C", marsDictionary[@"max_temp"]];
-    self.maxFarLabel.text = [NSString stringWithFormat:@"High: %@ °F", marsDictionary[@"max_temp_fahrenheit"]];
     self.weatherLabel.text = [NSString stringWithFormat:@"The weather on Mars is %@", marsDictionary[@"atmo_opacity"]];
     self.lastUpdatedLabel.text = [NSString stringWithFormat:@"Last updated: %@", newDate];
+    
+    NSString *temperaturePreference = [[NSUserDefaults standardUserDefaults] objectForKey:TEMP_SCALE_KEY];
+    
+    if ([temperaturePreference isEqualToString:CEL] || !temperaturePreference) {
+        
+        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°C", self.minTempCel];
+        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %@°C", self.maxTempCel];
+        
+    }
+    else {
+        
+        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°F", self.minTempFar];
+        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %@°F", self.maxTempFar];
+    }
+}
+
+- (IBAction)temperatureStackViewTapped:(UITapGestureRecognizer *)sender
+{
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.25;
+    animation.type = kCATransitionFade;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [self.minTempLabel.layer addAnimation:animation forKey:@"changeTextTransition"];
+    [self.maxTempLabel.layer addAnimation:animation forKey:@"changeTextTransition"];
+    
+    NSString *temperaturePreference = [[NSUserDefaults standardUserDefaults] objectForKey:TEMP_SCALE_KEY];
+    
+    if ([temperaturePreference isEqualToString:CEL] || !temperaturePreference) {
+        
+        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°F", self.minTempFar];
+        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %@°F", self.maxTempFar];
+        
+        [[NSUserDefaults standardUserDefaults] setValue:FAR forKey:TEMP_SCALE_KEY];
+        
+    } else {
+        
+        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°C", self.minTempCel];
+        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %@°C", self.maxTempCel];
+        
+        [[NSUserDefaults standardUserDefaults] setValue:CEL forKey:TEMP_SCALE_KEY];
+    }
 }
 
 #pragma mark - Error Handling
@@ -259,7 +307,7 @@ AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
 [sessionManager GET:MARS_API parameters:nil progress:^(NSProgress *downloadProgress) {
     
 } success:^(NSURLSessionDataTask *task, id responseObject) {
-    
+    [self saveTemperaturesFromWeatherReport:responseObject[@"report"]];
     [self updateLabelsWithWeatherReport:responseObject[@"report"]];
     
 } failure:^(NSURLSessionDataTask *task, NSError *error) {

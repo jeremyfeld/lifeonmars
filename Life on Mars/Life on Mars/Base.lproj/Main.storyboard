@@ -328,62 +328,44 @@ See the License for the specific language governing permissions and limitations 
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aEB-7C-Ux3" userLabel="Temp Stack">
-                                <rect key="frame" x="28" y="393" width="319" height="100"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aEB-7C-Ux3" userLabel="Temp Stack">
+                                <rect key="frame" x="28" y="385" width="319" height="117"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="0pk-Hv-z00" userLabel="Min Stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="100"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Min Temp:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdR-6d-LvT">
-                                                <rect key="frame" x="0.0" y="0.0" width="96" height="57"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min Temp:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1x3-8s-VHp">
-                                                <rect key="frame" x="0.0" y="57" width="72" height="43"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="v6Y-Tj-c0Z" userLabel="Max Stack">
-                                        <rect key="frame" x="155" y="0.0" width="165" height="100"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max Temp:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFp-bZ-EwP">
-                                                <rect key="frame" x="0.0" y="0.0" width="103" height="57"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Max Temp:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TEI-VI-6dO">
-                                                <rect key="frame" x="0.0" y="57" width="78" height="43"/>
-                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Max Temp:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFp-bZ-EwP" userLabel="Max Temp">
+                                        <rect key="frame" x="75" y="0.0" width="170" height="60"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="33"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min Temp:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdR-6d-LvT" userLabel="Min Temp">
+                                        <rect key="frame" x="93" y="65" width="134" height="53"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="28"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="LAX-ev-fj3" appends="YES" id="Ltv-dS-vMb"/>
+                                </connections>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qcB-yd-L05" userLabel="Weather Stack">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="qcB-yd-L05" userLabel="Weather Stack">
                                 <rect key="frame" x="19" y="501" width="338" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-bd-mtI">
-                                        <rect key="frame" x="0.0" y="0.0" width="338" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="338" height="32"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather data transmitted by the Mars Curiosity Rover" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="6ev-ht-SJu">
-                                        <rect key="frame" x="0.0" y="35" width="338" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Weather data transmitted by the Mars Curiosity Rover" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="6ev-ht-SJu">
+                                        <rect key="frame" x="0.0" y="34" width="338" height="32"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uh-bu-4vH">
-                                        <rect key="frame" x="0.0" y="70" width="338" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Updated:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uh-bu-4vH">
+                                        <rect key="frame" x="0.0" y="68" width="338" height="32"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -458,7 +440,7 @@ See the License for the specific language governing permissions and limitations 
                             <constraint firstAttribute="leadingMargin" secondItem="AQK-gb-RJV" secondAttribute="leading" id="iU5-br-KvA"/>
                             <constraint firstItem="AQK-gb-RJV" firstAttribute="centerY" secondItem="dgq-Lk-8bl" secondAttribute="centerY" multiplier="0.75" id="idk-PT-6Et"/>
                             <constraint firstItem="qcB-yd-L05" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="iyq-d9-37c"/>
-                            <constraint firstItem="aEB-7C-Ux3" firstAttribute="height" secondItem="dgq-Lk-8bl" secondAttribute="height" multiplier="0.15" id="jgz-9Y-l00"/>
+                            <constraint firstItem="aEB-7C-Ux3" firstAttribute="height" secondItem="dgq-Lk-8bl" secondAttribute="height" multiplier="0.175" id="jgz-9Y-l00"/>
                             <constraint firstItem="aEB-7C-Ux3" firstAttribute="centerX" secondItem="dgq-Lk-8bl" secondAttribute="centerX" id="l7g-SG-UKh"/>
                             <constraint firstItem="gca-S7-qIm" firstAttribute="leading" secondItem="dgq-Lk-8bl" secondAttribute="leading" id="nBh-6a-1hI"/>
                             <constraint firstItem="gca-S7-qIm" firstAttribute="height" secondItem="dgq-Lk-8bl" secondAttribute="height" multiplier="0.5" constant="100" id="nWX-un-CSd"/>
@@ -474,16 +456,21 @@ See the License for the specific language governing permissions and limitations 
                         <outlet property="buttonStackView" destination="pHA-iT-6as" id="xZY-6t-HgS"/>
                         <outlet property="lastUpdatedLabel" destination="8Uh-bu-4vH" id="5BG-D5-UUO"/>
                         <outlet property="martianImageView" destination="AQK-gb-RJV" id="D3k-ld-BlL"/>
-                        <outlet property="maxCelLabel" destination="TEI-VI-6dO" id="pqF-7z-3cn"/>
-                        <outlet property="maxFarLabel" destination="OFp-bZ-EwP" id="BxP-hM-FlI"/>
-                        <outlet property="minCelLabel" destination="1x3-8s-VHp" id="gjH-8F-fYT"/>
-                        <outlet property="minFarLabel" destination="bdR-6d-LvT" id="t18-b1-XLw"/>
+                        <outlet property="maxTempLabel" destination="OFp-bZ-EwP" id="f0L-Uf-V4x"/>
+                        <outlet property="minTempLabel" destination="bdR-6d-LvT" id="Mcz-FU-GLa"/>
                         <outlet property="rocketButton" destination="4sh-Az-xFw" id="G9G-0a-6Di"/>
+                        <outlet property="temperatureStackViw" destination="aEB-7C-Ux3" id="Kld-n6-apZ"/>
+                        <outlet property="temperatureTapGestureRecognizer" destination="LAX-ev-fj3" id="zQy-en-sLk"/>
                         <outlet property="ufoImageView" destination="yyg-wY-Wrz" id="OmB-Pm-bgw"/>
                         <outlet property="weatherLabel" destination="Yu8-bd-mtI" id="e9m-pW-t5b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13p-zj-Qbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="LAX-ev-fj3">
+                    <connections>
+                        <action selector="temperatureStackViewTapped:" destination="gF0-xh-Kng" id="8Uy-cr-zHO"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="915.5" y="275.5"/>
         </scene>
