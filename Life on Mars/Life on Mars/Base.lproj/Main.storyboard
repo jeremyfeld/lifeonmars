@@ -117,9 +117,23 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I07-pb-tBn">
+                                        <rect key="frame" x="166" y="895" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="nbS-3r-g1I"/>
+                                            <constraint firstAttribute="height" constant="44" id="nkQ-iD-Ebc"/>
+                                        </constraints>
+                                        <state key="normal" title="Let's Go!" image="rocket">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onboardingRocketTapped:" destination="Z4P-eb-Ncf" eventType="touchUpInside" id="yNz-AT-bAe"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="I07-pb-tBn" firstAttribute="centerY" secondItem="vC3-Va-7sq" secondAttribute="centerY" multiplier="2.75" id="1qA-Lt-Ifo"/>
                                     <constraint firstItem="0ty-dG-GAb" firstAttribute="height" secondItem="vC3-Va-7sq" secondAttribute="height" id="3bU-t6-UUO"/>
                                     <constraint firstItem="5Px-za-14r" firstAttribute="centerY" secondItem="vC3-Va-7sq" secondAttribute="centerY" id="6gI-aR-9Ru"/>
                                     <constraint firstItem="9x3-Fr-Rpz" firstAttribute="centerY" secondItem="vC3-Va-7sq" secondAttribute="centerY" id="6xe-7c-8Yi"/>
@@ -129,6 +143,7 @@
                                     <constraint firstItem="9x3-Fr-Rpz" firstAttribute="width" secondItem="vC3-Va-7sq" secondAttribute="width" multiplier="0.75" id="Fyo-Ot-QRd"/>
                                     <constraint firstItem="0ty-dG-GAb" firstAttribute="centerX" secondItem="vC3-Va-7sq" secondAttribute="centerX" id="IS3-7M-EcY"/>
                                     <constraint firstItem="peE-QY-n9O" firstAttribute="centerY" secondItem="vC3-Va-7sq" secondAttribute="centerY" id="KHJ-vf-a5e"/>
+                                    <constraint firstItem="I07-pb-tBn" firstAttribute="centerX" secondItem="vC3-Va-7sq" secondAttribute="centerX" id="N6U-zf-g11"/>
                                     <constraint firstItem="0ty-dG-GAb" firstAttribute="width" secondItem="vC3-Va-7sq" secondAttribute="width" multiplier="0.75" id="Ux5-9h-h9D"/>
                                     <constraint firstItem="0ty-dG-GAb" firstAttribute="centerY" secondItem="vC3-Va-7sq" secondAttribute="centerY" id="VPG-5p-EM3"/>
                                     <constraint firstItem="9x3-Fr-Rpz" firstAttribute="height" secondItem="vC3-Va-7sq" secondAttribute="height" id="W5F-DL-OGX"/>
@@ -144,24 +159,10 @@
                                     <constraint firstItem="9x3-Fr-Rpz" firstAttribute="centerX" secondItem="vC3-Va-7sq" secondAttribute="centerX" id="yDm-Gg-Zgn"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I07-pb-tBn">
-                                <rect key="frame" x="165" y="812" width="44" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="nbS-3r-g1I"/>
-                                    <constraint firstAttribute="height" constant="44" id="nkQ-iD-Ebc"/>
-                                </constraints>
-                                <state key="normal" title="Let's Go!" image="rocket">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="onboardingRocketTapped:" destination="Z4P-eb-Ncf" eventType="touchUpInside" id="yNz-AT-bAe"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="yjA-I4-K8N" firstAttribute="centerX" secondItem="JA8-UG-agL" secondAttribute="centerX" id="0TK-VE-nbP"/>
-                            <constraint firstItem="I07-pb-tBn" firstAttribute="centerX" secondItem="vC3-Va-7sq" secondAttribute="centerX" id="83g-Zh-gTc"/>
                             <constraint firstItem="yoB-TS-HZp" firstAttribute="top" secondItem="7By-xK-CMX" secondAttribute="bottom" constant="20" id="8ag-qV-bJk"/>
                             <constraint firstItem="3sH-wa-RYA" firstAttribute="centerX" secondItem="JA8-UG-agL" secondAttribute="centerX" id="CDw-s9-UUX"/>
                             <constraint firstItem="vC3-Va-7sq" firstAttribute="height" secondItem="JA8-UG-agL" secondAttribute="height" id="Hsz-4M-CDT"/>
@@ -177,7 +178,6 @@
                             <constraint firstItem="yoB-TS-HZp" firstAttribute="top" secondItem="3sH-wa-RYA" secondAttribute="bottom" id="k48-qH-65N"/>
                             <constraint firstItem="ows-uq-e2t" firstAttribute="width" secondItem="JA8-UG-agL" secondAttribute="width" id="kRa-LI-9AW"/>
                             <constraint firstItem="7By-xK-CMX" firstAttribute="top" secondItem="JhJ-bl-nfK" secondAttribute="bottom" constant="3" id="pzO-Zm-qrY"/>
-                            <constraint firstItem="I07-pb-tBn" firstAttribute="centerY" secondItem="vC3-Va-7sq" secondAttribute="centerY" multiplier="2.5" id="qkl-zw-qFF"/>
                             <constraint firstItem="vC3-Va-7sq" firstAttribute="centerX" secondItem="JA8-UG-agL" secondAttribute="centerX" id="r5g-yt-Cfu"/>
                             <constraint firstItem="ows-uq-e2t" firstAttribute="leading" secondItem="JA8-UG-agL" secondAttribute="leading" id="voM-JD-v9I"/>
                             <constraint firstItem="ows-uq-e2t" firstAttribute="height" secondItem="JA8-UG-agL" secondAttribute="height" multiplier="5" id="wOm-45-fDN"/>

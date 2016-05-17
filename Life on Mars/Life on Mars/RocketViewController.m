@@ -76,6 +76,11 @@
 
 - (IBAction)onboardingRocketTapped:(id)sender
 {
+    [UIView animateWithDuration:1 animations:^{
+        self.onboardingContainerView.alpha = 0;
+    } completion:^(BOOL finished) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:ONBOARD_COMPLETE_KEY];
+    }];
 }
 
 - (IBAction)redButtonTapped:(id)sender
