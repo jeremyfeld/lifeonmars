@@ -31,7 +31,23 @@
 {
     [super viewDidLoad];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    
+    self.rocketImageView.transform = CGAffineTransformIdentity;
+    self.backgroundImageView.transform = CGAffineTransformIdentity;
+    
     self.fireImageView.alpha = 0;
+    
+    self.redButton.userInteractionEnabled = YES;
+    self.teleportButton.userInteractionEnabled = YES;
+    self.redButton.hidden = NO;
+    self.launchLabel.hidden = NO;
+    self.teleportButton.hidden = NO;
+    self.teleportLabel.hidden = NO;
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -79,8 +95,8 @@
         
     } completion:^(BOOL finished) {
         
-            [self performSegueWithIdentifier:@"segueToSpace" sender:self];
-        }];
+        [self performSegueWithIdentifier:@"segueToSpace" sender:self];
+    }];
 }
 
 - (IBAction)teleportTapped:(id)sender

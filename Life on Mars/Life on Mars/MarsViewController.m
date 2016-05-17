@@ -40,7 +40,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.ufoAnimationCounter = 0;
     self.buttonStackShowing = NO;
     self.attributionTextView.hidden = YES;
@@ -115,78 +115,74 @@
 
 - (void)animateMartian
 {
-    CGFloat transformationY = -(self.view.frame.size.height * 0.375 / 2);
+    __weak typeof(self) weakSelf = self;
     
-    [UIView animateWithDuration:1
-                          delay:3
-         usingSpringWithDamping:0.6
-          initialSpringVelocity:0
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         CGAffineTransform transform = CGAffineTransformIdentity;
-                         
-                         transform = CGAffineTransformTranslate(transform, 0, transformationY);
-                         
-                         self.martianImageView.transform = transform;
-                         
-                     } completion:^(BOOL finished) {
-                         
-                         [UIView animateWithDuration:1
-                                               delay:3
-                                             options:UIViewAnimationOptionCurveEaseInOut
-                                          animations:^{
-                                              
-                                              self.martianImageView.transform = CGAffineTransformIdentity;
-                                              
-                                          } completion:^(BOOL finished) {
-                                              
-                                              [self animateMartian];
-                                          }];
-                     }];
+    CGFloat transformationY = -(weakSelf.view.frame.size.height * 0.375 / 2);
+    
+    [UIView animateWithDuration:1 delay:3 usingSpringWithDamping:0.6 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        
+        CGAffineTransform transform = CGAffineTransformIdentity;
+        
+        transform = CGAffineTransformTranslate(transform, 0, transformationY);
+        
+        weakSelf.martianImageView.transform = transform;
+        
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:1 delay:3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            
+            weakSelf.martianImageView.transform = CGAffineTransformIdentity;
+            
+        } completion:^(BOOL finished) {
+            
+            [weakSelf animateMartian];
+        }];
+    }];
 }
 
 - (void)animateBlackhole
 {
-    [UIView animateWithDuration:1
-                          delay:0
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         
-                         [self.blackholeImageView setTransform:CGAffineTransformRotate(self.blackholeImageView.transform, M_PI_2)];
-                         
-                     } completion:^(BOOL finished) {
-                         
-                         [self animateBlackhole];
-                     }];
+    __weak typeof(self) weakSelf = self;
+
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+        
+        [weakSelf.blackholeImageView setTransform:CGAffineTransformRotate(weakSelf.blackholeImageView.transform, M_PI_2)];
+        
+    } completion:^(BOOL finished) {
+        
+        [weakSelf animateBlackhole];
+    }];
 }
 
 - (void)animateUFO
 {
-    CGFloat transformationY = -((self.view.frame.size.height + 50) / 2);
+    __weak typeof(self) weakSelf = self;
     
-    if (self.ufoAnimationCounter % 2 == 0) {
+    CGFloat transformationY = -((weakSelf.view.frame.size.height + 50) / 2);
+    
+    if (weakSelf.ufoAnimationCounter % 2 == 0) {
         
         [UIView animateWithDuration:2 delay:2 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
             CGAffineTransform transform = CGAffineTransformIdentity;
             
-            transform = CGAffineTransformTranslate(transform, self.view.frame.size.width + 300, transformationY);
+            transform = CGAffineTransformTranslate(transform, weakSelf.view.frame.size.width + 300, transformationY);
             
             transform = CGAffineTransformScale(transform, 0.1, 0.1);
             
-            self.ufoImageView.transform = transform;
+            weakSelf.ufoImageView.transform = transform;
             
         } completion:^(BOOL finished) {
             
             [UIView animateWithDuration:2 delay:4 options:UIViewAnimationOptionCurveEaseIn animations:^{
                 
-                self.ufoImageView.transform = CGAffineTransformIdentity;
+                weakSelf.ufoImageView.transform = CGAffineTransformIdentity;
                 
             } completion:^(BOOL finished) {
                 
-                self.ufoAnimationCounter++;
+                weakSelf.ufoAnimationCounter++;
                 
-                [self animateUFO];
+                [weakSelf animateUFO];
             }];
         }];
         
@@ -194,22 +190,38 @@
         
         [UIView animateWithDuration:2 delay:4 options:UIViewAnimationOptionCurveLinear animations:^{
             
-            self.ufoImageView.transform = CGAffineTransformMakeTranslation(self.view.frame.size.width + 300, 0);
+            weakSelf.ufoImageView.transform = CGAffineTransformMakeTranslation(weakSelf.view.frame.size.width + 300, 0);
             
         } completion:^(BOOL finished) {
             
             [UIView animateWithDuration:2 delay:4 options:UIViewAnimationOptionCurveLinear animations:^{
                 
-                self.ufoImageView.transform = CGAffineTransformIdentity;
+                weakSelf.ufoImageView.transform = CGAffineTransformIdentity;
                 
             } completion:^(BOOL finished) {
                 
-                self.ufoAnimationCounter++;
+                weakSelf.ufoAnimationCounter++;
                 
-                [self animateUFO];
+                [weakSelf animateUFO];
             }];
         }];
     }
+}
+
+#pragma mark - API
+
+-(void)fetchMarsWeather
+{
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    [sessionManager GET:MARS_API parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self saveTemperaturesFromWeatherReport:responseObject[@"report"]];
+        [self updateLabelsWithWeatherReport:responseObject[@"report"]];
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self displayErrorAlert:error];
+    }];
 }
 
 #pragma mark - Update Labels
@@ -276,7 +288,7 @@
 }
 
 #pragma mark - Error Handling
-     
+
 - (void)displayErrorAlert:(NSError *)error
 {
     UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"Houston, we have a problem!" message:[NSString stringWithFormat:@"There was an error loading the data: %@", error.localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
@@ -297,23 +309,6 @@
     self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
     [self.audioPlayer prepareToPlay];
     [self.audioPlayer play];
-}
-
-#pragma mark - API
-
--(void)fetchMarsWeather
-{
-AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
-[sessionManager GET:MARS_API parameters:nil progress:^(NSProgress *downloadProgress) {
-    
-} success:^(NSURLSessionDataTask *task, id responseObject) {
-    [self saveTemperaturesFromWeatherReport:responseObject[@"report"]];
-    [self updateLabelsWithWeatherReport:responseObject[@"report"]];
-    
-} failure:^(NSURLSessionDataTask *task, NSError *error) {
-    
-    [self displayErrorAlert:error];
-}];
 }
 
 @end

@@ -86,7 +86,8 @@
 
 - (IBAction)earthButtonTapped:(id)sender
 {
-     [self performSegueWithIdentifier:@"segueToEarth" sender:self];
+//     [self performSegueWithIdentifier:@"segueToEarth" sender:self];
+     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)infoTapped:(id)sender
@@ -145,8 +146,6 @@
 - (void)handleVideoFromDictionary:(NSDictionary *)APODDictionary
 {
      NSURL *youtubeURL = [NSURL URLWithString:APODDictionary[@"url"]];
-     // ryoutubeURL.relativePath
-     //replace /embed/ with emptystring
      SFSafariViewController *youtubeView = [[SFSafariViewController alloc] initWithURL:youtubeURL];
      [self presentViewController:youtubeView animated:YES completion:nil];
 }
@@ -198,11 +197,7 @@
      NSString *APODurl = [NSString stringWithFormat:@"https://api.nasa.gov/planetary/apod?api_key=%@", APOD_API_KEY];
      
      AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
-     [sessionManager GET:APODurl parameters:nil progress:^(NSProgress *downloadProgress) {
-          
-          //progress bar?
-          
-     } success:^(NSURLSessionDataTask *task, id responseObject) {
+     [sessionManager GET:APODurl parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
           
           NSDictionary *APODDictionary = responseObject;
           self.titleLabel.text = APODDictionary[@"title"];
@@ -217,20 +212,18 @@
                NSURL *picURL = [NSURL URLWithString:APODDictionary[@"hdurl"]];
                NSURLRequest *request = [NSURLRequest requestWithURL:picURL];
                
-               [self.APODImageView setImageWithURLRequest:request
-                                         placeholderImage:nil
-                                                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                                       
-                                                       CGFloat imageAspectRatio = image.size.width / image.size.height;
-                                                       
-                                                       [self.APODImageView.widthAnchor constraintEqualToAnchor:self.APODImageView.heightAnchor multiplier:imageAspectRatio].active = YES;
-
-                                                       self.APODImageView.image = image;
-                                                       
-                                                  } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-                                                       
-                                                       [self displayErrorAlert:error];
-                                                  }];
+               [self.APODImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                    
+                    CGFloat imageAspectRatio = image.size.width / image.size.height;
+                    
+                    [self.APODImageView.widthAnchor constraintEqualToAnchor:self.APODImageView.heightAnchor multiplier:imageAspectRatio].active = YES;
+                    
+                    self.APODImageView.image = image;
+                    
+               } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                    
+                    [self displayErrorAlert:error];
+               }];
           }
           
      } failure:^(NSURLSessionDataTask *task, NSError *error) {
