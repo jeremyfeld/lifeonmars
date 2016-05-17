@@ -80,33 +80,39 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vC3-Va-7sq" userLabel="onboarding view">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vC3-Va-7sq" userLabel="onboarding view">
                                 <rect key="frame" x="-1" y="0.0" width="376" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="space-sunrise" translatesAutoresizingMaskIntoConstraints="NO" id="5Px-za-14r">
-                                        <rect key="frame" x="1" y="0.0" width="375" height="667"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="space-sunrise" translatesAutoresizingMaskIntoConstraints="NO" id="5Px-za-14r">
+                                        <rect key="frame" x="-1" y="0.0" width="376" height="667"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Life on Mars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gao-tj-qmg">
-                                        <rect key="frame" x="162" y="567" width="194" height="60"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Life on Mars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gao-tj-qmg">
+                                        <rect key="frame" x="161" y="567" width="194" height="60"/>
                                         <fontDescription key="fontDescription" name="Futura-CondensedMedium" family="Futura" pointSize="50"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHK-rH-En8">
-                                        <rect key="frame" x="1" y="0.0" width="375" height="667"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHK-rH-En8">
+                                        <rect key="frame" x="-1" y="0.0" width="376" height="667"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peE-QY-n9O">
-                                        <rect key="frame" x="2" y="0.0" width="375" height="667"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peE-QY-n9O">
+                                        <rect key="frame" x="47" y="0.0" width="281" height="667"/>
                                         <string key="text">Take a journey through space!  Your first stop could be anywhere in the universe!  Take your rocket to the destination of NASA’s Astronomy Picture of the Day.  Scroll around, explore, and save the picture as a memento of your trip!</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Continue your journey to Mars and see the weather forecast, sent directly from the Mars Curiosity Rover!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ty-dG-GAb">
-                                        <rect key="frame" x="1" y="0.0" width="375" height="667"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue your journey to Mars and see the weather forecast, sent directly from the Mars Curiosity Rover!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ty-dG-GAb">
+                                        <rect key="frame" x="47" y="0.0" width="281" height="667"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the rocket when you're ready..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9x3-Fr-Rpz">
+                                        <rect key="frame" x="47" y="0.0" width="281" height="667"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -116,13 +122,16 @@
                                 <constraints>
                                     <constraint firstItem="0ty-dG-GAb" firstAttribute="height" secondItem="vC3-Va-7sq" secondAttribute="height" id="3bU-t6-UUO"/>
                                     <constraint firstItem="5Px-za-14r" firstAttribute="centerY" secondItem="vC3-Va-7sq" secondAttribute="centerY" id="6gI-aR-9Ru"/>
+                                    <constraint firstItem="9x3-Fr-Rpz" firstAttribute="centerY" secondItem="vC3-Va-7sq" secondAttribute="centerY" id="6xe-7c-8Yi"/>
                                     <constraint firstItem="peE-QY-n9O" firstAttribute="width" secondItem="vC3-Va-7sq" secondAttribute="width" multiplier="0.75" id="9E4-Tl-OTZ"/>
                                     <constraint firstAttribute="trailing" secondItem="Gao-tj-qmg" secondAttribute="trailing" constant="20" id="A9A-8o-0Zp"/>
                                     <constraint firstItem="gHK-rH-En8" firstAttribute="centerY" secondItem="vC3-Va-7sq" secondAttribute="centerY" id="DiK-wE-HdM"/>
+                                    <constraint firstItem="9x3-Fr-Rpz" firstAttribute="width" secondItem="vC3-Va-7sq" secondAttribute="width" multiplier="0.75" id="Fyo-Ot-QRd"/>
                                     <constraint firstItem="0ty-dG-GAb" firstAttribute="centerX" secondItem="vC3-Va-7sq" secondAttribute="centerX" id="IS3-7M-EcY"/>
                                     <constraint firstItem="peE-QY-n9O" firstAttribute="centerY" secondItem="vC3-Va-7sq" secondAttribute="centerY" id="KHJ-vf-a5e"/>
                                     <constraint firstItem="0ty-dG-GAb" firstAttribute="width" secondItem="vC3-Va-7sq" secondAttribute="width" multiplier="0.75" id="Ux5-9h-h9D"/>
                                     <constraint firstItem="0ty-dG-GAb" firstAttribute="centerY" secondItem="vC3-Va-7sq" secondAttribute="centerY" id="VPG-5p-EM3"/>
+                                    <constraint firstItem="9x3-Fr-Rpz" firstAttribute="height" secondItem="vC3-Va-7sq" secondAttribute="height" id="W5F-DL-OGX"/>
                                     <constraint firstAttribute="bottom" secondItem="Gao-tj-qmg" secondAttribute="bottom" constant="40" id="Y70-cG-jqU"/>
                                     <constraint firstItem="gHK-rH-En8" firstAttribute="centerX" secondItem="vC3-Va-7sq" secondAttribute="centerX" id="YPX-vh-MK9"/>
                                     <constraint firstItem="5Px-za-14r" firstAttribute="width" secondItem="vC3-Va-7sq" secondAttribute="width" id="fyH-2y-Wt9"/>
@@ -132,12 +141,27 @@
                                     <constraint firstItem="gHK-rH-En8" firstAttribute="width" secondItem="vC3-Va-7sq" secondAttribute="width" id="ot6-PS-I9M"/>
                                     <constraint firstItem="peE-QY-n9O" firstAttribute="height" secondItem="vC3-Va-7sq" secondAttribute="height" id="uJz-b5-i52"/>
                                     <constraint firstItem="5Px-za-14r" firstAttribute="height" secondItem="vC3-Va-7sq" secondAttribute="height" id="vP8-hC-lUB"/>
+                                    <constraint firstItem="9x3-Fr-Rpz" firstAttribute="centerX" secondItem="vC3-Va-7sq" secondAttribute="centerX" id="yDm-Gg-Zgn"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I07-pb-tBn">
+                                <rect key="frame" x="165" y="812" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="nbS-3r-g1I"/>
+                                    <constraint firstAttribute="height" constant="44" id="nkQ-iD-Ebc"/>
+                                </constraints>
+                                <state key="normal" title="Let's Go!" image="rocket">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onboardingRocketTapped:" destination="Z4P-eb-Ncf" eventType="touchUpInside" id="yNz-AT-bAe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="yjA-I4-K8N" firstAttribute="centerX" secondItem="JA8-UG-agL" secondAttribute="centerX" id="0TK-VE-nbP"/>
+                            <constraint firstItem="I07-pb-tBn" firstAttribute="centerX" secondItem="vC3-Va-7sq" secondAttribute="centerX" id="83g-Zh-gTc"/>
                             <constraint firstItem="yoB-TS-HZp" firstAttribute="top" secondItem="7By-xK-CMX" secondAttribute="bottom" constant="20" id="8ag-qV-bJk"/>
                             <constraint firstItem="3sH-wa-RYA" firstAttribute="centerX" secondItem="JA8-UG-agL" secondAttribute="centerX" id="CDw-s9-UUX"/>
                             <constraint firstItem="vC3-Va-7sq" firstAttribute="height" secondItem="JA8-UG-agL" secondAttribute="height" id="Hsz-4M-CDT"/>
@@ -153,6 +177,7 @@
                             <constraint firstItem="yoB-TS-HZp" firstAttribute="top" secondItem="3sH-wa-RYA" secondAttribute="bottom" id="k48-qH-65N"/>
                             <constraint firstItem="ows-uq-e2t" firstAttribute="width" secondItem="JA8-UG-agL" secondAttribute="width" id="kRa-LI-9AW"/>
                             <constraint firstItem="7By-xK-CMX" firstAttribute="top" secondItem="JhJ-bl-nfK" secondAttribute="bottom" constant="3" id="pzO-Zm-qrY"/>
+                            <constraint firstItem="I07-pb-tBn" firstAttribute="centerY" secondItem="vC3-Va-7sq" secondAttribute="centerY" multiplier="2.5" id="qkl-zw-qFF"/>
                             <constraint firstItem="vC3-Va-7sq" firstAttribute="centerX" secondItem="JA8-UG-agL" secondAttribute="centerX" id="r5g-yt-Cfu"/>
                             <constraint firstItem="ows-uq-e2t" firstAttribute="leading" secondItem="JA8-UG-agL" secondAttribute="leading" id="voM-JD-v9I"/>
                             <constraint firstItem="ows-uq-e2t" firstAttribute="height" secondItem="JA8-UG-agL" secondAttribute="height" multiplier="5" id="wOm-45-fDN"/>
@@ -166,6 +191,12 @@
                         <outlet property="fireHeightConstraint" destination="yDq-Mg-ML6" id="0sn-f0-KWk"/>
                         <outlet property="fireImageView" destination="yjA-I4-K8N" id="lZo-sw-bee"/>
                         <outlet property="launchLabel" destination="JhJ-bl-nfK" id="Ed6-LG-AB6"/>
+                        <outlet property="onboardingContainerView" destination="vC3-Va-7sq" id="flN-Tx-scY"/>
+                        <outlet property="onboardingLabelFour" destination="9x3-Fr-Rpz" id="FWH-RD-I33"/>
+                        <outlet property="onboardingLabelOne" destination="gHK-rH-En8" id="vLK-6R-W0N"/>
+                        <outlet property="onboardingLabelThree" destination="0ty-dG-GAb" id="XAZ-bV-mHQ"/>
+                        <outlet property="onboardingLabelTwo" destination="peE-QY-n9O" id="rnQ-JV-LOc"/>
+                        <outlet property="onboardingRocketButton" destination="I07-pb-tBn" id="bGz-Bs-A9n"/>
                         <outlet property="redButton" destination="7By-xK-CMX" id="Qv1-b0-HTr"/>
                         <outlet property="rocketBottomConstraint" destination="k48-qH-65N" id="ldo-rV-hMJ"/>
                         <outlet property="rocketHeightConstraint" destination="KGc-YH-nkm" id="UNh-Zc-iqb"/>
@@ -394,7 +425,7 @@ See the License for the specific language governing permissions and limitations 
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Min Temp:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdR-6d-LvT" userLabel="Min Temp">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min Temp:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdR-6d-LvT" userLabel="Min Temp">
                                         <rect key="frame" x="93" y="65" width="134" height="53"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="28"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
