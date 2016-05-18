@@ -22,8 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *martianImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *ufoImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *blackholeImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *alienImageView;
 @property (weak, nonatomic) IBOutlet UIStackView *buttonStackView;
-@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *temperatureTapGestureRecognizer;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (assign, nonatomic) NSUInteger ufoAnimationCounter;
 @property (assign, nonatomic) BOOL buttonStackShowing;
@@ -59,6 +59,7 @@
     [self animateMartian];
     [self animateBlackhole];
     [self animateUFO];
+    [self animateAlien];
 }
 
 #pragma mark - IBActions
@@ -113,7 +114,7 @@
 {
     __weak typeof(self) weakSelf = self;
     
-    CGFloat transformationY = -(weakSelf.view.frame.size.height * 0.375 / 2);
+    CGFloat transformationY = -(self.view.frame.size.height * 0.375 / 2);
     
     [UIView animateWithDuration:1 delay:3 usingSpringWithDamping:0.6 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         
@@ -142,7 +143,7 @@
 
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         
-        [weakSelf.blackholeImageView setTransform:CGAffineTransformRotate(weakSelf.blackholeImageView.transform, M_PI_2)];
+        [weakSelf.blackholeImageView setTransform:CGAffineTransformRotate(self.blackholeImageView.transform, M_PI_2)];
         
     } completion:^(BOOL finished) {
         
@@ -154,15 +155,15 @@
 {
     __weak typeof(self) weakSelf = self;
     
-    CGFloat transformationY = -((weakSelf.view.frame.size.height + 50) / 2);
+    CGFloat transformationY = -((self.view.frame.size.height + 50) / 2);
     
     if (weakSelf.ufoAnimationCounter % 2 == 0) {
         
-        [UIView animateWithDuration:2 delay:2 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [UIView animateWithDuration:3 delay:4 options:UIViewAnimationOptionCurveLinear animations:^{
             
             CGAffineTransform transform = CGAffineTransformIdentity;
             
-            transform = CGAffineTransformTranslate(transform, weakSelf.view.frame.size.width + 300, transformationY);
+            transform = CGAffineTransformTranslate(transform, self.view.frame.size.width + 300, transformationY);
             
             transform = CGAffineTransformScale(transform, 0.1, 0.1);
             
@@ -170,23 +171,25 @@
             
         } completion:^(BOOL finished) {
             
-            [UIView animateWithDuration:2 delay:4 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            [UIView animateWithDuration:3 delay:4 options:UIViewAnimationOptionCurveLinear animations:^{
                 
                 weakSelf.ufoImageView.transform = CGAffineTransformIdentity;
                 
             } completion:^(BOOL finished) {
                 
                 weakSelf.ufoAnimationCounter++;
-                
                 [weakSelf animateUFO];
             }];
         }];
-        
     } else {
         
-        [UIView animateWithDuration:2 delay:4 options:UIViewAnimationOptionCurveLinear animations:^{
+        [UIView animateWithDuration:2 delay:5 options:UIViewAnimationOptionCurveLinear animations:^{
             
-            weakSelf.ufoImageView.transform = CGAffineTransformMakeTranslation(weakSelf.view.frame.size.width + 300, 0);
+            CGAffineTransform transform = CGAffineTransformIdentity;
+            
+            transform = CGAffineTransformTranslate(transform, self.view.frame.size.width + 200, 0);
+            
+            weakSelf.ufoImageView.transform = transform;
             
         } completion:^(BOOL finished) {
             
@@ -195,13 +198,33 @@
                 weakSelf.ufoImageView.transform = CGAffineTransformIdentity;
                 
             } completion:^(BOOL finished) {
-                
                 weakSelf.ufoAnimationCounter++;
-                
                 [weakSelf animateUFO];
             }];
         }];
     }
+}
+
+- (void)animateAlien
+{
+    __weak typeof(self) weakSelf = self;
+    
+    [UIView animateWithDuration:2 delay:16 options:UIViewAnimationOptionCurveLinear animations:^{
+        
+        CGAffineTransform transform = CGAffineTransformIdentity;
+        
+        transform = CGAffineTransformTranslate(transform, -self.view.frame.size.width - 200, 0);
+        
+        weakSelf.alienImageView.transform = transform;
+        
+    } completion:^(BOOL finished) {
+        
+        [UIView animateWithDuration:2 delay:15 options:UIViewAnimationOptionCurveLinear animations:^{
+            
+            weakSelf.alienImageView.transform = CGAffineTransformIdentity;
+            
+        } completion:nil];
+    }];
 }
 
 #pragma mark - API
@@ -255,7 +278,35 @@
     }
 }
 
-- (IBAction)temperatureStackViewTapped:(UITapGestureRecognizer *)sender
+- (IBAction)tempLabelTapped:(UITapGestureRecognizer *)sender
+{
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.25;
+    animation.type = kCATransitionFade;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    
+    [self.minTempLabel.layer addAnimation:animation forKey:@"changeTextTransition"];
+    [self.maxTempLabel.layer addAnimation:animation forKey:@"changeTextTransition"];
+    
+    NSString *temperaturePreference = [[NSUserDefaults standardUserDefaults] objectForKey:TEMP_SCALE_KEY];
+    
+    if ([temperaturePreference isEqualToString:CEL] || !temperaturePreference) {
+        
+        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°F", self.minTempFar];
+        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %@°F", self.maxTempFar];
+        
+        [[NSUserDefaults standardUserDefaults] setValue:FAR forKey:TEMP_SCALE_KEY];
+        
+    } else {
+        
+        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°C", self.minTempCel];
+        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %@°C", self.maxTempCel];
+        
+        [[NSUserDefaults standardUserDefaults] setValue:CEL forKey:TEMP_SCALE_KEY];
+    }
+}
+
+- (void)updateTemperatureScale
 {
     CATransition *animation = [CATransition animation];
     animation.duration = 0.25;

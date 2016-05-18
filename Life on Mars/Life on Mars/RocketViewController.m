@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *redButton;
 @property (weak, nonatomic) IBOutlet UIButton *teleportButton;
 @property (weak, nonatomic) IBOutlet UIButton *onboardingRocketButton;
+@property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UILabel *teleportLabel;
 @property (weak, nonatomic) IBOutlet UILabel *launchLabel;
 @property (weak, nonatomic) IBOutlet UIView *onboardingContainerView;
@@ -26,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *onboardingLabelThree;
 @property (weak, nonatomic) IBOutlet UILabel *onboardingLabelFour;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
+@property (assign, nonatomic) NSUInteger nextTappedCounter;
 
 @end
 
@@ -40,10 +42,12 @@
 {
     [super viewWillAppear:YES];
     
+    self.nextTappedCounter = 0;
+    
     self.rocketImageView.transform = CGAffineTransformIdentity;
     self.backgroundImageView.transform = CGAffineTransformIdentity;
     
-    BOOL shouldSkipOnboarding = [[NSUserDefaults standardUserDefaults] valueForKey:ONBOARD_COMPLETE_KEY];
+    BOOL shouldSkipOnboarding = [[NSUserDefaults standardUserDefaults] boolForKey:ONBOARD_COMPLETE_KEY];
     
     if (shouldSkipOnboarding) {
         
@@ -54,8 +58,6 @@
         self.onboardingLabelTwo.alpha = 0;
         self.onboardingLabelThree.alpha = 0;
         self.onboardingLabelFour.alpha = 0;
-        
-        [self displayOnboardingLabels];
     }
     
     self.fireImageView.alpha = 0;
@@ -64,7 +66,7 @@
     self.redButton.hidden = NO;
     self.launchLabel.hidden = NO;
     
-    BOOL shouldShowTeleport = [[NSUserDefaults standardUserDefaults] objectForKey:USER_HAS_LAUNCHED_KEY];
+    BOOL shouldShowTeleport = [[NSUserDefaults standardUserDefaults] boolForKey:USER_HAS_LAUNCHED_KEY];
     
     if (shouldShowTeleport) {
         
@@ -145,6 +147,13 @@
     [self performSegueWithIdentifier:@"segueToSpace" sender:self];
 }
 
+- (IBAction)nextButtonTapped:(id)sender
+{
+    self.nextTappedCounter++;
+    
+    [self displayOnboardingLabels];
+}
+
 #pragma mark - Audio Set-Up
 
 - (void)playAudio:(NSString *)soundName
@@ -159,38 +168,46 @@
 
 - (void)displayOnboardingLabels
 {
-    [UIView animateWithDuration:1 delay:3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    if (self.nextTappedCounter == 1) {
         
-        self.onboardingLabelOne.alpha = 0;
-        self.onboardingLabelTwo.alpha = 1;
+        [UIView animateWithDuration:1 animations:^{
+            
+            self.onboardingLabelOne.alpha = 0;
+            self.onboardingLabelTwo.alpha = 1;
+            
+        }];
         
-    } completion:^(BOOL finished) {
+    } else if (self.nextTappedCounter == 2) {
         
-        [UIView animateWithDuration:1 delay:10 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:1 animations:^{
             
             self.onboardingLabelTwo.alpha = 0;
             self.onboardingLabelThree.alpha = 1;
             
+        }];
+        
+    } else if (self.nextTappedCounter == 3) {
+        
+        [UIView animateWithDuration:1 animations:^{
+            
+            self.onboardingLabelThree.alpha = 0;
+            self.onboardingLabelFour.alpha = 1;
+            self.nextButton.alpha = 0;
+            
         } completion:^(BOOL finished) {
             
-            [UIView animateWithDuration:1 delay:7 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:3 animations:^{
                 
-                self.onboardingLabelThree.alpha = 0;
-                self.onboardingLabelFour.alpha = 1;
+                CGAffineTransform transform = CGAffineTransformIdentity;
                 
-            } completion:^(BOOL finished) {
+                transform = CGAffineTransformTranslate(transform, 0, -self.view.frame.size.height);
                 
-                [UIView animateWithDuration:3 animations:^{
-                    
-                    CGAffineTransform transform = CGAffineTransformIdentity;
-                    
-                    transform = CGAffineTransformTranslate(transform, 0, -self.view.frame.size.height);
-                    
-                    self.onboardingRocketButton.transform = transform;
-                }];
+                self.onboardingRocketButton.transform = transform;
             }];
+            
         }];
-    }];
+        
+    }
 }
 
 @end

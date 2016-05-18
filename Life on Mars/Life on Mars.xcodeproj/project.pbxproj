@@ -10,6 +10,7 @@
 		A30AD13F51E6C4325F987201 /* libPods-Life on Mars.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2543E98EB2BABC9B84821B /* libPods-Life on Mars.a */; };
 		CB0C5EDA1CDA70F000D898DF /* RocketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0C5ED91CDA70F000D898DF /* RocketViewController.m */; };
 		CB0F83051CE39DAD00B1813C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB6999151CD7B86500ADFE4F /* Assets.xcassets */; };
+		CB64ACBD1CED0E0C007241AC /* camera.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CB64ACBC1CED0E0C007241AC /* camera.mp3 */; };
 		CB69990B1CD7B86500ADFE4F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CB69990A1CD7B86500ADFE4F /* main.m */; };
 		CB69990E1CD7B86500ADFE4F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CB69990D1CD7B86500ADFE4F /* AppDelegate.m */; };
 		CB6999141CD7B86500ADFE4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB6999121CD7B86500ADFE4F /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		AA2543E98EB2BABC9B84821B /* libPods-Life on Mars.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Life on Mars.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0C5ED81CDA70F000D898DF /* RocketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RocketViewController.h; sourceTree = "<group>"; };
 		CB0C5ED91CDA70F000D898DF /* RocketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RocketViewController.m; sourceTree = "<group>"; };
+		CB64ACBC1CED0E0C007241AC /* camera.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = camera.mp3; sourceTree = "<group>"; };
 		CB6999061CD7B86500ADFE4F /* Life on Mars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Life on Mars.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB69990A1CD7B86500ADFE4F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CB69990C1CD7B86500ADFE4F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 		CBB2A3421CEA4A9500AA1C9C /* Audio Files */ = {
 			isa = PBXGroup;
 			children = (
+				CB64ACBC1CED0E0C007241AC /* camera.mp3 */,
 				CBB2A3431CEA4B9000AA1C9C /* powerup.mp3 */,
 				CBB2A3471CEA4BA500AA1C9C /* rocketLaunch.mp3 */,
 				CBB2A3491CEA4BAA00AA1C9C /* music.mp3 */,
@@ -303,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB0F83051CE39DAD00B1813C /* Assets.xcassets in Resources */,
+				CB64ACBD1CED0E0C007241AC /* camera.mp3 in Resources */,
 				CB6999191CD7B86500ADFE4F /* LaunchScreen.storyboard in Resources */,
 				CB6999141CD7B86500ADFE4F /* Main.storyboard in Resources */,
 				CBB2A3461CEA4B9F00AA1C9C /* ufo.mp3 in Resources */,

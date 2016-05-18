@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *APODImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *easterEggDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIButton *infoButton;
 @property (weak, nonatomic) IBOutlet UIButton *spaceshipButton;
@@ -27,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIStackView *buttonStackView;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (assign, nonatomic) BOOL buttonStackShowing;
+@property (assign, nonatomic) BOOL descriptionLabelShowing;
 
 @end
 
@@ -38,6 +40,7 @@
      
      self.scrollView.delegate = self;
      self.buttonStackShowing = NO;
+     self.descriptionLabelShowing = NO;
      
      if (!self.APODImageView.image) {
           
@@ -62,6 +65,8 @@
      
      if (!self.buttonStackShowing) {
           
+          self.buttonStackShowing = YES;
+          
           [UIView animateWithDuration:0.4 animations:^{
                
                CGAffineTransform transform = CGAffineTransformIdentity;
@@ -69,16 +74,15 @@
                transform = CGAffineTransformTranslate(transform, -216, 0);
                
                self.buttonStackView.transform = transform;
-               
-               self.buttonStackShowing = YES;
           }];
           
      } else {
           
+          self.buttonStackShowing = NO;
+
           [UIView animateWithDuration:0.4 animations:^{
                
                self.buttonStackView.transform = CGAffineTransformIdentity;
-               self.buttonStackShowing = NO;
           }];
      }
 }
@@ -90,6 +94,37 @@
 
 - (IBAction)infoTapped:(id)sender
 {
+     if (self.descriptionLabelShowing) {
+          
+          self.descriptionLabelShowing = NO;
+          
+          [UIView animateWithDuration:1 animations:^{
+               
+               self.descriptionLabel.alpha = 0;
+          }];
+          
+     } else {
+          
+          self.descriptionLabelShowing = YES;
+          
+          [UIView animateWithDuration:1 animations:^{
+               
+               self.descriptionLabel.alpha = 1;
+          }];
+     }
+}
+
+- (IBAction)saveTapped:(id)sender
+{
+     [self playAudio:@"camera"];
+     
+     NSData *imageData = UIImageJPEGRepresentation(self.APODImageView.image, 1);
+     UIImage *compressedJPGImage = [UIImage imageWithData:imageData];
+     UIImageWriteToSavedPhotosAlbum(compressedJPGImage, self, @selector(saveImageHandler:didFinishSavingWithError:contextInfo:), nil);
+}
+
+- (IBAction)titleTapped:(id)sender
+{
      self.infoButton.userInteractionEnabled = NO;
      self.spaceshipButton.userInteractionEnabled = NO;
      self.infoButton.hidden = YES;
@@ -97,6 +132,7 @@
      self.marsButton.hidden = YES;
      self.saveButton.hidden = YES;
      self.earthButton.hidden = YES;
+     self.descriptionLabel.hidden = YES;
      
      [self playAudio:@"music"];
      
@@ -105,14 +141,14 @@
           self.titleLabel.hidden = YES;
           CGAffineTransform transform = CGAffineTransformIdentity;
           
-          transform = CGAffineTransformTranslate(transform, 0, -(self.view.frame.size.height + self.descriptionLabel.frame.size.height));
+          transform = CGAffineTransformTranslate(transform, 0, -(self.view.frame.size.height + self.easterEggDescriptionLabel.frame.size.height));
           
-          self.descriptionLabel.transform = transform;
+          self.easterEggDescriptionLabel.transform = transform;
           
      } completion:^(BOOL finished) {
           
           self.titleLabel.hidden = NO;
-          self.descriptionLabel.transform = CGAffineTransformIdentity;
+          self.easterEggDescriptionLabel.transform = CGAffineTransformIdentity;
           [self.audioPlayer stop];
           
           self.infoButton.userInteractionEnabled = YES;
@@ -122,14 +158,8 @@
           self.marsButton.hidden = NO;
           self.saveButton.hidden = NO;
           self.earthButton.hidden = NO;
+          self.descriptionLabel.hidden = NO;
      }];
-}
-
-- (IBAction)saveTapped:(id)sender
-{
-     NSData *imageData = UIImageJPEGRepresentation(self.APODImageView.image, 1);
-     UIImage *compressedJPGImage = [UIImage imageWithData:imageData];
-     UIImageWriteToSavedPhotosAlbum(compressedJPGImage, self, @selector(saveImageHandler:didFinishSavingWithError:contextInfo:), nil);
 }
 
 #pragma - Audio & Video
@@ -200,7 +230,8 @@
           
           NSDictionary *APODDictionary = responseObject;
           self.titleLabel.text = APODDictionary[@"title"];
-          self.descriptionLabel.text = APODDictionary[@"explanation"];;
+          self.easterEggDescriptionLabel.text = APODDictionary[@"explanation"];
+          self.descriptionLabel.text = APODDictionary[@"explanation"];
           
           if ([APODDictionary[@"media_type"] isEqualToString:@"video"]) {
                
