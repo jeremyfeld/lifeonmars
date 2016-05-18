@@ -40,6 +40,7 @@
      self.buttonStackShowing = NO;
      
      if (!self.APODImageView.image) {
+          
           [self fetchAPOD];
      }
 }
@@ -70,8 +71,7 @@
                self.buttonStackView.transform = transform;
                
                self.buttonStackShowing = YES;
-               
-          } completion:nil];
+          }];
           
      } else {
           
@@ -79,14 +79,12 @@
                
                self.buttonStackView.transform = CGAffineTransformIdentity;
                self.buttonStackShowing = NO;
-               
-          } completion:nil];
+          }];
      }
 }
 
 - (IBAction)earthButtonTapped:(id)sender
 {
-//     [self performSegueWithIdentifier:@"segueToEarth" sender:self];
      [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -112,6 +110,7 @@
           self.descriptionLabel.transform = transform;
           
      } completion:^(BOOL finished) {
+          
           self.titleLabel.hidden = NO;
           self.descriptionLabel.transform = CGAffineTransformIdentity;
           [self.audioPlayer stop];

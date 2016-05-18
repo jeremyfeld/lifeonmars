@@ -25,9 +25,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *onboardingLabelTwo;
 @property (weak, nonatomic) IBOutlet UILabel *onboardingLabelThree;
 @property (weak, nonatomic) IBOutlet UILabel *onboardingLabelFour;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *fireHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rocketHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rocketBottomConstraint;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 
 @end
@@ -49,22 +46,36 @@
     BOOL shouldSkipOnboarding = [[NSUserDefaults standardUserDefaults] valueForKey:ONBOARD_COMPLETE_KEY];
     
     if (shouldSkipOnboarding) {
+        
         self.onboardingContainerView.alpha = 0;
+        
     } else {
+        
         self.onboardingLabelTwo.alpha = 0;
         self.onboardingLabelThree.alpha = 0;
         self.onboardingLabelFour.alpha = 0;
+        
         [self displayOnboardingLabels];
     }
     
     self.fireImageView.alpha = 0;
-    
     self.redButton.userInteractionEnabled = YES;
     self.teleportButton.userInteractionEnabled = YES;
     self.redButton.hidden = NO;
     self.launchLabel.hidden = NO;
+    
+    BOOL shouldShowTeleport = [[NSUserDefaults standardUserDefaults] objectForKey:USER_HAS_LAUNCHED_KEY];
+    
+    if (shouldShowTeleport) {
+        
     self.teleportButton.hidden = NO;
     self.teleportLabel.hidden = NO;
+        
+    } else {
+        
+        self.teleportButton.hidden = YES;
+        self.teleportLabel.hidden = YES;
+    }
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -77,8 +88,11 @@
 - (IBAction)onboardingRocketTapped:(id)sender
 {
     [UIView animateWithDuration:1 animations:^{
+        
         self.onboardingContainerView.alpha = 0;
+        
     } completion:^(BOOL finished) {
+        
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:ONBOARD_COMPLETE_KEY];
     }];
 }
@@ -121,6 +135,7 @@
         
     } completion:^(BOOL finished) {
         
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:USER_HAS_LAUNCHED_KEY];
         [self performSegueWithIdentifier:@"segueToSpace" sender:self];
     }];
 }
@@ -145,25 +160,34 @@
 - (void)displayOnboardingLabels
 {
     [UIView animateWithDuration:1 delay:3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        
         self.onboardingLabelOne.alpha = 0;
         self.onboardingLabelTwo.alpha = 1;
+        
     } completion:^(BOOL finished) {
+        
         [UIView animateWithDuration:1 delay:10 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            
             self.onboardingLabelTwo.alpha = 0;
             self.onboardingLabelThree.alpha = 1;
+            
         } completion:^(BOOL finished) {
+            
             [UIView animateWithDuration:1 delay:7 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                
                 self.onboardingLabelThree.alpha = 0;
                 self.onboardingLabelFour.alpha = 1;
+                
             } completion:^(BOOL finished) {
                 
                 [UIView animateWithDuration:3 animations:^{
+                    
                     CGAffineTransform transform = CGAffineTransformIdentity;
+                    
                     transform = CGAffineTransformTranslate(transform, 0, -self.view.frame.size.height);
                     
                     self.onboardingRocketButton.transform = transform;
                 }];
-
             }];
         }];
     }];

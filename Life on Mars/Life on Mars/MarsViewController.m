@@ -16,7 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *attributionTextView;
 @property (weak, nonatomic) IBOutlet UILabel *minTempLabel;
 @property (weak, nonatomic) IBOutlet UILabel *maxTempLabel;
-@property (weak, nonatomic) IBOutlet UIStackView *temperatureStackViw;
 @property (weak, nonatomic) IBOutlet UILabel *lastUpdatedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *weatherLabel;
 @property (weak, nonatomic) IBOutlet UIButton *rocketButton;
@@ -60,7 +59,6 @@
     [self animateMartian];
     [self animateBlackhole];
     [self animateUFO];
-    
 }
 
 #pragma mark - IBActions
@@ -80,8 +78,7 @@
             self.buttonStackView.transform = transform;
             
             self.buttonStackShowing = YES;
-            
-        } completion:nil];
+        }];
         
     } else {
         
@@ -89,8 +86,7 @@
             
             self.buttonStackView.transform = CGAffineTransformIdentity;
             self.buttonStackShowing = NO;
-            
-        } completion:nil];
+        }];
     }
 }
 
@@ -251,9 +247,8 @@
         
         self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°C", self.minTempCel];
         self.maxTempLabel.text = [NSString stringWithFormat:@"High: %@°C", self.maxTempCel];
-        
-    }
-    else {
+    
+    } else {
         
         self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°F", self.minTempFar];
         self.maxTempLabel.text = [NSString stringWithFormat:@"High: %@°F", self.maxTempFar];
@@ -266,6 +261,7 @@
     animation.duration = 0.25;
     animation.type = kCATransitionFade;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    
     [self.minTempLabel.layer addAnimation:animation forKey:@"changeTextTransition"];
     [self.maxTempLabel.layer addAnimation:animation forKey:@"changeTextTransition"];
     

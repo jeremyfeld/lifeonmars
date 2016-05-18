@@ -12,3 +12,4 @@ static NSString *const TEMP_SCALE_KEY = @"TemperatureScaleKey";
 static NSString *const FAR = @"Farhenheit";
 static NSString *const CEL = @"Celsius";
 static NSString *const ONBOARD_COMPLETE_KEY = @"UserHasCompletedOnboarding";
+static NSString *const USER_HAS_LAUNCHED_KEY = @"UserHasLaunchedKey";
