@@ -194,7 +194,7 @@
             
         } completion:^(BOOL finished) {
             
-            [UIView animateWithDuration:3 animations:^{
+            [UIView animateWithDuration:2 animations:^{
                 
                 CGAffineTransform transform = CGAffineTransformIdentity;
                 

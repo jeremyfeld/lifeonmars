@@ -269,6 +269,7 @@
 				TargetAttributes = {
 					CB6999051CD7B86500ADFE4F = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = L78AM2H9PX;
 					};
 					CB69991E1CD7B86500ADFE4F = {
 						CreatedOnToolsVersion = 7.3;
@@ -531,11 +532,13 @@
 			baseConfigurationReference = A4C9EF629B21834774E54556 /* Pods-Life on Mars.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Life on Mars/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "JBF.Life-on-Mars";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JBF.LifeonMars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -544,11 +547,14 @@
 			baseConfigurationReference = 48AA1633694568C6F4808379 /* Pods-Life on Mars.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = "Life on Mars/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "JBF.Life-on-Mars";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JBF.LifeonMars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -93,36 +93,36 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Welcome to Life on Mars!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHK-rH-En8">
-                                        <rect key="frame" x="56" y="-1" width="263" height="335"/>
+                                        <rect key="frame" x="56" y="-1" width="262" height="335"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peE-QY-n9O">
-                                        <rect key="frame" x="56" y="0.0" width="262" height="334"/>
+                                        <rect key="frame" x="57" y="0.0" width="262" height="334"/>
                                         <string key="text">Take a journey through space. Your first stop could be anywhere in the universe!  Your rocket will take you to the destination of NASA’s Astronomy Picture of the Day.  Scroll around to explore, get information about your destination, or save the picture!</string>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ty-dG-GAb">
-                                        <rect key="frame" x="56" y="0.0" width="262" height="334"/>
+                                        <rect key="frame" x="57" y="0.0" width="262" height="334"/>
                                         <string key="text">When you're ready, continue your journey to Mars and see the weather forecast, sent directly from the Mars Curiosity Rover!  Make sure to pay attention to your surroundings!</string>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you ready?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9x3-Fr-Rpz">
-                                        <rect key="frame" x="56" y="0.0" width="262" height="334"/>
+                                        <rect key="frame" x="57" y="0.0" width="262" height="334"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I07-pb-tBn">
-                                        <rect key="frame" x="166" y="895" width="44" height="44"/>
+                                        <rect key="frame" x="144" y="873" width="88" height="88"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="nbS-3r-g1I"/>
-                                            <constraint firstAttribute="height" constant="44" id="nkQ-iD-Ebc"/>
+                                            <constraint firstAttribute="width" constant="88" id="nbS-3r-g1I"/>
+                                            <constraint firstAttribute="height" constant="88" id="nkQ-iD-Ebc"/>
                                         </constraints>
                                         <state key="normal" title="Let's Go!" image="go">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
