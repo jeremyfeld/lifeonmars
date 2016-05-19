@@ -70,6 +70,8 @@
     
     if (!self.buttonStackShowing) {
         
+        self.buttonStackShowing = YES;
+        
         [UIView animateWithDuration:0.4 animations:^{
             
             CGAffineTransform transform = CGAffineTransformIdentity;
@@ -77,16 +79,15 @@
             transform = CGAffineTransformTranslate(transform, -108, 0);
             
             self.buttonStackView.transform = transform;
-            
-            self.buttonStackShowing = YES;
         }];
         
     } else {
         
+        self.buttonStackShowing = NO;
+        
         [UIView animateWithDuration:0.4 animations:^{
             
             self.buttonStackView.transform = CGAffineTransformIdentity;
-            self.buttonStackShowing = NO;
         }];
     }
 }
@@ -140,7 +141,7 @@
 - (void)animateBlackhole
 {
     __weak typeof(self) weakSelf = self;
-
+    
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
         
         [weakSelf.blackholeImageView setTransform:CGAffineTransformRotate(self.blackholeImageView.transform, M_PI_2)];
@@ -164,7 +165,6 @@
             CGAffineTransform transform = CGAffineTransformIdentity;
             
             transform = CGAffineTransformTranslate(transform, self.view.frame.size.width + 300, transformationY);
-            
             transform = CGAffineTransformScale(transform, 0.1, 0.1);
             
             weakSelf.ufoImageView.transform = transform;
@@ -178,9 +178,11 @@
             } completion:^(BOOL finished) {
                 
                 weakSelf.ufoAnimationCounter++;
+                
                 [weakSelf animateUFO];
             }];
         }];
+        
     } else {
         
         [UIView animateWithDuration:2 delay:5 options:UIViewAnimationOptionCurveLinear animations:^{
@@ -198,7 +200,9 @@
                 weakSelf.ufoImageView.transform = CGAffineTransformIdentity;
                 
             } completion:^(BOOL finished) {
+                
                 weakSelf.ufoAnimationCounter++;
+                
                 [weakSelf animateUFO];
             }];
         }];
@@ -270,7 +274,7 @@
         
         self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°C", self.minTempCel];
         self.maxTempLabel.text = [NSString stringWithFormat:@"High: %@°C", self.maxTempCel];
-    
+        
     } else {
         
         self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°F", self.minTempFar];

@@ -42,10 +42,7 @@
      self.buttonStackShowing = NO;
      self.descriptionLabelShowing = NO;
      
-     if (!self.APODImageView.image) {
-          
-          [self fetchAPOD];
-     }
+     [self fetchAPOD];
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -79,7 +76,7 @@
      } else {
           
           self.buttonStackShowing = NO;
-
+          
           [UIView animateWithDuration:0.4 animations:^{
                
                self.buttonStackView.transform = CGAffineTransformIdentity;

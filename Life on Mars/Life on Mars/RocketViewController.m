@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *fireImageView;
 @property (weak, nonatomic) IBOutlet UIButton *redButton;
 @property (weak, nonatomic) IBOutlet UIButton *teleportButton;
-@property (weak, nonatomic) IBOutlet UIButton *onboardingRocketButton;
+@property (weak, nonatomic) IBOutlet UIButton *onboardingGoButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UILabel *teleportLabel;
 @property (weak, nonatomic) IBOutlet UILabel *launchLabel;
@@ -70,8 +70,8 @@
     
     if (shouldShowTeleport) {
         
-    self.teleportButton.hidden = NO;
-    self.teleportLabel.hidden = NO;
+        self.teleportButton.hidden = NO;
+        self.teleportLabel.hidden = NO;
         
     } else {
         
@@ -174,7 +174,6 @@
             
             self.onboardingLabelOne.alpha = 0;
             self.onboardingLabelTwo.alpha = 1;
-            
         }];
         
     } else if (self.nextTappedCounter == 2) {
@@ -183,7 +182,6 @@
             
             self.onboardingLabelTwo.alpha = 0;
             self.onboardingLabelThree.alpha = 1;
-            
         }];
         
     } else if (self.nextTappedCounter == 3) {
@@ -202,11 +200,10 @@
                 
                 transform = CGAffineTransformTranslate(transform, 0, -self.view.frame.size.height);
                 
-                self.onboardingRocketButton.transform = transform;
+                self.onboardingGoButton.transform = transform;
             }];
             
         }];
-        
     }
 }
 
