@@ -10,8 +10,9 @@
 #import "JBFConstants.h"
 #import <AFNetworking/AFNetworking.h>
 #import <AVFoundation/AVFoundation.h>
+#import <pop/POP.h>
 
-@interface MarsViewController ()
+@interface MarsViewController () <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *attributionTextView;
 @property (weak, nonatomic) IBOutlet UILabel *minTempLabel;
@@ -19,9 +20,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lastUpdatedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *weatherLabel;
 @property (weak, nonatomic) IBOutlet UIButton *rocketButton;
+@property (weak, nonatomic) IBOutlet UIImageView *blackholeImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *martianImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *ufoImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *blackholeImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *alienImageView;
 @property (weak, nonatomic) IBOutlet UIStackView *buttonStackView;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
@@ -43,8 +44,13 @@
     self.ufoAnimationCounter = 0;
     self.buttonStackShowing = NO;
     self.attributionTextView.hidden = YES;
+    self.blackholeImageView.userInteractionEnabled = YES;
     
     [self fetchMarsWeather];
+    
+    UITapGestureRecognizer *blackholeTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleBlackholeTapped:)];
+    [self.blackholeImageView addGestureRecognizer:blackholeTapGestureRecognizer];
+    blackholeTapGestureRecognizer.delegate = self;
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -99,6 +105,8 @@
 
 - (IBAction)settingsTapped:(id)sender
 {
+    [self.attributionTextView setContentOffset:CGPointMake(0,0)];
+    
     if (self.attributionTextView.hidden) {
         
         self.attributionTextView.hidden = NO;
@@ -142,7 +150,7 @@
 {
     __weak typeof(self) weakSelf = self;
     
-    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionAllowUserInteraction animations:^{
         
         [weakSelf.blackholeImageView setTransform:CGAffineTransformRotate(self.blackholeImageView.transform, M_PI_2)];
         
@@ -229,6 +237,37 @@
             
         } completion:nil];
     }];
+}
+
+- (void)handleBlackholeTapped:(UITapGestureRecognizer *)recognizer
+{
+    [self.blackholeImageView pop_removeAllAnimations];
+    self.blackholeImageView.userInteractionEnabled = NO;
+    
+    POPSpringAnimation *blackholeSpringShrink = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
+    blackholeSpringShrink.toValue = [NSValue valueWithCGSize:CGSizeMake(1, 1)];
+    blackholeSpringShrink.velocity = [NSValue valueWithCGSize:CGSizeMake(2, 2)];
+    blackholeSpringShrink.springBounciness = 30.f;
+    blackholeSpringShrink.autoreverses = YES;
+    blackholeSpringShrink.springSpeed = 2;
+    blackholeSpringShrink.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+        
+        self.blackholeImageView.userInteractionEnabled = YES;
+        [self.blackholeImageView pop_removeAllAnimations];
+    };
+    
+    POPSpringAnimation *blackholeSpringGrow = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
+    blackholeSpringGrow.toValue = [NSValue valueWithCGSize:CGSizeMake(2, 2)];
+    blackholeSpringGrow.velocity = [NSValue valueWithCGSize:CGSizeMake(2, 2)];
+    blackholeSpringGrow.springBounciness = 30.f;
+    blackholeSpringGrow.autoreverses = YES;
+    blackholeSpringGrow.springSpeed = 2;
+    blackholeSpringGrow.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+        
+        [self.blackholeImageView pop_addAnimation:blackholeSpringShrink forKey:@"reverse"];
+    };
+    
+    [self.blackholeImageView pop_addAnimation:blackholeSpringGrow forKey:@"spring"];
 }
 
 #pragma mark - API

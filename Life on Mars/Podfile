@@ -5,6 +5,7 @@
 
 target 'Life on Mars' do
 pod 'AFNetworking', '~> 3.0'
+pod 'pop', '~> 1.0'
 end
 
 target 'Life on MarsTests' do
