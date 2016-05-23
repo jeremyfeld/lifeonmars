@@ -48,9 +48,10 @@
     
     [self fetchMarsWeather];
     
-    UITapGestureRecognizer *blackholeTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleBlackholeTapped:)];
-    [self.blackholeImageView addGestureRecognizer:blackholeTapGestureRecognizer];
-    blackholeTapGestureRecognizer.delegate = self;
+    UILongPressGestureRecognizer *blackholeLongPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleBlackholePressed:)];
+    blackholeLongPressGestureRecognizer.minimumPressDuration = 0.01;
+    [self.blackholeImageView addGestureRecognizer:blackholeLongPressGestureRecognizer];
+    blackholeLongPressGestureRecognizer.delegate = self;
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -239,35 +240,43 @@
     }];
 }
 
-- (void)handleBlackholeTapped:(UITapGestureRecognizer *)recognizer
+- (void)handleBlackholePressed:(UILongPressGestureRecognizer *)recognizer
 {
-    [self.blackholeImageView pop_removeAllAnimations];
-    self.blackholeImageView.userInteractionEnabled = NO;
+    __weak typeof(self) weakSelf = self;
     
-    POPSpringAnimation *blackholeSpringShrink = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
-    blackholeSpringShrink.toValue = [NSValue valueWithCGSize:CGSizeMake(1, 1)];
-    blackholeSpringShrink.velocity = [NSValue valueWithCGSize:CGSizeMake(2, 2)];
-    blackholeSpringShrink.springBounciness = 30.f;
-    blackholeSpringShrink.autoreverses = YES;
-    blackholeSpringShrink.springSpeed = 2;
-    blackholeSpringShrink.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+    [weakSelf.blackholeImageView pop_removeAllAnimations];
+    
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
         
-        self.blackholeImageView.userInteractionEnabled = YES;
-        [self.blackholeImageView pop_removeAllAnimations];
-    };
-    
-    POPSpringAnimation *blackholeSpringGrow = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
-    blackholeSpringGrow.toValue = [NSValue valueWithCGSize:CGSizeMake(2, 2)];
-    blackholeSpringGrow.velocity = [NSValue valueWithCGSize:CGSizeMake(2, 2)];
-    blackholeSpringGrow.springBounciness = 30.f;
-    blackholeSpringGrow.autoreverses = YES;
-    blackholeSpringGrow.springSpeed = 2;
-    blackholeSpringGrow.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+        POPSpringAnimation *blackholeSpringShrink = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
         
-        [self.blackholeImageView pop_addAnimation:blackholeSpringShrink forKey:@"reverse"];
-    };
-    
-    [self.blackholeImageView pop_addAnimation:blackholeSpringGrow forKey:@"spring"];
+        blackholeSpringShrink.fromValue = [NSValue valueWithCGSize:CGSizeMake(1, 1)];
+        blackholeSpringShrink.toValue = [NSValue valueWithCGSize:CGSizeMake(0.2, 0.2)];
+        blackholeSpringShrink.velocity = [NSValue valueWithCGSize:CGSizeMake(2, 2)];
+        blackholeSpringShrink.springBounciness = 0.f;
+        blackholeSpringShrink.springSpeed = 2;
+        
+        [weakSelf.blackholeImageView pop_addAnimation:blackholeSpringShrink forKey:@"shrink"];
+        
+    } else if (recognizer.state == UIGestureRecognizerStateEnded ||
+               recognizer.state == UIGestureRecognizerStateFailed ||
+               recognizer.state == UIGestureRecognizerStateCancelled) {
+        
+        POPSpringAnimation *blackholeSpringGrow = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
+        
+        blackholeSpringGrow.fromValue = [NSValue valueWithCGSize:CGSizeMake(0.2, 0.2)];
+        blackholeSpringGrow.toValue = [NSValue valueWithCGSize:CGSizeMake(1, 1)];
+        blackholeSpringGrow.velocity = [NSValue valueWithCGSize:CGSizeMake(2, 2)];
+        blackholeSpringGrow.springBounciness = 30.f;
+        blackholeSpringGrow.autoreverses = YES;
+        blackholeSpringGrow.springSpeed = 2;
+        blackholeSpringGrow.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+            
+            [weakSelf.blackholeImageView pop_removeAllAnimations];
+        };
+        
+        [weakSelf.blackholeImageView pop_addAnimation:blackholeSpringGrow forKey:@"spring"];
+    }
 }
 
 #pragma mark - API

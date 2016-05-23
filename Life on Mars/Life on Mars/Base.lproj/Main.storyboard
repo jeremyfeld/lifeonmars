@@ -80,11 +80,11 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vC3-Va-7sq" userLabel="onboarding view">
-                                <rect key="frame" x="-0.5" y="0.0" width="375" height="667"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vC3-Va-7sq" userLabel="onboarding view">
+                                <rect key="frame" x="-1" y="0.0" width="376" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="space-sunrise" translatesAutoresizingMaskIntoConstraints="NO" id="5Px-za-14r">
-                                        <rect key="frame" x="-0.5" y="0.0" width="375" height="667"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="space-sunrise" translatesAutoresizingMaskIntoConstraints="NO" id="5Px-za-14r">
+                                        <rect key="frame" x="-1" y="0.0" width="376" height="667"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Life on Mars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gao-tj-qmg">
                                         <rect key="frame" x="161" y="567" width="194" height="60"/>
@@ -93,27 +93,27 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Life on Mars!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHK-rH-En8">
-                                        <rect key="frame" x="19.5" y="83" width="337.5" height="167"/>
+                                        <rect key="frame" x="20" y="83" width="337" height="167"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="peE-QY-n9O">
-                                        <rect key="frame" x="18.5" y="83.5" width="337.5" height="167"/>
+                                        <rect key="frame" x="19" y="84" width="337" height="167"/>
                                         <string key="text">Take a journey through space. Your first stop could be anywhere in the universe!  Your rocket will take you to the destination of NASA’s Astronomy Picture of the Day.  Scroll around to explore, get information about your destination, or save the picture!</string>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="0ty-dG-GAb">
-                                        <rect key="frame" x="18.5" y="83.5" width="337.5" height="167"/>
+                                        <rect key="frame" x="19" y="84" width="337" height="167"/>
                                         <string key="text">When you're ready, continue your journey to Mars and see the weather forecast, sent directly from the Mars Curiosity Rover!  Make sure to pay attention to your surroundings!</string>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you ready?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9x3-Fr-Rpz">
-                                        <rect key="frame" x="18" y="83.5" width="337.5" height="167"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Are you ready?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9x3-Fr-Rpz">
+                                        <rect key="frame" x="18" y="84" width="338" height="167"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -131,8 +131,8 @@
                                             <action selector="onboardingRocketTapped:" destination="Z4P-eb-Ncf" eventType="touchUpInside" id="yNz-AT-bAe"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxz-3O-Iah">
-                                        <rect key="frame" x="311" y="255.5" width="44" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxz-3O-Iah">
+                                        <rect key="frame" x="311" y="256" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="h9W-kX-Leu"/>
                                             <constraint firstAttribute="height" constant="44" id="lwE-8a-yAy"/>
@@ -486,19 +486,19 @@ See the License for the specific language governing permissions and limitations 
                                 <rect key="frame" x="21" y="553" width="373" height="110"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yu8-bd-mtI">
-                                        <rect key="frame" x="0.0" y="0.0" width="373" height="35.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="373" height="36"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather data transmitted by the Mars Curiosity Rover" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="6ev-ht-SJu">
-                                        <rect key="frame" x="0.0" y="37.5" width="373" height="35"/>
+                                        <rect key="frame" x="0.0" y="38" width="373" height="35"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Uh-bu-4vH">
-                                        <rect key="frame" x="0.0" y="74.5" width="373" height="35.5"/>
+                                        <rect key="frame" x="0.0" y="75" width="373" height="35"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
