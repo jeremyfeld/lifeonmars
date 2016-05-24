@@ -22,7 +22,7 @@ When you're ready, continue your journey to Mars and see the weather forecast, s
 
 # Notes
 - Utilized AFNetworking to make requests to multiple NASA APIs
-- Created numerous animations using CGAffineTransform translations, rotations, and scales, as well as Facebook Pop 
+- Created numerous animations using Facebook Pop and CGAffineTransform translations, rotations, and scales
 - Incorporated AVFoundation to add sound effects throughout the application
 - Embedded an image in a scrollview to enable scrolling and zooming
 - Stored user preferences using NSUserDefaults
