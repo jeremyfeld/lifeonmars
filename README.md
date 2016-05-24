@@ -2,7 +2,6 @@
   <img src=https://cloud.githubusercontent.com/assets/15523081/15513093/21703e98-21b1-11e6-8f1b-97161832e141.png width="120" height="120" >
 </p>
 # Life on Mars
-
 <p  align="center"
   <img src=https://cloud.githubusercontent.com/assets/15523081/15513076/0d70b0a8-21b1-11e6-8418-c9cc7b4c52a2.png width="200" height="400">
   
@@ -14,6 +13,7 @@
   
   <img src=https://cloud.githubusercontent.com/assets/15523081/15513079/0d7375e0-21b1-11e6-831a-3fad24678644.png width="200" height="400">
 </p>
+<a href="https://itunes.apple.com/us/app/life-on-mars-your-daily-trip/id1115803735">View on the App Store</a>
 
 # About
 Welcome to Life on Mars! Take a journey through space. Your first stop could be anywhere in the universe! Your rocket will take you to the destination of NASA’s Astronomy Picture of the Day. Scroll around to explore, zoom in or out, get information about your destination, or save the picture.
