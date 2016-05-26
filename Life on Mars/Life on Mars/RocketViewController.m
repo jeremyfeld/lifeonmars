@@ -127,8 +127,8 @@
         CGAffineTransform backgroundTransform = CGAffineTransformIdentity;
         CGAffineTransform rocketTransform = CGAffineTransformIdentity;
         
-        backgroundTransform = CGAffineTransformTranslate(backgroundTransform, 0, self.backgroundImageView.frame.size.height - self.view.frame.size.height);
-        
+        backgroundTransform = CGAffineTransformTranslate(backgroundTransform, 0, self.backgroundImageView.frame.size.height - 2 - self.view.frame.size.height);
+
         rocketTransform = CGAffineTransformTranslate(rocketTransform, 0, -self.view.frame.size.height/2);
         rocketTransform = CGAffineTransformScale(rocketTransform, 0.2, 0.2);
         

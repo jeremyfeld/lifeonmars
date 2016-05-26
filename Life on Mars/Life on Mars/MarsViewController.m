@@ -28,10 +28,10 @@
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (assign, nonatomic) NSUInteger ufoAnimationCounter;
 @property (assign, nonatomic) BOOL buttonStackShowing;
-@property (strong, nonatomic) NSString *minTempFar;
-@property (strong, nonatomic) NSString *maxTempFar;
-@property (strong, nonatomic) NSString *minTempCel;
-@property (strong, nonatomic) NSString *maxTempCel;
+@property (assign, nonatomic) CGFloat minTempFar;
+@property (assign, nonatomic) CGFloat maxTempFar;
+@property (assign, nonatomic) CGFloat minTempCel;
+@property (assign, nonatomic) CGFloat maxTempCel;
 
 @end
 
@@ -298,10 +298,10 @@
 #pragma mark - Update Labels
 - (void)saveTemperaturesFromWeatherReport:(NSDictionary *)marsDictionary
 {
-    self.minTempFar = marsDictionary[@"min_temp_fahrenheit"];
-    self.maxTempFar = marsDictionary[@"max_temp_fahrenheit"];
-    self.minTempCel = marsDictionary[@"min_temp"];
-    self.maxTempCel = marsDictionary[@"max_temp"];
+    self.minTempFar = [marsDictionary[@"min_temp_fahrenheit"] floatValue];
+    self.maxTempFar = [marsDictionary[@"max_temp_fahrenheit"] floatValue];
+    self.minTempCel = [marsDictionary[@"min_temp"] floatValue];
+    self.maxTempCel = [marsDictionary[@"max_temp"] floatValue];
 }
 
 - (void)updateLabelsWithWeatherReport:(NSDictionary *)marsDictionary
@@ -320,13 +320,13 @@
     
     if ([temperaturePreference isEqualToString:CEL] || !temperaturePreference) {
         
-        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°C", self.minTempCel];
-        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %@°C", self.maxTempCel];
+        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %.1f°C", self.minTempCel];
+        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %.1f°C", self.maxTempCel];
         
     } else {
         
-        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°F", self.minTempFar];
-        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %@°F", self.maxTempFar];
+        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %.1f°F", self.minTempFar];
+        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %.1f°F", self.maxTempFar];
     }
 }
 
@@ -344,15 +344,15 @@
     
     if ([temperaturePreference isEqualToString:CEL] || !temperaturePreference) {
         
-        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°F", self.minTempFar];
-        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %@°F", self.maxTempFar];
+        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %.1f°F", self.minTempFar];
+        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %.1f°F", self.maxTempFar];
         
         [[NSUserDefaults standardUserDefaults] setValue:FAR forKey:TEMP_SCALE_KEY];
         
     } else {
         
-        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°C", self.minTempCel];
-        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %@°C", self.maxTempCel];
+        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %.1f°C", self.minTempCel];
+        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %.1f°C", self.maxTempCel];
         
         [[NSUserDefaults standardUserDefaults] setValue:CEL forKey:TEMP_SCALE_KEY];
     }
@@ -372,15 +372,15 @@
     
     if ([temperaturePreference isEqualToString:CEL] || !temperaturePreference) {
         
-        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°F", self.minTempFar];
-        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %@°F", self.maxTempFar];
+        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %.1f°F", self.minTempFar];
+        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %.1f°F", self.maxTempFar];
         
         [[NSUserDefaults standardUserDefaults] setValue:FAR forKey:TEMP_SCALE_KEY];
         
     } else {
         
-        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %@°C", self.minTempCel];
-        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %@°C", self.maxTempCel];
+        self.minTempLabel.text = [NSString stringWithFormat:@"Low: %.1f°C", self.minTempCel];
+        self.maxTempLabel.text = [NSString stringWithFormat:@"High: %.1f°C", self.maxTempCel];
         
         [[NSUserDefaults standardUserDefaults] setValue:CEL forKey:TEMP_SCALE_KEY];
     }
